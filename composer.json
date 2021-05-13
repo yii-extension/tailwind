@@ -1,0 +1,45 @@
+{
+    "name": "yii-extension/tailwind-starter-kit",
+    "type": "library",
+    "description": "Yii Extension Tailwind Starter Kit Extension",
+    "keywords": [
+        "yii",
+        "tailwind-starter-kit"
+    ],
+    "license": "BSD-3-Clause",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.0",
+        "yiisoft/files": "^1.0.0",
+        "yiisoft/html": "^1.2.0",
+        "yiisoft/widget": "^3.0@dev"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "roave/infection-static-analysis-plugin": "^1.7",
+        "vimeo/psalm": "^4.4",
+        "yiisoft/var-dumper": "^1.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yii\\Extension\\Tailwind\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Yii\\Extension\\Tailwind\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        },
+        "config-plugin": {
+            "params": "config/params.php"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
