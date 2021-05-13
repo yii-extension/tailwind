@@ -7,6 +7,9 @@ namespace Yii\Extension\Tailwind\Asset;
 use Yiisoft\Assets\AssetBundle;
 use Yiisoft\Files\PathMatcher\PathMatcher;
 
+/**
+ * @psalm-type JsFile = string|array{0:string,1?:int}&array
+ */
 final class TailwindJsAsset extends AssetBundle
 {
     public ?string $basePath = '@assets';
@@ -15,6 +18,7 @@ final class TailwindJsAsset extends AssetBundle
 
     public ?string $sourcePath = '@tailwind-starter-kit/storage/assets/js';
 
+    /** @psalm-var JsFile[] */
     public array $js = [
         'starterkit.js',
     ];

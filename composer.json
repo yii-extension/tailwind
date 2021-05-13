@@ -11,6 +11,7 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.4|^8.0",
+        "yiisoft/assets": "^1.0@dev",
         "yiisoft/files": "^1.0.0",
         "yiisoft/html": "^1.2.0",
         "yiisoft/widget": "^3.0@dev"

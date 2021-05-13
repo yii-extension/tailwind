@@ -56,6 +56,7 @@ final class NavBar extends Widget
 
         $items = [];
 
+        /** @var array $item */
         foreach ($this->items as $item) {
             if (!isset($item['visible']) || $item['visible']) {
                 $items[] = Li::tag()
@@ -355,7 +356,7 @@ final class NavBar extends Widget
     private function isItemActive($item): bool
     {
         if (isset($item['active'])) {
-            return $item['active'];
+            return (bool) $item['active'];
         }
 
         return
@@ -367,8 +368,6 @@ final class NavBar extends Widget
 
     private function renderBrand(): string
     {
-        $brandImage = '';
-
         $new = clone $this;
 
         if ($new->brand !== '') {
@@ -446,7 +445,7 @@ final class NavBar extends Widget
      *
      * @param array $item the item to render.
      *
-     * @throws InvalidArgumentException|JsonException
+     * @throws InvalidArgumentException
      *
      * @return string the rendering result.
      */
@@ -456,25 +455,30 @@ final class NavBar extends Widget
             throw new InvalidArgumentException('The "label" option is required.');
         }
 
-        $dropdown = false;
+        /** @var bool */
         $encodeLabels = $item['encode'] ?? false;
 
         if ($encodeLabels) {
             $label = Html::encode($item['label']);
         } else {
+            /** @var string */
             $label = $item['label'];
         }
 
         $iconOptions = [];
 
+        /** @var string */
         $icon = $item['icon'] ?? '';
 
         $label = $this->renderIcon($label, $icon, $iconOptions);
 
-        $options = $item['options'] ?? [];
-        $items = $item['items'] ?? [];
+        /** @var string */
         $url = $item['url'] ?? '#';
+
+        /** @var array */
         $linkOptions = $item['linkOptions'] ?? [];
+
+        /** @var bool */
         $disabled = $item['disabled'] ?? false;
 
         $active = $this->isItemActive($item);
@@ -510,6 +514,7 @@ final class NavBar extends Widget
 
     private function renderToggleButton(): Button
     {
+        /** @var string */
         $id = $this->containerItemsAttributes['id'];
         $this->toggleAttributes['onclick'] = "toggleNavbar('$id')";
 
