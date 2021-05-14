@@ -1,0 +1,7 @@
+{
+    "license": "BSD-3-Clause",
+    "dependencies": {
+        "@popperjs/core": "^2.9.2",
+        "tailwindcss": "^2.1.2"
+    }
+}

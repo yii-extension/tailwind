@@ -7,20 +7,16 @@ namespace Yii\Extension\Tailwind\Asset;
 use Yiisoft\Assets\AssetBundle;
 use Yiisoft\Files\PathMatcher\PathMatcher;
 
-/**
- * @psalm-type JsFile = string|array{0:string,1?:int}&array
- */
-final class TailwindJsAsset extends AssetBundle
+final class MinifiedTailwindDarkAsset extends AssetBundle
 {
     public ?string $basePath = '@assets';
 
     public ?string $baseUrl = '@assetsUrl';
 
-    public ?string $sourcePath = '@tailwind-starter-kit/storage/assets/js';
+    public ?string $sourcePath = '@npm/tailwindcss/dist';
 
-    /** @psalm-var JsFile[] */
-    public array $js = [
-        'starterkit.js',
+    public array $css = [
+        'tailwind-dark.min.css',
     ];
 
     public function __construct()
@@ -29,7 +25,7 @@ final class TailwindJsAsset extends AssetBundle
 
         $this->publishOptions = [
             'filter' => $pathMatcher->only(
-                '**starterkit.js',
+                '**tailwind-dark.min.css',
             ),
         ];
     }

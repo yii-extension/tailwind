@@ -7,24 +7,16 @@ namespace Yii\Extension\Tailwind\Asset;
 use Yiisoft\Assets\AssetBundle;
 use Yiisoft\Files\PathMatcher\PathMatcher;
 
-final class TailwindStarterKitAsset extends AssetBundle
+final class PopperAsset extends AssetBundle
 {
     public ?string $basePath = '@assets';
 
     public ?string $baseUrl = '@assetsUrl';
 
-    public ?string $sourcePath = '@tailwind-starter-kit/storage/assets';
-
-    public array $css = [
-        '/css/tailwind-starter-kit.css',
-    ];
+    public ?string $sourcePath = '@npm/@popperjs/core/dist/umd';
 
     public array $js = [
-        '/js/tailwind-starter-kit.js',
-    ];
-
-    public array $depends = [
-        PopperAsset::class,
+        'popper.js',
     ];
 
     public function __construct()
@@ -33,8 +25,7 @@ final class TailwindStarterKitAsset extends AssetBundle
 
         $this->publishOptions = [
             'filter' => $pathMatcher->only(
-                '**/css/tailwind-starter-kit.css',
-                '**/js/tailwind-starter-kit.js',
+                '**/popper.js',
             ),
         ];
     }
