@@ -13,14 +13,14 @@ final class TailwindStarterKitAsset extends AssetBundle
 
     public ?string $baseUrl = '@assetsUrl';
 
-    public ?string $sourcePath = '@tailwind-starter-kit/storage/assets';
+    public ?string $sourcePath = '@vendor/yii-extension/tailwind-starter-kit/storage/assets';
 
     public array $css = [
-        '/css/tailwind-starter-kit.css',
+        'css/tailwind-starter-kit.css',
     ];
 
     public array $js = [
-        '/js/tailwind-starter-kit.js',
+        'js/tailwind-starter-kit.js',
     ];
 
     public array $depends = [
