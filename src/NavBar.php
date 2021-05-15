@@ -6,9 +6,14 @@ namespace Yii\Extension\Tailwind;
 
 use InvalidArgumentException;
 use Yiisoft\Html\Html;
-use Yiisoft\Html\Tag\Button;
 use Yiisoft\Html\Tag\Li;
 
+/**
+ * This the upper navigation of your website. You can add in it links, icons, links with icons, search bars and a brand
+ * text.
+ *
+ * @link https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/css/navbars
+ */
 final class NavBar extends Widget
 {
     private bool $activateItems = true;
@@ -51,6 +56,7 @@ final class NavBar extends Widget
         $html = Html::openTag('nav', $new->options) . "\n";
         $html .= Html::openTag('div', $new->containerAttributes) . "\n";
         $html .= $new->renderBrand() . "\n";
+        $html .= $new->renderToggleButton();
         $html .= Html::openTag('div', $new->containerItemsAttributes) . "\n";
         $html .= Html::openTag('ul', $new->ulAttributes)  . "\n";
 
@@ -256,9 +262,6 @@ final class NavBar extends Widget
      * - linkOptions: array, optional, the HTML attributes of the item's link.
      * - options: array, optional, the HTML attributes of the item container (LI).
      * - active: bool, optional, whether the item should be on active state or not.
-     * - dropdownOptions: array, optional, the HTML options that will passed to the {@see Dropdown} widget.
-     * - items: array|string, optional, the configuration array for creating a {@see Dropdown} widget, or a string
-     *   representing the dropdown menu.
      * - encode: bool, optional, whether the label will be HTML-encoded. If set, supersedes the $encodeLabels option for
      *   only this item.
      *
@@ -326,17 +329,45 @@ final class NavBar extends Widget
 
         Html::addCssClass(
             $new->options,
-            ['relative', 'flex', 'flex-wrap', 'items-center', 'px-2', 'py-3', 'mb-3'],
+            ['flex-wrap', 'flex', 'items-center', 'mb-3', 'px-2', 'py-3', 'relative']
         );
 
         Html::addCssClass(
             $new->containerAttributes,
-            ['container', 'px-4', 'mx-auto', 'flex', 'flex-wrap', 'items-center', 'justify-between'],
+            ['container', 'flex-wrap', 'flex', 'items-center', 'justify-between', 'mx-auto','px-4']
         );
 
-        Html::addCssClass($new->containerItemsAttributes, ['lg:flex', 'flex-grow', 'items-center', 'hidden']);
+        Html::addCssClass(
+            $new->containerItemsAttributes,
+            ['flex-grow', 'hidden', 'items-center', 'lg:flex']
+        );
 
-        Html::addCssClass($new->ulAttributes, ['flex', 'flex-col', 'lg:flex-row', 'list-none', 'lg:ml-auto']);
+        Html::addCssClass(
+            $new->ulAttributes,
+            ['flex-col', 'flex', 'lg:flex-row', 'lg:ml-auto', 'list-none']
+        );
+
+        Html::addCssClass(
+            $new->toggleAttributes,
+            [
+                'block',
+                'border-solid',
+                'border-transparent',
+                'border',
+                'cursor-pointer',
+                'focus:outline-none',
+                'leading-none',
+                'lg:hidden',
+                'outline-none',
+                'px-3',
+                'py-1',
+                'rounded bg-transparent',
+                'text-white',
+                'text-xl',
+            ]
+        );
+
+        Html::addCssClass($new->toggleAttributes, ['text-white']);
 
         return $new;
     }
@@ -349,11 +380,11 @@ final class NavBar extends Widget
      * currentPath for the item and the rest of the elements are the associated parameters. Only when its currentPath
      * and parameters match {@see currentPath}, respectively, will a menu item be considered active.
      *
-     * @param array|object|string $item the menu item to be checked
+     * @param array $item the menu item to be checked
      *
      * @return bool whether the menu item is active
      */
-    private function isItemActive($item): bool
+    private function isItemActive(array $item): bool
     {
         if (isset($item['active'])) {
             return (bool) $item['active'];
@@ -385,7 +416,6 @@ final class NavBar extends Widget
                     'lg:w-auto',
                     'px-4',
                     'relative',
-                    'w-full',
                 ],
             );
 
@@ -422,7 +452,6 @@ final class NavBar extends Widget
             }
         }
 
-        $brand .= $new->renderToggleButton() . "\n";
         $brand .= Html::closeTag('div');
 
         return $brand;
@@ -488,7 +517,7 @@ final class NavBar extends Widget
         }
 
         if ($this->activateItems && $active) {
-            Html::addCssClass($linkOptions, ['active' => 'is-active']);
+            Html::addCssClass($linkOptions, ['active' => 'bg-gray-900']);
         }
 
         if ($this->loadDefaultTheme) {
@@ -512,12 +541,15 @@ final class NavBar extends Widget
         return "\n" . Html::a($label, $url, $linkOptions)->encode(false)->render() . "\n";
     }
 
-    private function renderToggleButton(): Button
+    private function renderToggleButton(): string
     {
         /** @var string */
         $id = $this->containerItemsAttributes['id'];
         $this->toggleAttributes['onclick'] = "toggleNavbar('$id')";
 
-        return Html::button('&#9776;', $this->toggleAttributes)->encode(false);
+        return
+            Html::openTag('div') . "\n" .
+                Html::button('☰', $this->toggleAttributes) . "\n" .
+            Html::closeTag('div') . "\n";
     }
 }

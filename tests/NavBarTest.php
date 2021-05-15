@@ -19,13 +19,15 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
-        <button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
-        <div id="w0-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         </ul>
         </div>
         </div>
@@ -42,11 +44,14 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
         <span>Mi Proyecto</span>
-        <div id="w0-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         </ul>
         </div>
         </div>
@@ -63,13 +68,15 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-amber-500 bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
-        <button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
+        <nav id="w0-navbar" class="bg-amber-500 bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
-        <div id="w0-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         </ul>
         </div>
         </div>
@@ -101,14 +108,16 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         <img class="w-6" src="tests.jpg" alt="">
-        <button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
         </div>
-        <div id="w0-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         </ul>
         </div>
         </div>
@@ -129,15 +138,17 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         <img class="w-6" src="tests.jpg" alt="">
         <a class="font-bold inline-block leading-relaxed px-4 text-sm text-white uppercase whitespace-nowrap" href="/">Mi Proyecto</a>
-        <button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
         </div>
-        <div id="w0-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         </ul>
         </div>
         </div>
@@ -158,13 +169,15 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
-        <span class="testMe font-bold inline-block leading-relaxed px-4 text-sm text-white uppercase whitespace-nowrap">Mi Proyecto</span><button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
+        <span class="testMe font-bold inline-block leading-relaxed px-4 text-sm text-white uppercase whitespace-nowrap">Mi Proyecto</span></div>
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
-        <div id="w0-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         </ul>
         </div>
         </div>
@@ -183,14 +196,16 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         <a class="font-bold inline-block leading-relaxed px-4 text-sm text-white uppercase whitespace-nowrap" href="/">Mi Proyecto</a>
-        <button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
         </div>
-        <div id="w0-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         </ul>
         </div>
         </div>
@@ -207,13 +222,15 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="testMe container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
-        <button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="testMe container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
-        <div id="w0-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         </ul>
         </div>
         </div>
@@ -230,13 +247,15 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
-        <button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
-        <div id="w0-items-navbar" class="testMe lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="testMe flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         </ul>
         </div>
         </div>
@@ -257,13 +276,15 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
-        <button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
-        <div id="w0-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
         <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="/about">About</a>
         </li>
@@ -297,13 +318,15 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
-        <button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
-        <div id="w0-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
         <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="#">Page1</a>
         </li>
@@ -333,13 +356,15 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
-        <button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
-        <div id="w0-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
         <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="#">a & b</a>
         </li>
@@ -361,13 +386,15 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w1-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
-        <button type="button" onclick="toggleNavbar(&apos;w1-items-navbar&apos;)">&#9776;</button>
+        <nav id="w1-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
-        <div id="w1-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w1-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w1-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
         <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="#">a &amp; b</a>
         </li>
@@ -390,13 +417,13 @@ final class NavBarTest extends TestCase
                 [
                     'label' => 'Setting Account',
                     'url' => '/setting/account',
-                    'icon' => 'fas fa-user-cog',
+                    'icon' => 'fas fa-user-cog px-2',
                     'iconOptions' => ['class' => 'icon'],
                 ],
                 [
                     'label' => 'Profile',
                     'url' => '/profile',
-                    'icon' => 'fas fa-users',
+                    'icon' => 'fas fa-users px-2',
                     'iconOptions' => ['class' => 'icon'],
                 ],
             ])
@@ -404,23 +431,25 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         <img src="yii-logo.jpg" alt="">
         <a class="font-bold inline-block leading-relaxed px-4 text-sm text-white uppercase whitespace-nowrap" href="/">My Project</a>
-        <button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
         </div>
-        <div id="w0-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
         <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="/setting/account">
-        <span><i class="fas fa-user-cog"></i></span><span>Setting Account</span>
+        <span><i class="fas fa-user-cog px-2"></i></span><span>Setting Account</span>
         </a>
         </li>
         <li class="nav-item">
         <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="/profile">
-        <span><i class="fas fa-users"></i></span><span>Profile</span>
+        <span><i class="fas fa-users px-2"></i></span><span>Profile</span>
         </a>
         </li>
         </ul>
@@ -451,13 +480,15 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
-        <button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
-        <div id="w0-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
         <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="#">Item1</a>
         </li>
@@ -492,18 +523,20 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
-        <button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
-        <div id="w0-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="is-active flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="#">Item1</a>
+        <a class="bg-gray-900 flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="#">Item1</a>
         </li>
         <li class="nav-item">
-        <a class="is-active flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="/site/index">Item2</a>
+        <a class="bg-gray-900 flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="/site/index">Item2</a>
         </li>
         </ul>
         </div>
@@ -547,13 +580,15 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
-        <button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
-        <div id="w0-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
         <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="#" style="opacity:.75; pointer-events:none;">Link disable</a>
         </li>
@@ -573,13 +608,15 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
-        <button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
-        <div id="w0-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
         <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="#">Page1</a>
         </li>
@@ -595,17 +632,20 @@ final class NavBarTest extends TestCase
     {
         NavBar::counter(0);
 
-        $html = NavBar::widget()->toggleAttributes(['class' => 'testMe'])->begin();
+        $html = NavBar::widget()->toggleAttributes(['class' => 'text-white'])->begin();
         $html .= NavBar::end();
 
+
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black relative flex flex-wrap items-center px-2 py-3 mb-3">
-        <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative w-full">
-        <button type="button" class="testMe" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
-        <div id="w0-items-navbar" class="lg:flex flex-grow items-center hidden">
-        <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <div>
+        <button type="button" class="text-white block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         </ul>
         </div>
         </div>
@@ -625,7 +665,9 @@ final class NavBarTest extends TestCase
         <nav id="w0-navbar">
         <div>
         <div>
-        <button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">&#9776;</button>
+        </div>
+        <div>
+        <button type="button" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar">
         <ul>
