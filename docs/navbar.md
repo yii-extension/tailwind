@@ -18,23 +18,33 @@ Example:
 declare(strict_types=1);
 
 use Yii\Extension\Tailwind\Asset\TailwindStarterKitAsset;
+use Yiisoft\Assets\AssetManager;
+use Yiisoft\Router\UrlGeneratorInterface;
+use Yiisoft\Router\UrlMatcherInterface;
+use Yiisoft\View\WebView
 
 /**
- * @var Yiisoft\Assets\AssetManager $assetManager
- * @var Yiisoft\View\WebView $this
+ * @var AssetManager $assetManager
+ * @var UrlGeneratorInterface $urlGenerator
+ * @var UrlMatcherInterface $urlMatcher
+ * @var WebView $this
  */
 
 /* Register assets in view */
-
 $assetManager->register([TailwindStarterKitAsset::class]);
 
 $this->setCssFiles($assetManager->getCssFiles());
 $this->setJsFiles($assetManager->getJsFiles());
 
+if ($urlMatcher->getCurrentRoute() !== null) {
+    $currentPath = $urlMatcher->getCurrentUri()->getPath();
+}
+
 NavBar::widget()
     ->backGroundColorTheme(Navbar::BG_BLUGRAY)
     ->brandLink('/')
     ->brandText('BLUEGRAY COLOR')
+    ->currentPath($currentPath)
     ->items([
         ['label' => 'discover', 'url' => '#'],
         ['label' => 'profile', 'url' => '#'],
