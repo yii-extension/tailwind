@@ -10,6 +10,7 @@ abstract class Widget extends \Yiisoft\Widget\Widget
 {
     public const BG_AMBER = 'bg-amber-500';
     public const BG_BLACK = 'bg-black';
+    public const BG_BLUGRAY = 'bg-blueGray-500';
     public const BG_EMERALD = 'bg-emerald-500';
     public const BG_INDIGO = 'bg-indigo-500';
     public const BG_LIGHTBLUE = 'bg-lightBlue-500';
@@ -22,6 +23,7 @@ abstract class Widget extends \Yiisoft\Widget\Widget
     public const BG_ALL = [
         self::BG_AMBER,
         self::BG_BLACK,
+        self::BG_BLUGRAY,
         self::BG_EMERALD,
         self::BG_INDIGO,
         self::BG_LIGHTBLUE,

@@ -24,7 +24,7 @@ final class NavBarTest extends TestCase
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
@@ -48,7 +48,7 @@ final class NavBarTest extends TestCase
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
         <span>Mi Proyecto</span>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
@@ -68,12 +68,12 @@ final class NavBarTest extends TestCase
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-amber-500 bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <nav id="w0-navbar" class="bg-amber-500 flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
@@ -89,9 +89,9 @@ final class NavBarTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            'Invalid color. Valid values are: "bg-amber-500", "bg-black", "bg-emerald-500", "bg-indigo-500", ' .
-            '"bg-lightBlue-500", "bg-orange-500", "bg-pink-500", "bg-purple-500", "bg-red-500", "bg-teal-500", ' .
-            '"bg-white".'
+            'Invalid color. Valid values are: "bg-amber-500", "bg-black", "bg-blueGray-500", "bg-emerald-500", ' .
+            '"bg-indigo-500", "bg-lightBlue-500", "bg-orange-500", "bg-pink-500", "bg-purple-500", "bg-red-500", ' .
+            '"bg-teal-500", "bg-white".'
         );
 
         $html = NavBar::widget()->backGroundColorTheme('noExist')->begin();
@@ -114,7 +114,7 @@ final class NavBarTest extends TestCase
         <img class="w-6" src="tests.jpg" alt="">
         </div>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
@@ -142,10 +142,10 @@ final class NavBarTest extends TestCase
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         <img class="w-6" src="tests.jpg" alt="">
-        <a class="font-bold inline-block leading-relaxed px-4 text-sm text-white uppercase whitespace-nowrap" href="/">Mi Proyecto</a>
+        <a class="font-bold inline-block leading-relaxed px-4 text-sm uppercase whitespace-nowrap text-white" href="/">Mi Proyecto</a>
         </div>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
@@ -172,9 +172,9 @@ final class NavBarTest extends TestCase
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
-        <span class="testMe font-bold inline-block leading-relaxed px-4 text-sm text-white uppercase whitespace-nowrap">Mi Proyecto</span></div>
+        <span class="testMe font-bold inline-block leading-relaxed px-4 text-sm uppercase whitespace-nowrap text-white">Mi Proyecto</span></div>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
@@ -199,10 +199,10 @@ final class NavBarTest extends TestCase
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
-        <a class="font-bold inline-block leading-relaxed px-4 text-sm text-white uppercase whitespace-nowrap" href="/">Mi Proyecto</a>
+        <a class="font-bold inline-block leading-relaxed px-4 text-sm uppercase whitespace-nowrap text-white" href="/">Mi Proyecto</a>
         </div>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
@@ -227,7 +227,7 @@ final class NavBarTest extends TestCase
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
@@ -252,7 +252,7 @@ final class NavBarTest extends TestCase
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="testMe flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
@@ -281,15 +281,15 @@ final class NavBarTest extends TestCase
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="/about">About</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/about">About</a>
         </li>
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="/contact">Contact</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/contact">Contact</a>
         </li>
         </ul>
         </div>
@@ -323,15 +323,15 @@ final class NavBarTest extends TestCase
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="#">Page1</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#">Page1</a>
         </li>
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="#">Page4</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#">Page4</a>
         </li>
         </ul>
         </div>
@@ -361,12 +361,12 @@ final class NavBarTest extends TestCase
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="#">a & b</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#">a & b</a>
         </li>
         </ul>
         </div>
@@ -391,12 +391,12 @@ final class NavBarTest extends TestCase
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w1-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w1-items-navbar&apos;)">☰</button>
         </div>
         <div id="w1-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="#">a &amp; b</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#">a &amp; b</a>
         </li>
         </ul>
         </div>
@@ -435,20 +435,20 @@ final class NavBarTest extends TestCase
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         <img src="yii-logo.jpg" alt="">
-        <a class="font-bold inline-block leading-relaxed px-4 text-sm text-white uppercase whitespace-nowrap" href="/">My Project</a>
+        <a class="font-bold inline-block leading-relaxed px-4 text-sm uppercase whitespace-nowrap text-white" href="/">My Project</a>
         </div>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="/setting/account">
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/setting/account">
         <span><i class="fas fa-user-cog px-2"></i></span><span>Setting Account</span>
         </a>
         </li>
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="/profile">
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/profile">
         <span><i class="fas fa-users px-2"></i></span><span>Profile</span>
         </a>
         </li>
@@ -485,15 +485,15 @@ final class NavBarTest extends TestCase
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="#">Item1</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#">Item1</a>
         </li>
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="/site/index">Item2</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/site/index">Item2</a>
         </li>
         </ul>
         </div>
@@ -528,15 +528,15 @@ final class NavBarTest extends TestCase
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="bg-gray-900 flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="#">Item1</a>
+        <a class="bg-gray-900 flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#">Item1</a>
         </li>
         <li class="nav-item">
-        <a class="bg-gray-900 flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="/site/index">Item2</a>
+        <a class="bg-gray-900 flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/site/index">Item2</a>
         </li>
         </ul>
         </div>
@@ -585,12 +585,12 @@ final class NavBarTest extends TestCase
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="#" style="opacity:.75; pointer-events:none;">Link disable</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#" style="opacity:.75; pointer-events:none;">Link disable</a>
         </li>
         </ul>
         </div>
@@ -613,12 +613,12 @@ final class NavBarTest extends TestCase
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
         <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-white text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-white text-xs uppercase" href="#">Page1</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#">Page1</a>
         </li>
         </ul>
         </div>

@@ -17,7 +17,7 @@ use Yiisoft\Html\Tag\Li;
 final class NavBar extends Widget
 {
     private bool $activateItems = true;
-    private string $backGroundColorTheme = '';
+    private string $backGroundColorTheme = NavBar::BG_BLACK;
     private string $brand = '';
     private string $brandImage = '';
     private array $brandImageAttributes = [];
@@ -31,7 +31,7 @@ final class NavBar extends Widget
     private array $items = [];
     private bool $loadDefaultTheme = true;
     private array $toggleAttributes = [];
-    private string $textColorTheme = '';
+    private string $textColorTheme = 'text-white';
     private array $ulAttributes = [];
     private string $liClass = 'nav-item';
 
@@ -104,9 +104,7 @@ final class NavBar extends Widget
         }
 
         $new = clone $this;
-
-        Html::addCssClass($new->options, ['bg-color' => $value]);
-
+        $new->backGroundColorTheme = $value;
         return $new;
     }
 
@@ -279,6 +277,20 @@ final class NavBar extends Widget
     }
 
     /**
+     * Text color theme.
+     *
+     * @param string $value
+     *
+     * @return self
+     */
+    public function textColorTheme(string $value): self
+    {
+        $new = clone $this;
+        $new->textColorTheme = $value;
+        return $new;
+    }
+
+    /**
      * The HTML attributes of the navbar toggler button.
      *
      * @param array $value
@@ -323,9 +335,7 @@ final class NavBar extends Widget
 
     private function loadDefaultTheme(self $new): self
     {
-        if ($new->backGroundColorTheme === '') {
-            Html::addCssClass($new->options, [NavBar::BG_BLACK]);
-        }
+        Html::addCssClass($new->options, [$new->backGroundColorTheme]);
 
         Html::addCssClass(
             $new->options,
@@ -362,12 +372,12 @@ final class NavBar extends Widget
                 'px-3',
                 'py-1',
                 'rounded bg-transparent',
-                'text-white',
                 'text-xl',
+                $new->textColorTheme,
             ]
         );
 
-        Html::addCssClass($new->toggleAttributes, ['text-white']);
+        Html::addCssClass($new->toggleAttributes, [$new->textColorTheme]);
 
         return $new;
     }
@@ -427,9 +437,9 @@ final class NavBar extends Widget
                     'leading-relaxed',
                     'px-4',
                     'text-sm',
-                    'text-white',
                     'uppercase',
                     'whitespace-nowrap',
+                    $new->textColorTheme,
                 ],
             );
         }
@@ -531,9 +541,9 @@ final class NavBar extends Widget
                     'leading-snug',
                     'px-3',
                     'py-2',
-                    'text-white',
                     'text-xs',
                     'uppercase',
+                    $this->textColorTheme,
                 ],
             );
         }
