@@ -16,6 +16,7 @@ use Yiisoft\Html\Tag\Li;
  */
 final class NavBar extends Widget
 {
+    private array $attributes = [];
     private bool $activateItems = true;
     private string $backGroundColorTheme = NavBar::BG_BLACK;
     private string $brand = '';
@@ -41,19 +42,19 @@ final class NavBar extends Widget
 
         $new = clone $this;
 
-        if (!isset($new->options['id'])) {
-            $new->options['id'] = "{$new->getId()}-navbar";
+        if ($new->loadDefaultTheme) {
+            $new->loadDefaultTheme($new);
+        }
+
+        if (!isset($new->attributes['id'])) {
+            $new->attributes['id'] = "{$new->getId()}-navbar";
         }
 
         if (!isset($new->containerItemsAttributes['id'])) {
             $new->containerItemsAttributes['id'] = "{$new->getId()}-items-navbar";
         }
 
-        if ($new->loadDefaultTheme) {
-            $new->loadDefaultTheme($new);
-        }
-
-        $html = Html::openTag('nav', $new->options) . "\n";
+        $html = Html::openTag('nav', $new->attributes) . "\n";
         $html .= Html::openTag('div', $new->containerAttributes) . "\n";
         $html .= $new->renderBrand() . "\n";
         $html .= $new->renderToggleButton();
@@ -76,13 +77,14 @@ final class NavBar extends Widget
             $html .= implode("\n", $items) . "\n";
         }
 
+        $html .= Html::closeTag('ul') . "\n";
+
         return $html;
     }
 
     protected function run(): string
     {
-        $html = Html::closeTag('ul') . "\n";
-        $html .= Html::closeTag('div') . "\n";
+        $html = Html::closeTag('div') . "\n";
         $html .= Html::closeTag('div') . "\n";
         $html .= Html::closeTag('nav');
 
@@ -133,7 +135,6 @@ final class NavBar extends Widget
     {
         $new = clone $this;
         $new->brandImage = $value;
-
         return $new;
     }
 
@@ -166,7 +167,6 @@ final class NavBar extends Widget
     {
         $new = clone $this;
         $new->brandLink = $value;
-
         return $new;
     }
 
@@ -181,7 +181,6 @@ final class NavBar extends Widget
     {
         $new = clone $this;
         $new->brandText = $value;
-
         return $new;
     }
 
@@ -198,7 +197,6 @@ final class NavBar extends Widget
     {
         $new = clone $this;
         $new->brandTextAttributes = $value;
-
         return $new;
     }
 
@@ -307,6 +305,22 @@ final class NavBar extends Widget
     }
 
     /**
+     * The HTML attributes for the container ul attributes. The following special options are recognized.
+     *
+     * {@see Html::renderTagAttributes()} for details on how attributes are being rendered.
+     *
+     * @param array $value
+     *
+     * @return self
+     */
+    public function ulAttributes(array $value): self
+    {
+        $new = clone $this;
+        $new->ulAttributes = $value;
+        return $new;
+    }
+
+    /**
      * Disable activate items according to whether their currentPath.
      *
      * @return $this
@@ -335,47 +349,57 @@ final class NavBar extends Widget
 
     private function loadDefaultTheme(self $new): self
     {
-        Html::addCssClass($new->options, [$new->backGroundColorTheme]);
+        if ($new->attributes === []) {
+            Html::addCssClass($new->attributes, [$new->backGroundColorTheme]);
 
-        Html::addCssClass(
-            $new->options,
-            ['flex-wrap', 'flex', 'items-center', 'mb-3', 'px-2', 'py-3', 'relative']
-        );
+            Html::addCssClass(
+                $new->attributes,
+                ['flex-wrap', 'flex', 'items-center', 'mb-3', 'px-2', 'py-3', 'relative']
+            );
+        }
 
-        Html::addCssClass(
-            $new->containerAttributes,
-            ['container', 'flex-wrap', 'flex', 'items-center', 'justify-between', 'mx-auto','px-4']
-        );
+        if ($new->containerAttributes === []) {
+            Html::addCssClass(
+                $new->containerAttributes,
+                ['container', 'flex-wrap', 'flex', 'items-center', 'justify-between', 'mx-auto','px-4']
+            );
+        }
 
-        Html::addCssClass(
-            $new->containerItemsAttributes,
-            ['flex-grow', 'hidden', 'items-center', 'lg:flex']
-        );
+        if ($new->containerItemsAttributes === []) {
+            Html::addCssClass(
+                $new->containerItemsAttributes,
+                ['flex-grow', 'hidden', 'items-center', 'lg:flex']
+            );
+        }
 
-        Html::addCssClass(
-            $new->ulAttributes,
-            ['flex-col', 'flex', 'lg:flex-row', 'lg:ml-auto', 'list-none']
-        );
+        if ($new->ulAttributes === []) {
+            Html::addCssClass(
+                $new->ulAttributes,
+                ['flex-col', 'flex', 'lg:flex-row', 'lg:ml-auto', 'list-none']
+            );
+        }
 
-        Html::addCssClass(
-            $new->toggleAttributes,
-            [
-                'block',
-                'border-solid',
-                'border-transparent',
-                'border',
-                'cursor-pointer',
-                'focus:outline-none',
-                'leading-none',
-                'lg:hidden',
-                'outline-none',
-                'px-3',
-                'py-1',
-                'rounded bg-transparent',
-                'text-xl',
-                $new->textColorTheme,
-            ]
-        );
+        if ($new->toggleAttributes === []) {
+            Html::addCssClass(
+                $new->toggleAttributes,
+                [
+                    'block',
+                    'border-solid',
+                    'border-transparent',
+                    'border',
+                    'cursor-pointer',
+                    'focus:outline-none',
+                    'leading-none',
+                    'lg:hidden',
+                    'outline-none',
+                    'px-3',
+                    'py-1',
+                    'rounded bg-transparent',
+                    'text-xl',
+                    $new->textColorTheme,
+                ]
+            );
+        }
 
         Html::addCssClass($new->toggleAttributes, [$new->textColorTheme]);
 
@@ -467,16 +491,20 @@ final class NavBar extends Widget
         return $brand;
     }
 
-    private function renderIcon(string $label, string $icon, array $iconOptions): string
+    private function renderLabel(string $label, string $icon, array $iconOptions = [], array $labelOptions = []): string
     {
         if ($icon !== '') {
-            $label = "\n" . Html::openTag('span', $iconOptions) .
-                Html::tag('i', '', ['class' => $icon]) .
-                Html::closeTag('span') .
-                Html::tag('span', $label) . "\n";
+            $icon = "\n" .
+                Html::openTag('span', $iconOptions) .
+                    Html::tag('i', '', ['class' => $icon]) .
+                Html::closeTag('span') . "\n";
         }
 
-        return $label;
+        if ($label !== '') {
+            $label = Html::span($label, $labelOptions)->encode(false)->render();
+        }
+
+        return $icon . $label;
     }
 
     /**
@@ -490,18 +518,17 @@ final class NavBar extends Widget
      */
     private function renderItem(array $item): string
     {
-        if (!isset($item['label'])) {
-            throw new InvalidArgumentException('The "label" option is required.');
+        if (!isset($item['label']) && !isset($item['icon'])) {
+            throw new InvalidArgumentException('The "label" or "icon" option is required.');
         }
 
         /** @var bool */
         $encodeLabels = $item['encode'] ?? false;
 
+        $label = $item['label'] ?? '';
+
         if ($encodeLabels) {
-            $label = Html::encode($item['label']);
-        } else {
-            /** @var string */
-            $label = $item['label'];
+            $label = Html::encode($label);;
         }
 
         $iconOptions = [];
@@ -509,10 +536,11 @@ final class NavBar extends Widget
         /** @var string */
         $icon = $item['icon'] ?? '';
 
-        $label = $this->renderIcon($label, $icon, $iconOptions);
-
         /** @var string */
         $url = $item['url'] ?? '#';
+
+        /** @var array */
+        $labelOptions = $item['labelOptions'] ?? [];
 
         /** @var array */
         $linkOptions = $item['linkOptions'] ?? [];
@@ -521,6 +549,8 @@ final class NavBar extends Widget
         $disabled = $item['disabled'] ?? false;
 
         $active = $this->isItemActive($item);
+
+        $label = $this->renderLabel($label, $icon, $iconOptions);
 
         if ($disabled) {
             Html::addCssStyle($linkOptions, 'opacity:.75; pointer-events:none;');

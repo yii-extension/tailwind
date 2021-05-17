@@ -6,8 +6,6 @@ namespace Yii\Extension\Tailwind\Tests;
 
 use InvalidArgumentException;
 use Yii\Extension\Tailwind\NavBar;
-use Yiisoft\Di\Container;
-use Yiisoft\Widget\WidgetFactory;
 
 final class NavBarTest extends TestCase
 {
@@ -223,7 +221,7 @@ final class NavBarTest extends TestCase
 
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
-        <div class="testMe container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="testMe">
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
         <div>
@@ -254,7 +252,7 @@ final class NavBarTest extends TestCase
         <div>
         <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
-        <div id="w0-items-navbar" class="testMe flex-grow hidden items-center lg:flex">
+        <div id="w0-items-navbar" class="testMe">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         </ul>
         </div>
@@ -286,10 +284,10 @@ final class NavBarTest extends TestCase
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/about">About</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/about"><span>About</span></a>
         </li>
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/contact">Contact</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/contact"><span>Contact</span></a>
         </li>
         </ul>
         </div>
@@ -328,10 +326,10 @@ final class NavBarTest extends TestCase
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#">Page1</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#"><span>Page1</span></a>
         </li>
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#">Page4</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#"><span>Page4</span></a>
         </li>
         </ul>
         </div>
@@ -366,7 +364,7 @@ final class NavBarTest extends TestCase
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#">a & b</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#"><span>a & b</span></a>
         </li>
         </ul>
         </div>
@@ -396,7 +394,7 @@ final class NavBarTest extends TestCase
         <div id="w1-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#">a &amp; b</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#"><span>a &amp; b</span></a>
         </li>
         </ul>
         </div>
@@ -444,13 +442,13 @@ final class NavBarTest extends TestCase
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
         <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/setting/account">
-        <span><i class="fas fa-user-cog px-2"></i></span><span>Setting Account</span>
-        </a>
+        <span><i class="fas fa-user-cog px-2"></i></span>
+        <span>Setting Account</span></a>
         </li>
         <li class="nav-item">
         <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/profile">
-        <span><i class="fas fa-users px-2"></i></span><span>Profile</span>
-        </a>
+        <span><i class="fas fa-users px-2"></i></span>
+        <span>Profile</span></a>
         </li>
         </ul>
         </div>
@@ -490,10 +488,10 @@ final class NavBarTest extends TestCase
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#">Item1</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#"><span>Item1</span></a>
         </li>
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/site/index">Item2</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/site/index"><span>Item2</span></a>
         </li>
         </ul>
         </div>
@@ -533,10 +531,10 @@ final class NavBarTest extends TestCase
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="bg-gray-900 flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#">Item1</a>
+        <a class="bg-gray-900 flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#"><span>Item1</span></a>
         </li>
         <li class="nav-item">
-        <a class="bg-gray-900 flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/site/index">Item2</a>
+        <a class="bg-gray-900 flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/site/index"><span>Item2</span></a>
         </li>
         </ul>
         </div>
@@ -549,7 +547,7 @@ final class NavBarTest extends TestCase
     public function testItemsLabelException(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('The "label" option is required.');
+        $this->expectExceptionMessage('The "label" or "icon" option is required.');
 
         NavBar::widget()
             ->items([
@@ -590,7 +588,7 @@ final class NavBarTest extends TestCase
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#" style="opacity:.75; pointer-events:none;">Link disable</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#" style="opacity:.75; pointer-events:none;"><span>Link disable</span></a>
         </li>
         </ul>
         </div>
@@ -618,7 +616,7 @@ final class NavBarTest extends TestCase
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
-        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#">Page1</a>
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="#"><span>Page1</span></a>
         </li>
         </ul>
         </div>
@@ -642,7 +640,7 @@ final class NavBarTest extends TestCase
         <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
         </div>
         <div>
-        <button type="button" class="text-white block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        <button type="button" class="text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
