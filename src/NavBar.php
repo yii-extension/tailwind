@@ -525,6 +525,7 @@ final class NavBar extends Widget
         /** @var bool */
         $encodeLabels = $item['encode'] ?? false;
 
+        /** @var string */
         $label = $item['label'] ?? '';
 
         if ($encodeLabels) {
@@ -550,7 +551,7 @@ final class NavBar extends Widget
 
         $active = $this->isItemActive($item);
 
-        $label = $this->renderLabel($label, $icon, $iconOptions);
+        $label = $this->renderLabel($label, $icon, $iconOptions, $labelOptions);
 
         if ($disabled) {
             Html::addCssStyle($linkOptions, 'opacity:.75; pointer-events:none;');
