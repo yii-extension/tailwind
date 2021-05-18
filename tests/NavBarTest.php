@@ -58,6 +58,31 @@ final class NavBarTest extends TestCase
         $this->assertEqualsWithoutLE($expected, $html);
     }
 
+    public function testAttributes(): void
+    {
+        NavBar::counter(0);
+
+        $html = NavBar::widget()->attributes(['class' => 'testMe'])->begin();
+        $html .= NavBar::end();
+
+        $expected = <<<'HTML'
+        <nav id="w0-navbar" class="testMe">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
+        </div>
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
+        </ul>
+        </div>
+        </div>
+        </nav>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
     public function testBackGroundColorTheme(): void
     {
         NavBar::counter(0);

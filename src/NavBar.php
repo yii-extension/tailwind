@@ -60,24 +60,7 @@ final class NavBar extends Widget
         $html .= $new->renderToggleButton();
         $html .= Html::openTag('div', $new->containerItemsAttributes) . "\n";
         $html .= Html::openTag('ul', $new->ulAttributes)  . "\n";
-
-        $items = [];
-
-        /** @var array $item */
-        foreach ($this->items as $item) {
-            if (!isset($item['visible']) || $item['visible']) {
-                $items[] = Li::tag()
-                    ->class($new->liClass)
-                    ->content($this->renderItem($item))
-                    ->encode(false);
-            }
-        }
-
-        if ($items !== []) {
-            $html .= implode("\n", $items) . "\n";
-        }
-
-        $html .= Html::closeTag('ul') . "\n";
+        $html .= $new->renderItem($new);
 
         return $html;
     }
@@ -89,6 +72,22 @@ final class NavBar extends Widget
         $html .= Html::closeTag('nav');
 
         return $html;
+    }
+
+    /**
+     * The HTML attributes for the navbar. The following special options are recognized.
+     *
+     * {@see Html::renderTagAttributes()} for details on how attributes are being rendered.
+     *
+     * @param array $value
+     *
+     * @return self
+     */
+    public function attributes(array $value): self
+    {
+        $new = clone $this;
+        $new->attributes = $value;
+        return $new;
     }
 
     /**
@@ -507,16 +506,31 @@ final class NavBar extends Widget
         return $icon . $label;
     }
 
-    /**
-     * Renders a widget's item.
-     *
-     * @param array $item the item to render.
-     *
-     * @throws InvalidArgumentException
-     *
-     * @return string the rendering result.
-     */
-    private function renderItem(array $item): string
+    private function renderItem(self $new): string
+    {
+        $html = '';
+        $items = [];
+
+        /** @var array $item */
+        foreach ($new->items as $item) {
+            if (!isset($item['visible']) || $item['visible']) {
+                $items[] = Li::tag()
+                    ->class($new->liClass)
+                    ->content($new->renderItems($item))
+                    ->encode(false);
+            }
+        }
+
+        if ($items !== []) {
+            $html .= implode("\n", $items) . "\n";
+        }
+
+        $html .= Html::closeTag('ul') . "\n";
+
+        return $html;
+    }
+
+    private function renderItems(array $item): string
     {
         if (!isset($item['label']) && !isset($item['icon'])) {
             throw new InvalidArgumentException('The "label" or "icon" option is required.');
@@ -529,7 +543,7 @@ final class NavBar extends Widget
         $label = $item['label'] ?? '';
 
         if ($encodeLabels) {
-            $label = Html::encode($label);;
+            $label = Html::encode($label);
         }
 
         $iconOptions = [];
