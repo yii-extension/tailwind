@@ -379,3 +379,40 @@ if ($urlMatcher->getCurrentRoute() !== null) {
     </div>
 </nav>
 ```
+
+## Reference
+
+Method | Description | type
+-------|-------------|---------
+`backGroundColorTheme(string $value)` | Color that will be applied for the default backGroundColor in the widget. | `NavBar::BG_BLACK` 
+`brand(string $value)` | Custom brand HTML. Overrides brandText and brandImage. | `''`
+`brandImage(string $value)` | Image of the brand. | `''`
+`brandImageAttributes(array $value)` | List of HTML attributes for brand image. | `[]`
+`brandLink(string $value)` | "href" of the brand's link. | `'/'`
+`brandText(string $value)` | Text of the brand. | `''` 
+`brandTextAttributes(array $value)` | List of HTML attributes for brand text. | `[]`
+`containerAttributes(array $value)` | List of HTML attributes for widget container. | `[]`
+`containerItemsAttributes(array $value)` | List of HTML attributes for item container. | `[]`
+`currentPath(string $value)` | Allows you to assign the current path of the URL from request controller. |
+`items(array $value)` | List of menu items. | `[]`
+`textColorTheme(string $value)` | Color that will be applied for the default texts in the widget. | `text-white`
+`ulAttributes(array $value)` | List of HTML attributes for ul container. | `array`
+`withoutActivateItems()`  | Disable activate items according to whether their `currentPath`. | `false`
+`withoutLoadDefaultTheme()` | Disable all default classes in the widget. | `false`
+
+
+**List background color**
+
+```HTML
+NavBar::BG_AMBER, NavBar::BG_BLACK, NavBar::BG_BLUGRAY, NavBar::BG_EMERALD
+NavBar::BG_INDIGO, NavBar::BG_LIGHTBLUE, NavBar::BG_ORANGE, NavBar::BG_PINK
+NavBar::BG_PURPLE, NavBar::BG_RED, NavBar::BG_TEAL, NavBar::BG_WHITE
+```
+
+**List text color**
+
+```html
+text-black, text-white, text-pink-500, text-purple-500, text-indigo-500
+text-blue-500, ext-lightBlue-500`, text-teal-400, text-emerald-500
+text-amber-600, text-orange-500, text-red-300, text-gray-400, text-blueGray-400
+```
