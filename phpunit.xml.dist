@@ -12,6 +12,7 @@
       <directory>./src</directory>
     </include>
     <exclude>
+      <directory>./src/Asset</directory>
       <directory>./tests</directory>
       <directory>./vendor</directory>
     </exclude>

@@ -651,6 +651,34 @@ final class NavBarTest extends TestCase
         $this->assertEqualsWithoutLE($expected, $html);
     }
 
+    public function testTextColorTheme(): void
+    {
+        NavBar::counter(0);
+
+        $html = NavBar::widget()->items([['label' => 'text black']])->textColorTheme('text-black')->begin();
+        $html .= NavBar::end();
+
+        $expected = <<<'HTML'
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
+        </div>
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-black" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
+        <li class="nav-item">
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-black" href="#"><span>text black</span></a>
+        </li>
+        </ul>
+        </div>
+        </div>
+        </nav>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
     public function testToggleAttributes(): void
     {
         NavBar::counter(0);
@@ -669,6 +697,31 @@ final class NavBarTest extends TestCase
         </div>
         <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
+        </ul>
+        </div>
+        </div>
+        </nav>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testUlAttributes(): void
+    {
+        NavBar::counter(0);
+
+        $html = NavBar::widget()->ulAttributes(['class' => 'testMe'])->begin();
+        $html .= NavBar::end();
+
+        $expected = <<<'HTML'
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
+        </div>
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="testMe">
         </ul>
         </div>
         </div>

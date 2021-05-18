@@ -16,7 +16,6 @@ use Yiisoft\Html\Tag\Li;
  */
 final class NavBar extends Widget
 {
-    private array $attributes = [];
     private bool $activateItems = true;
     private string $backGroundColorTheme = NavBar::BG_BLACK;
     private string $brand = '';
@@ -72,22 +71,6 @@ final class NavBar extends Widget
         $html .= Html::closeTag('nav');
 
         return $html;
-    }
-
-    /**
-     * The HTML attributes for the navbar. The following special options are recognized.
-     *
-     * {@see Html::renderTagAttributes()} for details on how attributes are being rendered.
-     *
-     * @param array $value
-     *
-     * @return self
-     */
-    public function attributes(array $value): self
-    {
-        $new = clone $this;
-        $new->attributes = $value;
-        return $new;
     }
 
     /**
@@ -398,9 +381,9 @@ final class NavBar extends Widget
                     $new->textColorTheme,
                 ]
             );
-        }
 
-        Html::addCssClass($new->toggleAttributes, [$new->textColorTheme]);
+            Html::addCssClass($new->toggleAttributes, [$new->textColorTheme]);
+        }
 
         return $new;
     }
@@ -536,38 +519,32 @@ final class NavBar extends Widget
             throw new InvalidArgumentException('The "label" or "icon" option is required.');
         }
 
-        /** @var bool */
-        $encodeLabels = $item['encode'] ?? false;
-
-        /** @var string */
-        $label = $item['label'] ?? '';
-
-        if ($encodeLabels) {
-            $label = Html::encode($label);
-        }
-
         $iconOptions = [];
 
         /** @var string */
         $icon = $item['icon'] ?? '';
 
         /** @var string */
+        $label = $item['label'] ?? '';
+
+        /** @var array */
+        $labelOptions = isset($item['labelOptions']) ? $item['labelOptions'] : [];
+
+        /** @var string */
         $url = $item['url'] ?? '#';
 
         /** @var array */
-        $labelOptions = $item['labelOptions'] ?? [];
-
-        /** @var array */
-        $linkOptions = $item['linkOptions'] ?? [];
-
-        /** @var bool */
-        $disabled = $item['disabled'] ?? false;
+        $linkOptions = isset($item['linkOptions']) ? $item['linkOptions'] : [];
 
         $active = $this->isItemActive($item);
 
+        if (isset($item['encode']) && $item['encode'] === true) {
+            $label = Html::encode($label);
+        }
+
         $label = $this->renderLabel($label, $icon, $iconOptions, $labelOptions);
 
-        if ($disabled) {
+        if (isset($item['disabled']) && $item['disabled'] === true) {
             Html::addCssStyle($linkOptions, 'opacity:.75; pointer-events:none;');
         }
 

@@ -34,24 +34,43 @@ abstract class Widget extends \Yiisoft\Widget\Widget
         self::BG_TEAL,
         self::BG_WHITE,
     ];
-    protected array $options = [];
+    protected array $attributes = [];
     private ?string $id = null;
     private bool $autoGenerate = true;
     private string $autoIdPrefix = 'w';
     private static int $counter = 0;
 
     /**
-     * Returns the Id of the widget.
+     * The HTML attributes for the navbar. The following special options are recognized.
      *
-     * @return string|null Id of the widget.
+     * {@see Html::renderTagAttributes()} for details on how attributes are being rendered.
+     *
+     * @param array $value
+     *
+     * @return self
      */
-    public function getId(): ?string
+    public function attributes(array $value): self
     {
-        if ($this->autoGenerate && $this->id === null) {
-            $this->id = $this->autoIdPrefix . static::$counter++;
-        }
+        $new = clone $this;
+        $new->attributes = $value;
+        return $new;
+    }
 
-        return $this->id;
+    /**
+     * The prefix to the automatically generated widget IDs.
+     *
+     * @param string $value
+     *
+     * @return self
+     *
+     * {@see getId()}
+     */
+    public function autoIdPrefix(string $value): self
+    {
+        $new = clone $this;
+        $new->autoIdPrefix = $value;
+
+        return $new;
     }
 
     /**
@@ -80,36 +99,16 @@ abstract class Widget extends \Yiisoft\Widget\Widget
     }
 
     /**
-     * The prefix to the automatically generated widget IDs.
+     * Returns the Id of the widget.
      *
-     * @param string $value
-     *
-     * @return self
-     *
-     * {@see getId()}
+     * @return string|null Id of the widget.
      */
-    public function autoIdPrefix(string $value): self
+    protected function getId(): ?string
     {
-        $new = clone $this;
-        $new->autoIdPrefix = $value;
+        if ($this->autoGenerate && $this->id === null) {
+            $this->id = $this->autoIdPrefix . static::$counter++;
+        }
 
-        return $new;
-    }
-
-    /**
-     * The HTML attributes for the widget container tag. The following special options are recognized.
-     *
-     * {@see Html::renderTagAttributes()} for details on how attributes are being rendered.
-     *
-     * @param array $value
-     *
-     * @return $this
-     */
-    public function options(array $value): self
-    {
-        $new = clone $this;
-        $new->options = $value;
-
-        return $new;
+        return $this->id;
     }
 }
