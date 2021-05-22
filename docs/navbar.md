@@ -395,11 +395,25 @@ Method | Description | type
 `containerItemsAttributes(array $value)` | List of HTML attributes for item container. | `[]`
 `currentPath(string $value)` | Allows you to assign the current path of the URL from request controller. |
 `items(array $value)` | List of menu items. | `[]`
+`liClass(string $value)` | Class for tag li. | ``
 `textColorTheme(string $value)` | Color that will be applied for the default texts in the widget. | `text-white`
 `ulAttributes(array $value)` | List of HTML attributes for ul container. | `array`
 `withoutActivateItems()`  | Disable activate items according to whether their `currentPath`. | `false`
 `withoutLoadDefaultTheme()` | Disable all default classes in the widget. | `false`
 
+**items Structure**
+```php
+$items = [
+    [
+        'label' => string, // text label
+        'url' => string, // url
+        'urlAttrbutes' => array, // attributes for tag a
+        'active' => bool, // If the option is active
+        'visible' => bool, // If the option is visible
+        'encode' => bool, // If the label is encode
+    ]
+];
+```
 
 **List background color**
 

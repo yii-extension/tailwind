@@ -114,7 +114,7 @@ final class NavBarTest extends TestCase
         $this->expectExceptionMessage(
             'Invalid color. Valid values are: "bg-amber-500", "bg-black", "bg-blueGray-500", "bg-emerald-500", ' .
             '"bg-indigo-500", "bg-lightBlue-500", "bg-orange-500", "bg-pink-500", "bg-purple-500", "bg-red-500", ' .
-            '"bg-teal-500", "bg-white".'
+            '"bg-teal-500", "bg-transparent", "bg-white".'
         );
 
         $html = NavBar::widget()->backGroundColorTheme('noExist')->begin();
@@ -286,6 +286,7 @@ final class NavBarTest extends TestCase
         HTML;
         $this->assertEqualsWithoutLE($expected, $html);
     }
+
     public function testItems(): void
     {
         NavBar::counter(0);
@@ -441,13 +442,13 @@ final class NavBarTest extends TestCase
                     'label' => 'Setting Account',
                     'url' => '/setting/account',
                     'icon' => 'fas fa-user-cog px-2',
-                    'iconOptions' => ['class' => 'icon'],
+                    'iconAttributes' => ['class' => 'icon'],
                 ],
                 [
                     'label' => 'Profile',
                     'url' => '/profile',
                     'icon' => 'fas fa-users px-2',
-                    'iconOptions' => ['class' => 'icon'],
+                    'iconAttributes' => ['class' => 'icon'],
                 ],
             ])
             ->begin();
@@ -585,6 +586,43 @@ final class NavBarTest extends TestCase
                 ],
             ])
             ->begin();
+    }
+
+    public function testItemsLiClass(): void
+    {
+        NavBar::counter(0);
+
+        $html = NavBar::widget()
+            ->items([
+                ['label' => 'About', 'url' => '/about'],
+                ['label' => 'Contact', 'url' => '/contact'],
+            ])
+            ->liClass('testMe')
+            ->begin();
+        $html .= NavBar::end();
+
+        $expected = <<<'HTML'
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
+        </div>
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
+        <li class="testMe">
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/about"><span>About</span></a>
+        </li>
+        <li class="testMe">
+        <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/contact"><span>Contact</span></a>
+        </li>
+        </ul>
+        </div>
+        </div>
+        </nav>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
     }
 
     public function testItemLinkDisabled(): void

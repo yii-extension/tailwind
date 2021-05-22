@@ -237,8 +237,7 @@ final class NavBar extends Widget
      * - label: string, required, the nav item label.
      * - url: optional, the item's URL. Defaults to "#".
      * - visible: bool, optional, whether this menu item is visible. Defaults to true.
-     * - linkOptions: array, optional, the HTML attributes of the item's link.
-     * - options: array, optional, the HTML attributes of the item container (LI).
+     * - urlAttributes: array, optional, the HTML attributes of the item's link.
      * - active: bool, optional, whether the item should be on active state or not.
      * - encode: bool, optional, whether the label will be HTML-encoded. If set, supersedes the $encodeLabels option for
      *   only this item.
@@ -253,6 +252,20 @@ final class NavBar extends Widget
     {
         $new = clone $this;
         $new->items = $value;
+        return $new;
+    }
+
+    /**
+     * Class for tag li.
+     *
+     * @param string $value
+     *
+     * @return self
+     */
+    public function liClass(string $value): self
+    {
+        $new = clone $this;
+        $new->liClass = $value;
         return $new;
     }
 
@@ -473,17 +486,21 @@ final class NavBar extends Widget
         return $brand;
     }
 
-    private function renderLabel(string $label, string $icon, array $iconOptions = [], array $labelOptions = []): string
-    {
+    private function renderLabel(
+        string $label,
+        string $icon,
+        array $iconAttributes = [],
+        array $labelAttributes = []
+    ): string {
         if ($icon !== '') {
             $icon = "\n" .
-                Html::openTag('span', $iconOptions) .
+                Html::openTag('span', $iconAttributes) .
                     Html::tag('i', '', ['class' => $icon]) .
                 Html::closeTag('span') . "\n";
         }
 
         if ($label !== '') {
-            $label = Html::span($label, $labelOptions)->encode(false)->render();
+            $label = Html::span($label, $labelAttributes)->encode(false)->render();
         }
 
         return $icon . $label;
@@ -497,10 +514,7 @@ final class NavBar extends Widget
         /** @var array $item */
         foreach ($new->items as $item) {
             if (!isset($item['visible']) || $item['visible']) {
-                $items[] = Li::tag()
-                    ->class($new->liClass)
-                    ->content($new->renderItems($item))
-                    ->encode(false);
+                $items[] = Li::tag()->class($new->liClass)->content($new->renderItems($item))->encode(false);
             }
         }
 
@@ -519,7 +533,7 @@ final class NavBar extends Widget
             throw new InvalidArgumentException('The "label" or "icon" option is required.');
         }
 
-        $iconOptions = [];
+        $iconAttributes = [];
 
         /** @var string */
         $icon = $item['icon'] ?? '';
@@ -528,13 +542,13 @@ final class NavBar extends Widget
         $label = $item['label'] ?? '';
 
         /** @var array */
-        $labelOptions = isset($item['labelOptions']) ? $item['labelOptions'] : [];
+        $labelAttributes = isset($item['labelAttributes']) ? $item['labelAttributes'] : [];
 
         /** @var string */
         $url = $item['url'] ?? '#';
 
         /** @var array */
-        $linkOptions = isset($item['linkOptions']) ? $item['linkOptions'] : [];
+        $urlAttributes = isset($item['urlAttributes']) ? $item['urlAttributes'] : [];
 
         $active = $this->isItemActive($item);
 
@@ -542,19 +556,19 @@ final class NavBar extends Widget
             $label = Html::encode($label);
         }
 
-        $label = $this->renderLabel($label, $icon, $iconOptions, $labelOptions);
+        $label = $this->renderLabel($label, $icon, $iconAttributes, $labelAttributes);
 
         if (isset($item['disabled']) && $item['disabled'] === true) {
-            Html::addCssStyle($linkOptions, 'opacity:.75; pointer-events:none;');
+            Html::addCssStyle($urlAttributes, 'opacity:.75; pointer-events:none;');
         }
 
         if ($this->activateItems && $active) {
-            Html::addCssClass($linkOptions, ['active' => 'bg-gray-900']);
+            Html::addCssClass($urlAttributes, ['active' => 'bg-gray-900']);
         }
 
         if ($this->loadDefaultTheme) {
             Html::addCssClass(
-                $linkOptions,
+                $urlAttributes,
                 [
                     'flex',
                     'font-bold',
@@ -570,7 +584,7 @@ final class NavBar extends Widget
             );
         }
 
-        return "\n" . Html::a($label, $url, $linkOptions)->encode(false)->render() . "\n";
+        return "\n" . Html::a($label, $url, $urlAttributes)->encode(false)->render() . "\n";
     }
 
     private function renderToggleButton(): string

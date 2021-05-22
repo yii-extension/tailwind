@@ -19,6 +19,7 @@ abstract class Widget extends \Yiisoft\Widget\Widget
     public const BG_PURPLE = 'bg-purple-500';
     public const BG_RED = 'bg-red-500';
     public const BG_TEAL = 'bg-teal-500';
+    public const BG_TRANSPARENT = 'bg-transparent';
     public const BG_WHITE = 'bg-white';
     public const BG_ALL = [
         self::BG_AMBER,
@@ -32,6 +33,7 @@ abstract class Widget extends \Yiisoft\Widget\Widget
         self::BG_PURPLE,
         self::BG_RED,
         self::BG_TEAL,
+        self::BG_TRANSPARENT,
         self::BG_WHITE,
     ];
     protected array $attributes = [];
