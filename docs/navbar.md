@@ -393,15 +393,16 @@ Method | Description | type
 `brandTextAttributes(array $value)` | List of HTML attributes for brand text. | `[]`
 `containerAttributes(array $value)` | List of HTML attributes for widget container. | `[]`
 `containerItemsAttributes(array $value)` | List of HTML attributes for item container. | `[]`
-`currentPath(string $value)` | Allows you to assign the current path of the URL from request controller. |
+`currentPath(string $value)` | Allows you to assign the current path of the URL from request controller. | `''`
 `items(array $value)` | List of menu items. | `[]`
-`liClass(string $value)` | Class for tag li. | ``
+`liClass(string $value)` | Class for tag li. | `''`
 `textColorTheme(string $value)` | Color that will be applied for the default texts in the widget. | `text-white`
 `ulAttributes(array $value)` | List of HTML attributes for ul container. | `array`
 `withoutActivateItems()`  | Disable activate items according to whether their `currentPath`. | `false`
 `withoutLoadDefaultTheme()` | Disable all default classes in the widget. | `false`
 
 **items Structure**
+
 ```php
 $items = [
     [
