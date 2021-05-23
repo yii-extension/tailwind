@@ -49,6 +49,38 @@ final class DropdownTest extends TestCase
         $this->assertEqualsWithoutLE($expected, $html);
     }
 
+    public function testButtonBackgroundColor(): void
+    {
+        Dropdown::counter(0);
+
+        $html = Dropdown::widget()->buttonBackgroundColor(Dropdown::BG_RED)->render();
+
+        $expected = <<<'HTML'
+        <div class="flex flex-wrap">
+        <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
+        <div class="align-middle inline-flex relative w-full">
+        <button class="bg-red-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        </div>
+        </div>
+        </div>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testButtonBackgroundColorException(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Invalid color. Valid values are: "bg-amber-500", "bg-black", "bg-blueGray-500", "bg-emerald-500", ' .
+            '"bg-indigo-500", "bg-lightBlue-500", "bg-orange-500", "bg-pink-500", "bg-purple-500", "bg-red-500", ' .
+            '"bg-teal-500", "bg-transparent", "bg-white".'
+        );
+
+        $html =  Dropdown::widget()->buttonBackgroundColor('noExist')->render();
+    }
+
     public function testButtonLabel(): void
     {
         Dropdown::counter(0);
@@ -89,17 +121,17 @@ final class DropdownTest extends TestCase
         $this->assertEqualsWithoutLE($expected, $html);
     }
 
-    public function testButtonLabelBackground(): void
+    public function testButtonTextColor(): void
     {
         Dropdown::counter(0);
 
-        $html = Dropdown::widget()->buttonLabelBackground(Dropdown::BG_RED)->render();
+        $html = Dropdown::widget()->buttonTextColor('text-black')->render();
 
         $expected = <<<'HTML'
         <div class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-red-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <button class="bg-blueGray-500 text-black duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
         <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         </div>
         </div>
@@ -109,30 +141,19 @@ final class DropdownTest extends TestCase
         $this->assertEqualsWithoutLE($expected, $html);
     }
 
-    public function testButtonLabelBackgroundException(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage(
-            'Invalid color. Valid values are: "bg-amber-500", "bg-black", "bg-blueGray-500", "bg-emerald-500", ' .
-            '"bg-indigo-500", "bg-lightBlue-500", "bg-orange-500", "bg-pink-500", "bg-purple-500", "bg-red-500", ' .
-            '"bg-teal-500", "bg-transparent", "bg-white".'
-        );
-
-        $html =  Dropdown::widget()->buttonLabelBackground('noExist')->render();
-    }
-
-    public function testButtonLabelTextColor(): void
+    public function testDividerClass(): void
     {
         Dropdown::counter(0);
 
-        $html = Dropdown::widget()->buttonLabelTextColor('text-black')->render();
+        $html = Dropdown::widget()->dividerAttributes(['class' => 'dropdown-divider'])->items(['-'])->render();
 
         $expected = <<<'HTML'
         <div class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-blueGray-500 text-black duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
         <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <div class="dropdown-divider"></div>
         </div>
         </div>
         </div>
@@ -162,6 +183,152 @@ final class DropdownTest extends TestCase
         <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>San petesburgo</span></a>
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Novosibirsk</span></a>
+        <div class="border-blueGray-800 border-solid border-t-0 border h-0 my-2 opacity-25"></div>
+        <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Ekaterinburgo</span></a>
+        </div>
+        </div>
+        </div>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testItemsActive(): void
+    {
+        Dropdown::counter(0);
+
+        $html = Dropdown::widget()
+            ->items([
+                ['label' => 'San petesburgo', 'url' => '#', 'active' => true],
+                ['label' => 'Novosibirsk', 'url' => '#'],
+                '-',
+                ['label' => 'Ekaterinburgo', 'url' => '#'],
+            ])
+            ->render();
+
+        $expected = <<<'HTML'
+        <div class="flex flex-wrap">
+        <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
+        <div class="align-middle inline-flex relative w-full">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap bg-gray-900 text-white" href="#"><span>San petesburgo</span></a>
+        <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Novosibirsk</span></a>
+        <div class="border-blueGray-800 border-solid border-t-0 border h-0 my-2 opacity-25"></div>
+        <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Ekaterinburgo</span></a>
+        </div>
+        </div>
+        </div>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+
+    public function testItemsAttributes(): void
+    {
+        Dropdown::counter(0);
+
+        $html = Dropdown::widget()
+            ->items([
+                ['label' => 'Ekaterinburgo', 'url' => '#'],
+            ])
+            ->itemsContainerAttributes(['class' => 'testMe'])
+            ->render();
+
+        $expected = <<<'HTML'
+        <div class="flex flex-wrap">
+        <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
+        <div class="align-middle inline-flex relative w-full">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown" class="testMe">
+        <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Ekaterinburgo</span></a>
+        </div>
+        </div>
+        </div>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testItemsIcon(): void
+    {
+        Dropdown::counter(0);
+
+        $html = Dropdown::widget()
+            ->items([
+                ['label' => 'Ekaterinburgo', 'url' => '#', 'icon' => 'fas fa-home'],
+            ])
+            ->render();
+
+        $expected = <<<'HTML'
+        <div class="flex flex-wrap">
+        <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
+        <div class="align-middle inline-flex relative w-full">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#">
+        <span><i class="fas fa-home"></i></span>
+        <span>Ekaterinburgo</span></a>
+        </div>
+        </div>
+        </div>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testItemsIconAttribute(): void
+    {
+        Dropdown::counter(0);
+
+        $html = Dropdown::widget()
+            ->items([
+                [
+                    'label' => 'Ekaterinburgo',
+                    'url' => '#',
+                    'icon' => 'fas fa-home',
+                    'iconAttributes' => ['class' => 'testMe']
+                ],
+            ])
+            ->render();
+
+        $expected = <<<'HTML'
+        <div class="flex flex-wrap">
+        <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
+        <div class="align-middle inline-flex relative w-full">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#">
+        <span class="testMe"><i class="fas fa-home"></i></span>
+        <span>Ekaterinburgo</span></a>
+        </div>
+        </div>
+        </div>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testItemsLabelEncode(): void
+    {
+        Dropdown::counter(0);
+
+        $html = Dropdown::widget()
+            ->items([
+                ['label' => 'San petesburgo & Novosibirs', 'url' => '#', 'encode' => true],
+                '-',
+                ['label' => 'Ekaterinburgo', 'url' => '#'],
+            ])
+            ->render();
+
+        $expected = <<<'HTML'
+        <div class="flex flex-wrap">
+        <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
+        <div class="align-middle inline-flex relative w-full">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>San petesburgo &amp;amp; Novosibirs</span></a>
         <div class="border-blueGray-800 border-solid border-t-0 border h-0 my-2 opacity-25"></div>
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Ekaterinburgo</span></a>
         </div>
@@ -243,6 +410,164 @@ final class DropdownTest extends TestCase
         </div>
         </div>
         </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testItemsSubDropdownAttributes(): void
+    {
+        Dropdown::counter(0);
+
+        $html = Dropdown::widget()
+            ->buttonSubDropdownAttributes(['class' => 'testMe'])
+            ->items([
+                [
+                    'label' => 'Chile',
+                    'items' => [
+                        ['label' => 'Chillan', 'url' => '#'],
+                        ['label' => 'Santiago', 'url' => '#'],
+                    ],
+                ],
+            ])
+            ->render();
+
+        $expected = <<<'HTML'
+        <div class="flex flex-wrap">
+        <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
+        <div class="align-middle inline-flex relative w-full">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <div class="flex flex-wrap">
+        <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
+        <div class="align-middle inline-flex relative w-full">
+        <button class="testMe" onclick="openDropdown(event, &apos;w1-dropdown&apos;)"><span>Chile</span><i class="pl-2">&#8594;</i></button>
+        <div id="w1-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Chillan</span></a>
+        <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Santiago</span></a>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testItemsSubDropdownBackgroundColor(): void
+    {
+        Dropdown::counter(0);
+
+        $html = Dropdown::widget()
+            ->buttonSubDropdownBackgroundColor(Dropdown::BG_RED)
+            ->items([
+                [
+                    'label' => 'Chile',
+                    'items' => [
+                        ['label' => 'Chillan', 'url' => '#'],
+                        ['label' => 'Santiago', 'url' => '#'],
+                    ],
+                ],
+            ])
+            ->render();
+
+        $expected = <<<'HTML'
+        <div class="flex flex-wrap">
+        <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
+        <div class="align-middle inline-flex relative w-full">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <div class="flex flex-wrap">
+        <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
+        <div class="align-middle inline-flex relative w-full">
+        <button class="bg-red-500 text-black duration-150 ease-linear focus:outline-none hover:shadow-lg mb-1 mr-1 outline-none py-3 rounded shadow text-sm transition-all" onclick="openDropdown(event, &apos;w1-dropdown&apos;)"><span>Chile</span><i class="pl-2">&#8594;</i></button>
+        <div id="w1-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Chillan</span></a>
+        <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Santiago</span></a>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testItemsSubDropdownBackgroundColorException(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Invalid color. Valid values are: "bg-amber-500", "bg-black", "bg-blueGray-500", "bg-emerald-500", ' .
+            '"bg-indigo-500", "bg-lightBlue-500", "bg-orange-500", "bg-pink-500", "bg-purple-500", "bg-red-500", ' .
+            '"bg-teal-500", "bg-transparent", "bg-white".'
+        );
+
+        $html =  Dropdown::widget()->buttonSubDropdownBackgroundColor('noExist')->render();
+    }
+
+    public function testItemsSubDropdownTextColor(): void
+    {
+        Dropdown::counter(0);
+
+        $html = Dropdown::widget()
+            ->buttonSubDropdownTextColor('text-red-500')
+            ->items([
+                [
+                    'label' => 'Chile',
+                    'items' => [
+                        ['label' => 'Chillan', 'url' => '#'],
+                        ['label' => 'Santiago', 'url' => '#'],
+                    ],
+                ],
+            ])
+            ->render();
+
+        $expected = <<<'HTML'
+        <div class="flex flex-wrap">
+        <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
+        <div class="align-middle inline-flex relative w-full">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <div class="flex flex-wrap">
+        <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
+        <div class="align-middle inline-flex relative w-full">
+        <button class="bg-transparent text-red-500 duration-150 ease-linear focus:outline-none hover:shadow-lg mb-1 mr-1 outline-none py-3 rounded shadow text-sm transition-all" onclick="openDropdown(event, &apos;w1-dropdown&apos;)"><span>Chile</span><i class="pl-2">&#8594;</i></button>
+        <div id="w1-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Chillan</span></a>
+        <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Santiago</span></a>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testWithoutLoadDefaultTheme(): void
+    {
+        Dropdown::counter(0);
+
+        $html = Dropdown::widget()->withoutLoadDefaultTheme()->render();
+
+        $expected = <<<'HTML'
+        <div>
+        <div>
+        <div>
+        <button onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown">
         </div>
         </div>
         </div>

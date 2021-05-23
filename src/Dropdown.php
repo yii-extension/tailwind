@@ -25,23 +25,21 @@ final class Dropdown extends Widget
     private array $buttonAttributes = [];
     private string $buttonLabel = 'Dropdown';
     private array $buttonLabelAttributes = [];
-    private string $buttonLabelBackground = 'bg-blueGray-500';
-    private string $buttonLabelTextColor = 'text-white';
+    private string $buttonBackgroundColor = 'bg-blueGray-500';
+    private string $buttonTextColor = 'text-white';
     private array $buttonSubDropdownAttributes = [];
-    private string $buttonSubDropdownLabelBackground = 'bg-transparent';
-    private string $buttonSubDropdownLabelTextColor = 'text-black';
+    private string $buttonSubDropdownBackgroundColor = 'bg-transparent';
+    private string $buttonSubDropdownTextColor = 'text-black';
     private string $buttonIcon = '&#8595;';
     private array $buttonIconAttributes = [];
     private array $containerAttributes = [];
-    private array $containerItemsAttributes = [];
     private array $containerTriggerAttributes = [];
     private string $currentPath = '';
     private array $dividerAttributes = [];
     private array $items = [];
-    private array $itemsAttributes = [];
+    private array $itemsContainerAttributes = [];
     private array $linkAttributes = [];
     private bool $loadDefaultTheme = true;
-    private array $triggerAttributes = [];
 
     protected function run(): string
     {
@@ -67,6 +65,25 @@ final class Dropdown extends Widget
     {
         $new = clone $this;
         $new->buttonAttributes = $value;
+        return $new;
+    }
+
+    /**
+     * Button background color.
+     *
+     * @param string $value
+     *
+     * @return self
+     */
+    public function buttonBackgroundColor(string $value): self
+    {
+        if (!in_array($value, self::BG_ALL)) {
+            $values = implode('", "', self::BG_ALL);
+            throw new InvalidArgumentException("Invalid color. Valid values are: \"$values\".");
+        }
+
+        $new = clone $this;
+        $new->buttonBackgroundColor = $value;
         return $new;
     }
 
@@ -97,39 +114,6 @@ final class Dropdown extends Widget
     {
         $new = clone $this;
         $new->buttonLabelAttributes = $value;
-        return $new;
-    }
-
-    /**
-     * Button background color.
-     *
-     * @param string $value
-     *
-     * @return self
-     */
-    public function buttonLabelBackground(string $value): self
-    {
-        if (!in_array($value, self::BG_ALL)) {
-            $values = implode('", "', self::BG_ALL);
-            throw new InvalidArgumentException("Invalid color. Valid values are: \"$values\".");
-        }
-
-        $new = clone $this;
-        $new->buttonLabelBackground = $value;
-        return $new;
-    }
-
-    /**
-     * Button text color label.
-     *
-     * @param string $value
-     *
-     * @return self
-     */
-    public function buttonLabelTextColor(string $value): self
-    {
-        $new = clone $this;
-        $new->buttonLabelTextColor = $value;
         return $new;
     }
 
@@ -170,7 +154,7 @@ final class Dropdown extends Widget
      *
      * @return self
      */
-    public function buttonSubDropdownLabelBackground(string $value): self
+    public function buttonSubDropdownBackgroundColor(string $value): self
     {
         if (!in_array($value, self::BG_ALL)) {
             $values = implode('", "', self::BG_ALL);
@@ -178,7 +162,7 @@ final class Dropdown extends Widget
         }
 
         $new = clone $this;
-        $new->buttonSubDropdownLabelBackground = $value;
+        $new->buttonSubDropdownBackgroundColor = $value;
         return $new;
     }
 
@@ -189,10 +173,24 @@ final class Dropdown extends Widget
      *
      * @return self
      */
-    public function buttonSubDropdownLabelTextColor(string $value): self
+    public function buttonSubDropdownTextColor(string $value): self
     {
         $new = clone $this;
-        $new->buttonSubDropdownLabelTextColor = $value;
+        $new->buttonSubDropdownTextColor = $value;
+        return $new;
+    }
+
+    /**
+     * Button text color label.
+     *
+     * @param string $value
+     *
+     * @return self
+     */
+    public function buttonTextColor(string $value): self
+    {
+        $new = clone $this;
+        $new->buttonTextColor = $value;
         return $new;
     }
 
@@ -222,7 +220,7 @@ final class Dropdown extends Widget
      *   If not set, the item will be treated as a menu header when the item has no sub-menu.
      * - visible: bool, optional, whether this menu item is visible. Defaults to true.
      * - linkAttributes: array, optional, the HTML attributes of the item link.
-     * - itemsAttributes: array, optional, the HTML attributes of the item.
+     * - itemsContainerAttributes: array, optional, the HTML attributes of the item.
      * - items: array, optional, the submenu items. The structure is the same as this property.
      *
      * To insert divider use `-`.
@@ -247,26 +245,10 @@ final class Dropdown extends Widget
      *
      * {@see Html::renderTagAttributes()} for details on how attributes are being rendered.
      */
-    public function itemsAttributes(array $value): self
+    public function itemsContainerAttributes(array $value): self
     {
         $new = clone $this;
-        $new->itemsAttributes = $value;
-        return $new;
-    }
-
-    /**
-     * The HTML attributes for the widget container trigger.
-     *
-     * @param array $value
-     *
-     * @return self
-     *
-     * {@see Html::renderTagAttributes()} for details on how attributes are being rendered.
-     */
-    public function triggerAttributes(array $value): self
-    {
-        $new = clone $this;
-        $new->triggerAttributes = $value;
+        $new->itemsContainerAttributes = $value;
         return $new;
     }
 
@@ -285,7 +267,7 @@ final class Dropdown extends Widget
     private function buildTrigger(self $new): string
     {
         /** @var string */
-        $id = $new->itemsAttributes['id'];
+        $id = $new->itemsContainerAttributes['id'];
         $new->buttonAttributes['onclick'] = "openDropdown(event, '$id')";
 
         return
@@ -338,8 +320,8 @@ final class Dropdown extends Widget
             Html::addCssClass(
                 $new->buttonAttributes,
                 [
-                    $new->buttonLabelBackground,
-                    $new->buttonLabelTextColor,
+                    $new->buttonBackgroundColor,
+                    $new->buttonTextColor,
                     'duration-150',
                     'ease-linear',
                     'focus:outline-none',
@@ -359,10 +341,9 @@ final class Dropdown extends Widget
             );
         }
 
-        if ($new->itemsAttributes === []) {
-            $new->itemsAttributes['id'] = "{$new->getId()}-dropdown";
+        if ($new->itemsContainerAttributes === []) {
             Html::addCssClass(
-                $new->itemsAttributes,
+                $new->itemsContainerAttributes,
                 [
                     'float-left',
                     'hidden bg-white',
@@ -377,7 +358,7 @@ final class Dropdown extends Widget
                 ]
             );
 
-            Html::addCssStyle($new->itemsAttributes, 'min-width:12rem');
+            Html::addCssStyle($new->itemsContainerAttributes, 'min-width:12rem');
         }
 
         if ($new->linkAttributes === []) {
@@ -414,8 +395,8 @@ final class Dropdown extends Widget
             Html::addCssClass(
                 $new->buttonSubDropdownAttributes,
                 [
-                    $new->buttonSubDropdownLabelBackground,
-                    $new->buttonSubDropdownLabelTextColor,
+                    $new->buttonSubDropdownBackgroundColor,
+                    $new->buttonSubDropdownTextColor,
                     'duration-150',
                     'ease-linear',
                     'focus:outline-none',
@@ -437,6 +418,8 @@ final class Dropdown extends Widget
 
     private function renderDropdown(self $new): string
     {
+        $new->itemsContainerAttributes['id'] = "{$new->getId()}-dropdown";
+
         return
             Html::openTag('div', $new->attributes) . "\n" .
                 Html::openTag('div', $new->containerAttributes) . "\n" .
@@ -507,7 +490,7 @@ final class Dropdown extends Widget
                 $icon = $item['icon'] ?? '';
 
                 /** @var array */
-                $iconAttributes = $item['iconAttributes'] ?? [] ;
+                $iconAttributes = $item['iconAttributes'] ?? [];
 
                 /** @var string|null */
                 $url = $item['url'] ?? null;
@@ -527,9 +510,9 @@ final class Dropdown extends Widget
                 if (isset($item['items']) && is_array($item['items'])) {
                     $lines[] = self::widget()
                         ->buttonAttributes($new->buttonSubDropdownAttributes)
+                        ->buttonBackgroundColor(self::BG_TRANSPARENT)
                         ->buttonLabel($itemLabel)
-                        ->buttonLabelBackground(self::BG_TRANSPARENT)
-                        ->buttonLabelTextColor('text-black')
+                        ->buttonTextColor('text-black')
                         ->buttonIcon('&#8594;')
                         ->items($item['items']);
                 } else {
@@ -546,20 +529,8 @@ final class Dropdown extends Widget
         }
 
         return
-            Html::openTag('div', $new->itemsAttributes) . "\n" .
+            Html::openTag('div', $new->itemsContainerAttributes) . "\n" .
                 $items .
             Html::closeTag('div') . "\n" ;
-    }
-
-    private function renderIcon(string $label, string $icon, array $iconAttributes): string
-    {
-        if ($icon !== '') {
-            $label = Html::openTag('span', $iconAttributes) .
-                Html::tag('i', '', ['class' => $icon]) .
-                Html::closeTag('span') .
-                Html::tag('span', $label);
-        }
-
-        return $label;
     }
 }

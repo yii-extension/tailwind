@@ -533,10 +533,11 @@ final class NavBar extends Widget
             throw new InvalidArgumentException('The "label" or "icon" option is required.');
         }
 
-        $iconAttributes = [];
-
         /** @var string */
         $icon = $item['icon'] ?? '';
+
+        /** @var array */
+        $iconAttributes = $item['iconAttributes'] ?? [];
 
         /** @var string */
         $label = $item['label'] ?? '';

@@ -468,12 +468,12 @@ final class NavBarTest extends TestCase
         <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
         <li class="nav-item">
         <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/setting/account">
-        <span><i class="fas fa-user-cog px-2"></i></span>
+        <span class="icon"><i class="fas fa-user-cog px-2"></i></span>
         <span>Setting Account</span></a>
         </li>
         <li class="nav-item">
         <a class="flex font-bold hover:opacity-75 items-center leading-snug px-3 py-2 text-xs uppercase text-white" href="/profile">
-        <span><i class="fas fa-users px-2"></i></span>
+        <span class="icon"><i class="fas fa-users px-2"></i></span>
         <span>Profile</span></a>
         </li>
         </ul>

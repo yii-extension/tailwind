@@ -407,8 +407,11 @@ Method | Description | type
 $items = [
     [
         'label' => string, // text label
+        'labelAttributes' => array, // attributes for label container tag
         'url' => string, // url
-        'urlAttrbutes' => array, // attributes for tag a
+        'urlAttributes' => array, // attributes for a tag
+        'icon' => string // icon class
+        'iconAttributes' => array, // attributes for icon container tag
         'active' => bool, // If the option is active
         'visible' => bool, // If the option is visible
         'encode' => bool, // If the label is encode
