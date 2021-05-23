@@ -81,6 +81,26 @@ final class DropdownTest extends TestCase
         $html =  Dropdown::widget()->buttonBackgroundColor('noExist')->render();
     }
 
+    public function testButtonIcon(): void
+    {
+        Dropdown::counter(0);
+
+        $html = Dropdown::widget()->buttonIcon('&#8593;')->render();
+
+        $expected = <<<'HTML'
+        <div class="flex flex-wrap">
+        <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
+        <div class="align-middle inline-flex relative w-full">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8593;</i></button>
+        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        </div>
+        </div>
+        </div>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
     public function testButtonLabel(): void
     {
         Dropdown::counter(0);

@@ -60,6 +60,7 @@ final class NavBar extends Widget
         $html .= Html::openTag('div', $new->containerItemsAttributes) . "\n";
         $html .= Html::openTag('ul', $new->ulAttributes)  . "\n";
         $html .= $new->renderItem($new);
+        $html .= Html::closeTag('ul') . "\n";
 
         return $html;
     }
@@ -342,7 +343,7 @@ final class NavBar extends Widget
         return $new;
     }
 
-    private function loadDefaultTheme(self $new): self
+    private function loadDefaultTheme(self $new): void
     {
         if ($new->attributes === []) {
             Html::addCssClass($new->attributes, [$new->backGroundColorTheme]);
@@ -397,8 +398,6 @@ final class NavBar extends Widget
 
             Html::addCssClass($new->toggleAttributes, [$new->textColorTheme]);
         }
-
-        return $new;
     }
 
     /**
@@ -508,7 +507,6 @@ final class NavBar extends Widget
 
     private function renderItem(self $new): string
     {
-        $html = '';
         $items = [];
 
         /** @var array $item */
@@ -518,13 +516,7 @@ final class NavBar extends Widget
             }
         }
 
-        if ($items !== []) {
-            $html .= implode("\n", $items) . "\n";
-        }
-
-        $html .= Html::closeTag('ul') . "\n";
-
-        return $html;
+        return $items !== [] ? implode("\n", $items) . "\n" : '';
     }
 
     private function renderItems(array $item): string

@@ -5,12 +5,9 @@ declare(strict_types=1);
 namespace Yii\Extension\Tailwind;
 
 use InvalidArgumentException;
-use JsonException;
-use Yiisoft\Arrays\ArrayHelper;
+use Yiisoft\Factory\Exception\InvalidConfigException;
 use Yiisoft\Html\Html;
 
-use function array_key_exists;
-use function array_merge;
 use function implode;
 use function is_array;
 
@@ -31,7 +28,6 @@ final class Dropdown extends Widget
     private string $buttonSubDropdownBackgroundColor = 'bg-transparent';
     private string $buttonSubDropdownTextColor = 'text-black';
     private string $buttonIcon = '&#8595;';
-    private array $buttonIconAttributes = [];
     private array $containerAttributes = [];
     private array $containerTriggerAttributes = [];
     private string $currentPath = '';
@@ -41,6 +37,9 @@ final class Dropdown extends Widget
     private array $linkAttributes = [];
     private bool $loadDefaultTheme = true;
 
+    /**
+     * @throws InvalidConfigException
+     */
     protected function run(): string
     {
         $new = clone $this;
@@ -147,7 +146,7 @@ final class Dropdown extends Widget
         return $new;
     }
 
-        /**
+    /**
      * Button background color.
      *
      * @param string $value
@@ -302,7 +301,7 @@ final class Dropdown extends Widget
             $this->activateItems;
     }
 
-    private function loadDefaultTheme(self $new): self
+    private function loadDefaultTheme(self $new): void
     {
         if ($new->attributes === []) {
             Html::addCssClass($new->attributes, ['flex', 'flex-wrap']);
@@ -412,10 +411,11 @@ final class Dropdown extends Widget
                 ],
             );
         }
-
-        return $new;
     }
 
+    /**
+     * @throws InvalidConfigException
+     */
     private function renderDropdown(self $new): string
     {
         $new->itemsContainerAttributes['id'] = "{$new->getId()}-dropdown";
@@ -456,9 +456,9 @@ final class Dropdown extends Widget
     /**
      * Renders menu items.
      *
-     * @throws InvalidArgumentException|JsonException if the label option is not specified in one of the items.
-     *
      * @return string the rendering result.
+     *
+     * @throws InvalidArgumentException|InvalidConfigException if the label option is not specified in one of the items.
      */
     private function renderItems(self $new): string
     {
@@ -481,10 +481,10 @@ final class Dropdown extends Widget
                 }
 
                 /** @var array */
-                $labelAttributes = $item['labelAttributes'] ?? [];
+                $labelAttributes = isset($item['labelAttributes']) ? $item['labelAttributes'] : [];
 
                 /** @var array */
-                $linkAttributes = $item['linkAttributes'] ?? [];
+                $linkAttributes = isset($item['linkAttributes']) ? $item['linkAttributes'] : [];
 
                 /** @var string */
                 $icon = $item['icon'] ?? '';
