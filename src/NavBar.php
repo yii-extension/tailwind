@@ -533,6 +533,7 @@ final class NavBar extends Widget
         /** @var array */
         $urlAttributes = isset($item['urlAttributes']) ? $item['urlAttributes'] : [];
 
+        /** @var bool */
         $active = $item['active'] ?? $this->isItemActive($url, $this->currentPath, $this->activateItems);
 
         if (isset($item['encode']) && $item['encode'] === true) {

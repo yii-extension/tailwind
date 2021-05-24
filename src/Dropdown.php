@@ -206,6 +206,20 @@ final class Dropdown extends Widget
     }
 
     /**
+     * Allows you to assign the current path of the url from request controller.
+     *
+     * @param string $value
+     *
+     * @return self
+     */
+    public function currentPath(string $value): self
+    {
+        $new = clone $this;
+        $new->currentPath = $value;
+        return $new;
+    }
+
+    /**
      * The HTML attributes for the dropdown divider.
      *
      * @param array $value
@@ -304,7 +318,7 @@ final class Dropdown extends Widget
      */
     private function isItemActive(string $url, string $currentPath, bool $activateItems): bool
     {
-        return $currentPath !== '/' && $url === $currentPath && $activateItems;
+        return ($currentPath !== '/') && ($url === $currentPath) && $activateItems;
     }
 
     private function loadDefaultTheme(self $new): void
@@ -483,16 +497,15 @@ final class Dropdown extends Widget
                 /** @var string */
                 $url = $item['url'] ?? '';
 
+                /** @var bool */
                 $active = $item['active'] ?? $new->isItemActive($url, $new->currentPath, $new->activateItems);
-                $label = $this->renderLabel($itemLabel, $icon, $iconAttributes, $labelAttributes);
 
-                Html::addCssClass($urlAttributes, ['text-blueGray-700']);
+                $label = $new->renderLabel($itemLabel, $icon, $iconAttributes, $labelAttributes);
 
-                if ($active === true) {
-                    Html::removeCssClass($urlAttributes, ['bg-transparent', 'text-blueGray-700']);
+                if ($new->activateItems && $active) {
                     Html::addCssClass($urlAttributes, ['bg-gray-900', 'text-white']);
                 } else {
-                    Html::addCssClass($urlAttributes, 'bg-transparent');
+                    Html::addCssClass($urlAttributes, 'text-blueGray-700 bg-transparent');
                 }
 
                 if (isset($item['items']) && is_array($item['items'])) {
