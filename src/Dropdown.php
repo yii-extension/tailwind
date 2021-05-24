@@ -44,7 +44,13 @@ final class Dropdown extends Widget
             $new->loadDefaultTheme($new);
         }
 
-        $new->itemsContainerAttributes['id'] = "{$new->getId()}-dropdown";
+        if (!isset($new->attributes['id'])) {
+            $new->attributes['id'] = "{$new->getId()}-dropdown";
+        }
+
+        if (!isset($new->itemsContainerAttributes['id'])) {
+            $new->itemsContainerAttributes['id'] = "{$new->getId()}-dropdown-items";
+        }
 
         return
             Html::openTag('div', $new->attributes) . "\n" .

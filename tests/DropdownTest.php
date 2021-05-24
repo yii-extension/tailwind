@@ -16,11 +16,11 @@ final class DropdownTest extends TestCase
         $html = Dropdown::widget()->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
-        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         </div>
         </div>
         </div>
@@ -36,11 +36,11 @@ final class DropdownTest extends TestCase
         $html = Dropdown::widget()->buttonAttributes(['class' => 'testMe'])->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="testMe" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
-        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="testMe" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         </div>
         </div>
         </div>
@@ -56,11 +56,11 @@ final class DropdownTest extends TestCase
         $html = Dropdown::widget()->buttonBackgroundColor(Dropdown::BG_RED)->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-red-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
-        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="bg-red-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         </div>
         </div>
         </div>
@@ -88,11 +88,11 @@ final class DropdownTest extends TestCase
         $html = Dropdown::widget()->buttonIcon('&#8593;')->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8593;</i></button>
-        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>Dropdown</span><i class="pl-2">&#8593;</i></button>
+        <div id="w0-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         </div>
         </div>
         </div>
@@ -108,11 +108,11 @@ final class DropdownTest extends TestCase
         $html = Dropdown::widget()->buttonLabel('testMe')->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>testMe</span><i class="pl-2">&#8595;</i></button>
-        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>testMe</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         </div>
         </div>
         </div>
@@ -128,11 +128,11 @@ final class DropdownTest extends TestCase
         $html = Dropdown::widget()->buttonLabelAttributes(['class' => 'testMe'])->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span class="testMe">Dropdown</span><i class="pl-2">&#8595;</i></button>
-        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span class="testMe">Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         </div>
         </div>
         </div>
@@ -148,11 +148,11 @@ final class DropdownTest extends TestCase
         $html = Dropdown::widget()->buttonTextColor('text-black')->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-blueGray-500 text-black duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
-        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="bg-blueGray-500 text-black duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         </div>
         </div>
         </div>
@@ -168,11 +168,11 @@ final class DropdownTest extends TestCase
         $html = Dropdown::widget()->dividerAttributes(['class' => 'dropdown-divider'])->items(['-'])->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
-        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         <div class="dropdown-divider"></div>
         </div>
         </div>
@@ -196,11 +196,11 @@ final class DropdownTest extends TestCase
             ->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
-        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>San petesburgo</span></a>
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Novosibirsk</span></a>
         <div class="border-blueGray-800 border-solid border-t-0 border h-0 my-2 opacity-25"></div>
@@ -227,11 +227,11 @@ final class DropdownTest extends TestCase
             ->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
-        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap bg-gray-900 text-white" href="#"><span>San petesburgo</span></a>
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Novosibirsk</span></a>
         <div class="border-blueGray-800 border-solid border-t-0 border h-0 my-2 opacity-25"></div>
@@ -257,11 +257,11 @@ final class DropdownTest extends TestCase
             ->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
-        <div id="w0-dropdown" class="testMe">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items" class="testMe">
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Ekaterinburgo</span></a>
         </div>
         </div>
@@ -282,11 +282,11 @@ final class DropdownTest extends TestCase
             ->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
-        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#">
         <span><i class="fas fa-home"></i></span>
         <span>Ekaterinburgo</span></a>
@@ -314,11 +314,11 @@ final class DropdownTest extends TestCase
             ->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
-        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#">
         <span class="testMe"><i class="fas fa-home"></i></span>
         <span>Ekaterinburgo</span></a>
@@ -343,11 +343,11 @@ final class DropdownTest extends TestCase
             ->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
-        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>San petesburgo &amp;amp; Novosibirs</span></a>
         <div class="border-blueGray-800 border-solid border-t-0 border h-0 my-2 opacity-25"></div>
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Ekaterinburgo</span></a>
@@ -402,16 +402,16 @@ final class DropdownTest extends TestCase
             ->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
-        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
-        <div class="flex flex-wrap">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <div id="w1-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-transparent text-black duration-150 ease-linear focus:outline-none hover:shadow-lg mb-1 mr-1 outline-none py-3 rounded shadow text-sm transition-all" onclick="openDropdown(event, &apos;w1-dropdown&apos;)"><span>Chile</span><i class="pl-2">&#8594;</i></button>
-        <div id="w1-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="bg-transparent text-black duration-150 ease-linear focus:outline-none hover:shadow-lg mb-1 mr-1 outline-none py-3 rounded shadow text-sm transition-all" onclick="openDropdown(event, &apos;w1-dropdown-items&apos;)"><span>Chile</span><i class="pl-2">&#8594;</i></button>
+        <div id="w1-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Chillan</span></a>
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Santiago</span></a>
         </div>
@@ -419,11 +419,11 @@ final class DropdownTest extends TestCase
         </div>
         </div>
         <div class="border-blueGray-800 border-solid border-t-0 border h-0 my-2 opacity-25"></div>
-        <div class="flex flex-wrap">
+        <div id="w2-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-transparent text-black duration-150 ease-linear focus:outline-none hover:shadow-lg mb-1 mr-1 outline-none py-3 rounded shadow text-sm transition-all" onclick="openDropdown(event, &apos;w2-dropdown&apos;)"><span>Rusia</span><i class="pl-2">&#8594;</i></button>
-        <div id="w2-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="bg-transparent text-black duration-150 ease-linear focus:outline-none hover:shadow-lg mb-1 mr-1 outline-none py-3 rounded shadow text-sm transition-all" onclick="openDropdown(event, &apos;w2-dropdown-items&apos;)"><span>Rusia</span><i class="pl-2">&#8594;</i></button>
+        <div id="w2-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Novosibirsk</span></a>
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Ekaterinburgo</span></a>
         </div>
@@ -456,16 +456,16 @@ final class DropdownTest extends TestCase
             ->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
-        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
-        <div class="flex flex-wrap">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <div id="w1-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="testMe" onclick="openDropdown(event, &apos;w1-dropdown&apos;)"><span>Chile</span><i class="pl-2">&#8594;</i></button>
-        <div id="w1-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="testMe" onclick="openDropdown(event, &apos;w1-dropdown-items&apos;)"><span>Chile</span><i class="pl-2">&#8594;</i></button>
+        <div id="w1-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Chillan</span></a>
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Santiago</span></a>
         </div>
@@ -498,16 +498,16 @@ final class DropdownTest extends TestCase
             ->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
-        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
-        <div class="flex flex-wrap">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <div id="w1-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-red-500 text-black duration-150 ease-linear focus:outline-none hover:shadow-lg mb-1 mr-1 outline-none py-3 rounded shadow text-sm transition-all" onclick="openDropdown(event, &apos;w1-dropdown&apos;)"><span>Chile</span><i class="pl-2">&#8594;</i></button>
-        <div id="w1-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="bg-red-500 text-black duration-150 ease-linear focus:outline-none hover:shadow-lg mb-1 mr-1 outline-none py-3 rounded shadow text-sm transition-all" onclick="openDropdown(event, &apos;w1-dropdown-items&apos;)"><span>Chile</span><i class="pl-2">&#8594;</i></button>
+        <div id="w1-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Chillan</span></a>
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Santiago</span></a>
         </div>
@@ -552,16 +552,16 @@ final class DropdownTest extends TestCase
             ->render();
 
         $expected = <<<'HTML'
-        <div class="flex flex-wrap">
+        <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
-        <div id="w0-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
-        <div class="flex flex-wrap">
+        <button class="bg-blueGray-500 text-white duration-150 ease-linear focus:outline-none font-bold hover:shadow-lg mb-1 mr-1 outline-none px-6 py-3 rounded shadow text-sm transition-all uppercase" onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <div id="w1-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
         <div class="align-middle inline-flex relative w-full">
-        <button class="bg-transparent text-red-500 duration-150 ease-linear focus:outline-none hover:shadow-lg mb-1 mr-1 outline-none py-3 rounded shadow text-sm transition-all" onclick="openDropdown(event, &apos;w1-dropdown&apos;)"><span>Chile</span><i class="pl-2">&#8594;</i></button>
-        <div id="w1-dropdown" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
+        <button class="bg-transparent text-red-500 duration-150 ease-linear focus:outline-none hover:shadow-lg mb-1 mr-1 outline-none py-3 rounded shadow text-sm transition-all" onclick="openDropdown(event, &apos;w1-dropdown-items&apos;)"><span>Chile</span><i class="pl-2">&#8594;</i></button>
+        <div id="w1-dropdown-items" class="float-left hidden bg-white list-none mt-1 py-2 rounded shadow-lg text-base text-left z-50" style="min-width:12rem">
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Chillan</span></a>
         <a class="block font-normal px-4 py-2 text-sm w-full whitespace-nowrap text-blueGray-700 bg-transparent" href="#"><span>Santiago</span></a>
         </div>
@@ -583,11 +583,11 @@ final class DropdownTest extends TestCase
         $html = Dropdown::widget()->withoutLoadDefaultTheme()->render();
 
         $expected = <<<'HTML'
-        <div>
-        <div>
-        <div>
-        <button onclick="openDropdown(event, &apos;w0-dropdown&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
         <div id="w0-dropdown">
+        <div>
+        <div>
+        <button onclick="openDropdown(event, &apos;w0-dropdown-items&apos;)"><span>Dropdown</span><i class="pl-2">&#8595;</i></button>
+        <div id="w0-dropdown-items">
         </div>
         </div>
         </div>
