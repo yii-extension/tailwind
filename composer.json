@@ -21,7 +21,6 @@
         "phpunit/phpunit": "^9.5",
         "roave/infection-static-analysis-plugin": "^1.8.0",
         "vimeo/psalm": "^4.4",
-        "yiisoft/di": "^3.0@dev",
         "yiisoft/var-dumper": "^1.1.0"
     },
     "autoload": {

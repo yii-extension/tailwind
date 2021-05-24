@@ -5,27 +5,9 @@ declare(strict_types=1);
 namespace Yii\Extension\Tailwind\Tests;
 
 use PHPUnit\Framework\TestCase as AbstractTestCase;
-use Psr\Container\ContainerInterface;
-use Yiisoft\Di\Container;
 
 abstract class TestCase extends AbstractTestCase
 {
-    private ContainerInterface $container;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->container = new Container();
-    }
-
-    protected function tearDown(): void
-    {
-        unset($this->container);
-
-        parent::tearDown();
-    }
-
     /**
      * Asserting two strings equality ignoring line endings.
      *
