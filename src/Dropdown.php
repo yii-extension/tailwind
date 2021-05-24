@@ -279,10 +279,11 @@ final class Dropdown extends Widget
         /** @var string */
         $id = $new->itemsContainerAttributes['id'];
         $new->buttonAttributes['onclick'] = "openDropdown(event, '$id')";
+        $new->buttonAttributes['encode'] = false;
 
         return
             Html::openTag('button', $new->buttonAttributes) .
-                Html::tag('span', $new->buttonLabel, $new->buttonLabelAttributes)->encode(false) .
+                Html::tag('span', $new->buttonLabel, $new->buttonLabelAttributes) .
                 Html::tag('i', $new->buttonIcon, ['class' => 'pl-2'])->encode(false) .
             Html::closeTag('button') . "\n";
     }
@@ -295,21 +296,15 @@ final class Dropdown extends Widget
      * currentPath for the item and the rest of the elements are the associated parameters. Only when its currentPath
      * and parameters match {@see currentPath}, respectively, will a menu item be considered active.
      *
-     * @param array $item the menu item to be checked
+     * @param string $url
+     * @param string $currentPath
+     * @param bool $activateItems
      *
      * @return bool whether the menu item is active
      */
-    private function isItemActive(array $item): bool
+    private function isItemActive(string $url, string $currentPath, bool $activateItems): bool
     {
-        if (isset($item['active'])) {
-            return (bool) $item['active'];
-        }
-
-        return
-            isset($item['url']) &&
-            $this->currentPath !== '/' &&
-            $item['url'] === $this->currentPath &&
-            $this->activateItems;
+        return $currentPath !== '/' && $url === $currentPath && $activateItems;
     }
 
     private function loadDefaultTheme(self $new): void
@@ -485,10 +480,10 @@ final class Dropdown extends Widget
                 /** @var array */
                 $iconAttributes = $item['iconAttributes'] ?? [];
 
-                /** @var string|null */
-                $url = $item['url'] ?? null;
+                /** @var string */
+                $url = $item['url'] ?? '';
 
-                $active = $new->isItemActive($item);
+                $active = $item['active'] ?? $new->isItemActive($url, $new->currentPath, $new->activateItems);
                 $label = $this->renderLabel($itemLabel, $icon, $iconAttributes, $labelAttributes);
 
                 Html::addCssClass($urlAttributes, ['text-blueGray-700']);

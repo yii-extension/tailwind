@@ -393,8 +393,6 @@ final class NavBar extends Widget
                     $new->textColorTheme,
                 ]
             );
-
-            Html::addCssClass($new->toggleAttributes, [$new->textColorTheme]);
         }
     }
 
@@ -406,21 +404,15 @@ final class NavBar extends Widget
      * currentPath for the item and the rest of the elements are the associated parameters. Only when its currentPath
      * and parameters match {@see currentPath}, respectively, will a menu item be considered active.
      *
-     * @param array $item the menu item to be checked
+     * @param string $url
+     * @param string $currentPath
+     * @param bool $activateItems
      *
      * @return bool whether the menu item is active
      */
-    private function isItemActive(array $item): bool
+    private function isItemActive(string $url, string $currentPath, bool $activateItems): bool
     {
-        if (isset($item['active'])) {
-            return (bool) $item['active'];
-        }
-
-        return
-            isset($item['url']) &&
-            $this->currentPath !== '/' &&
-            $item['url'] === $this->currentPath &&
-            $this->activateItems;
+        return $currentPath !== '/' && $url === $currentPath && $activateItems;
     }
 
     private function renderBrand(): string
@@ -541,7 +533,7 @@ final class NavBar extends Widget
         /** @var array */
         $urlAttributes = isset($item['urlAttributes']) ? $item['urlAttributes'] : [];
 
-        $active = $this->isItemActive($item);
+        $active = $item['active'] ?? $this->isItemActive($url, $this->currentPath, $this->activateItems);
 
         if (isset($item['encode']) && $item['encode'] === true) {
             $label = Html::encode($label);
