@@ -2,6 +2,18 @@
 
 [The navbar component](https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/css/navbars) is a responsive and versatile horizontal navigation bar.
 
+HTML generated consists of:
+
+- `nav` - main container.
+- `div` - container for brand.
+- `span` - brand.
+- `div` - container toggle button.
+- `button` - toggle button.
+- `div` - container items.
+- `ul` - container list items.
+- `li` - list item.
+- `a` - item.
+
 ## Text
 The following example features a brand on the left and some text links on the right.
 

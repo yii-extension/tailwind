@@ -34,7 +34,7 @@ final class Dropdown extends Widget
     private array $dividerAttributes = [];
     private array $items = [];
     private array $itemsContainerAttributes = [];
-    private array $linkAttributes = [];
+    private array $urlAttributes = [];
     private bool $loadDefaultTheme = true;
 
     /**
@@ -48,7 +48,17 @@ final class Dropdown extends Widget
             $new->loadDefaultTheme($new);
         }
 
-        return $this->renderDropdown($new);
+        $new->itemsContainerAttributes['id'] = "{$new->getId()}-dropdown";
+
+        return
+            Html::openTag('div', $new->attributes) . "\n" .
+                Html::openTag('div', $new->containerAttributes) . "\n" .
+                    Html::openTag('div', $new->containerTriggerAttributes) . "\n" .
+                        $new->buildTrigger($new) .
+                        $new->renderItems($new) .
+                    Html::closeTag('div') . "\n" .
+                Html::closeTag('div') . "\n" .
+            Html::closeTag('div');
     }
 
     /**
@@ -217,9 +227,8 @@ final class Dropdown extends Widget
      * - encode: bool, optional, whether to HTML-encode item label.
      * - url: string|array, optional, the URL of the item link. This will be processed by {@see currentPath}.
      *   If not set, the item will be treated as a menu header when the item has no sub-menu.
-     * - visible: bool, optional, whether this menu item is visible. Defaults to true.
-     * - linkAttributes: array, optional, the HTML attributes of the item link.
-     * - itemsContainerAttributes: array, optional, the HTML attributes of the item.
+     * - urlAttributes: array, optional, the HTML attributes of the item link.
+     * - itemsAttributes: array, optional, the HTML attributes of the item.
      * - items: array, optional, the submenu items. The structure is the same as this property.
      *
      * To insert divider use `-`.
@@ -360,9 +369,9 @@ final class Dropdown extends Widget
             Html::addCssStyle($new->itemsContainerAttributes, 'min-width:12rem');
         }
 
-        if ($new->linkAttributes === []) {
+        if ($new->urlAttributes === []) {
             Html::addCssClass(
-                $new->linkAttributes,
+                $new->urlAttributes,
                 [
                     'block',
                     'font-normal',
@@ -411,24 +420,6 @@ final class Dropdown extends Widget
                 ],
             );
         }
-    }
-
-    /**
-     * @throws InvalidConfigException
-     */
-    private function renderDropdown(self $new): string
-    {
-        $new->itemsContainerAttributes['id'] = "{$new->getId()}-dropdown";
-
-        return
-            Html::openTag('div', $new->attributes) . "\n" .
-                Html::openTag('div', $new->containerAttributes) . "\n" .
-                    Html::openTag('div', $new->containerTriggerAttributes) . "\n" .
-                        $new->buildTrigger($new) .
-                        $new->renderItems($new) .
-                    Html::closeTag('div') . "\n" .
-                Html::closeTag('div') . "\n" .
-            Html::closeTag('div');
     }
 
     private function renderLabel(
@@ -484,7 +475,7 @@ final class Dropdown extends Widget
                 $labelAttributes = isset($item['labelAttributes']) ? $item['labelAttributes'] : [];
 
                 /** @var array */
-                $linkAttributes = isset($item['linkAttributes']) ? $item['linkAttributes'] : [];
+                $urlAttributes = isset($item['urlAttributes']) ? $item['urlAttributes'] : [];
 
                 /** @var string */
                 $icon = $item['icon'] ?? '';
@@ -498,17 +489,17 @@ final class Dropdown extends Widget
                 $active = $new->isItemActive($item);
                 $label = $this->renderLabel($itemLabel, $icon, $iconAttributes, $labelAttributes);
 
-                Html::addCssClass($linkAttributes, ['text-blueGray-700']);
+                Html::addCssClass($urlAttributes, ['text-blueGray-700']);
 
                 if ($active === true) {
-                    Html::removeCssClass($linkAttributes, ['bg-transparent', 'text-blueGray-700']);
-                    Html::addCssClass($linkAttributes, ['bg-gray-900', 'text-white']);
+                    Html::removeCssClass($urlAttributes, ['bg-transparent', 'text-blueGray-700']);
+                    Html::addCssClass($urlAttributes, ['bg-gray-900', 'text-white']);
                 } else {
-                    Html::addCssClass($linkAttributes, 'bg-transparent');
+                    Html::addCssClass($urlAttributes, 'bg-transparent');
                 }
 
                 if (isset($item['items']) && is_array($item['items'])) {
-                    $lines[] = self::widget()
+                    $lines[] = Dropdown::widget()
                         ->buttonAttributes($new->buttonSubDropdownAttributes)
                         ->buttonBackgroundColor(self::BG_TRANSPARENT)
                         ->buttonLabel($itemLabel)
@@ -516,7 +507,7 @@ final class Dropdown extends Widget
                         ->buttonIcon('&#8594;')
                         ->items($item['items']);
                 } else {
-                    $lines[] = Html::a($label, $url, array_merge_recursive($new->linkAttributes, $linkAttributes))
+                    $lines[] = Html::a($label, $url, array_merge_recursive($new->urlAttributes, $urlAttributes))
                         ->encode(false);
                 }
             }

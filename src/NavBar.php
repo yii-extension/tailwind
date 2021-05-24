@@ -53,25 +53,23 @@ final class NavBar extends Widget
             $new->containerItemsAttributes['id'] = "{$new->getId()}-items-navbar";
         }
 
-        $html = Html::openTag('nav', $new->attributes) . "\n";
-        $html .= Html::openTag('div', $new->containerAttributes) . "\n";
-        $html .= $new->renderBrand() . "\n";
-        $html .= $new->renderToggleButton();
-        $html .= Html::openTag('div', $new->containerItemsAttributes) . "\n";
-        $html .= Html::openTag('ul', $new->ulAttributes)  . "\n";
-        $html .= $new->renderItem($new);
-        $html .= Html::closeTag('ul') . "\n";
-
-        return $html;
+        return
+            Html::openTag('nav', $new->attributes) . "\n" .
+            Html::openTag('div', $new->containerAttributes) . "\n" .
+            $new->renderBrand() . "\n" .
+            $new->renderToggleButton() .
+            Html::openTag('div', $new->containerItemsAttributes) . "\n" .
+            Html::openTag('ul', $new->ulAttributes)  . "\n" .
+            $new->renderItem($new) .
+            Html::closeTag('ul') . "\n";
     }
 
     protected function run(): string
     {
-        $html = Html::closeTag('div') . "\n";
-        $html .= Html::closeTag('div') . "\n";
-        $html .= Html::closeTag('nav');
-
-        return $html;
+        return
+            Html::closeTag('div') . "\n" .
+            Html::closeTag('div') . "\n" .
+            Html::closeTag('nav');
     }
 
     /**

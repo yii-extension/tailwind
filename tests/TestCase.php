@@ -7,7 +7,6 @@ namespace Yii\Extension\Tailwind\Tests;
 use PHPUnit\Framework\TestCase as AbstractTestCase;
 use Psr\Container\ContainerInterface;
 use Yiisoft\Di\Container;
-use Yiisoft\Widget\WidgetFactory;
 
 abstract class TestCase extends AbstractTestCase
 {
@@ -18,7 +17,6 @@ abstract class TestCase extends AbstractTestCase
         parent::setUp();
 
         $this->container = new Container();
-        WidgetFactory::initialize($this->container, []);
     }
 
     protected function tearDown(): void

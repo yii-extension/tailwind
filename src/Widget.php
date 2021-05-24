@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Yii\Extension\Tailwind;
 
-use Yiisoft\Html\Html;
+use Yii\Extension\Simple\Widget\AbstractWidget;
 
-abstract class Widget extends \Yiisoft\Widget\Widget
+abstract class Widget extends AbstractWidget
 {
     public const BG_AMBER = 'bg-amber-500';
     public const BG_BLACK = 'bg-black';
@@ -44,8 +44,6 @@ abstract class Widget extends \Yiisoft\Widget\Widget
 
     /**
      * The HTML attributes for the navbar. The following special options are recognized.
-     *
-     * {@see Html::renderTagAttributes()} for details on how attributes are being rendered.
      *
      * @param array $value
      *
