@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Yii\Extension\Tailwind;
 
 use InvalidArgumentException;
-use Yiisoft\Factory\Exception\InvalidConfigException;
 use Yiisoft\Html\Html;
 
 use function implode;
@@ -37,9 +36,6 @@ final class Dropdown extends Widget
     private array $urlAttributes = [];
     private bool $loadDefaultTheme = true;
 
-    /**
-     * @throws InvalidConfigException
-     */
     protected function run(): string
     {
         $new = clone $this;
@@ -449,7 +445,7 @@ final class Dropdown extends Widget
      *
      * @return string the rendering result.
      *
-     * @throws InvalidArgumentException|InvalidConfigException if the label option is not specified in one of the items.
+     * @throws InvalidArgumentException if the label option is not specified in one of the items.
      */
     private function renderItems(self $new): string
     {
