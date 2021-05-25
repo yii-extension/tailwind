@@ -45,8 +45,8 @@ use Yiisoft\View\WebView
 /* Register assets in view */
 $assetManager->register([TailwindStarterKitAsset::class]);
 
-$this->setCssFiles($assetManager->getCssFiles());
-$this->setJsFiles($assetManager->getJsFiles());
+$this->addCssFiles($assetManager->getCssFiles());
+$this->addJsFiles($assetManager->getJsFiles());
 
 if ($urlMatcher->getCurrentRoute() !== null) {
     $currentPath = $urlMatcher->getCurrentUri()->getPath();
@@ -127,8 +127,8 @@ use Yiisoft\View\WebView
 /* Register assets in view */
 $assetManager->register([TailwindStarterKitAsset::class]);
 
-$this->setCssFiles($assetManager->getCssFiles());
-$this->setJsFiles($assetManager->getJsFiles());
+$this->addCssFiles($assetManager->getCssFiles());
+$this->addJsFiles($assetManager->getJsFiles());
 
 if ($urlMatcher->getCurrentRoute() !== null) {
     $currentPath = $urlMatcher->getCurrentUri()->getPath();
@@ -221,8 +221,8 @@ use Yiisoft\View\WebView
 /* Register assets in view */
 $assetManager->register([TailwindStarterKitAsset::class]);
 
-$this->setCssFiles($assetManager->getCssFiles());
-$this->setJsFiles($assetManager->getJsFiles());
+$this->addCssFiles($assetManager->getCssFiles());
+$this->addJsFiles($assetManager->getJsFiles());
 
 if ($urlMatcher->getCurrentRoute() !== null) {
     $currentPath = $urlMatcher->getCurrentUri()->getPath();
@@ -310,8 +310,8 @@ use Yiisoft\View\WebView
 /* Register assets in view */
 $assetManager->register([TailwindStarterKitAsset::class]);
 
-$this->setCssFiles($assetManager->getCssFiles());
-$this->setJsFiles($assetManager->getJsFiles());
+$this->addCssFiles($assetManager->getCssFiles());
+$this->addJsFiles($assetManager->getJsFiles());
 
 if ($urlMatcher->getCurrentRoute() !== null) {
     $currentPath = $urlMatcher->getCurrentUri()->getPath();
