@@ -112,16 +112,6 @@ abstract class Widget extends AbstractWidget
     }
 
     /**
-     * Counter used to generate {@see id} for widgets.
-     *
-     * @param int $value
-     */
-    public static function counter(int $value): void
-    {
-        self::$counter = $value;
-    }
-
-    /**
      * Text color theme.
      *
      * @param string $value
@@ -145,6 +135,16 @@ abstract class Widget extends AbstractWidget
         $new = clone $this;
         $new->loadDefaultTheme = false;
         return $new;
+    }
+
+    /**
+     * Counter used to generate {@see id} for widgets.
+     *
+     * @param int $value
+     */
+    public static function counter(int $value): void
+    {
+        self::$counter = $value;
     }
 
     /**

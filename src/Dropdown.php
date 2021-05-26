@@ -17,8 +17,8 @@ use function is_array;
  */
 final class Dropdown extends Widget
 {
-    private bool $activateItems = true;
     protected string $backgroundColorTheme = Dropdown::BG_BLUGRAY;
+    private bool $activateItems = true;
     private array $buttonAttributes = [];
     private string $buttonLabel = 'Dropdown';
     private array $buttonLabelAttributes = [];

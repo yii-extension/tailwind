@@ -295,11 +295,9 @@ final class NavBar extends Widget
     private function loadDefaultTheme(self $new): void
     {
         if ($new->attributes === []) {
-            Html::addCssClass($new->attributes, [$new->backgroundColorTheme]);
-
             Html::addCssClass(
                 $new->attributes,
-                ['flex-wrap', 'flex', 'items-center', 'mb-3', 'px-2', 'py-3', 'relative']
+                [$new->backgroundColorTheme, 'flex-wrap', 'flex', 'items-center', 'mb-3', 'px-2', 'py-3', 'relative']
             );
         }
 
