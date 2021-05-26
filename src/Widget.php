@@ -50,7 +50,7 @@ abstract class Widget extends AbstractWidget
      *
      * @param array $value
      *
-     * @return self
+     * @return static
      */
     public function attributes(array $value): self
     {
@@ -64,7 +64,7 @@ abstract class Widget extends AbstractWidget
      *
      * @param string $value
      *
-     * @return self
+     * @return static
      *
      * {@see getId()}
      */
@@ -81,7 +81,7 @@ abstract class Widget extends AbstractWidget
      *
      * @param string $value
      *
-     * @return self
+     * @return static
      */
     public function backgroundColorTheme(string $value): self
     {
@@ -100,7 +100,7 @@ abstract class Widget extends AbstractWidget
      *
      * @param string $value
      *
-     * @return self
+     * @return static
      */
     public function id(string $value): self
     {
@@ -125,7 +125,7 @@ abstract class Widget extends AbstractWidget
      *
      * @param string $value
      *
-     * @return self
+     * @return static
      */
     public function textColorTheme(string $value): self
     {

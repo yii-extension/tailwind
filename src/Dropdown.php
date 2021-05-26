@@ -476,7 +476,7 @@ final class Dropdown extends Widget
 
                 if (isset($item['items']) && is_array($item['items'])) {
                     $lines[] = Dropdown::widget()
-                        ->backgroundColorTheme(self::BG_TRANSPARENT)
+                        ->backgroundColorTheme(Dropdown::BG_TRANSPARENT)
                         ->buttonAttributes($new->buttonSubDropdownAttributes)
                         ->buttonIcon('&#8594;')
                         ->buttonLabel($itemLabel)
