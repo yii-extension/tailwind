@@ -39,6 +39,7 @@ abstract class Widget extends AbstractWidget
     ];
     protected array $attributes = [];
     protected string $backgroundColorTheme = self::BG_BLACK;
+    protected bool $loadDefaultTheme = true;
     protected string $textColorTheme = 'text-white';
     private ?string $id = null;
     private bool $autoGenerate = true;
@@ -131,6 +132,18 @@ abstract class Widget extends AbstractWidget
     {
         $new = clone $this;
         $new->textColorTheme = $value;
+        return $new;
+    }
+
+    /**
+     * Disable load default css classes.
+     *
+     * @return static
+     */
+    public function withoutLoadDefaultTheme(): self
+    {
+        $new = clone $this;
+        $new->loadDefaultTheme = false;
         return $new;
     }
 

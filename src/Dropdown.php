@@ -33,7 +33,6 @@ final class Dropdown extends Widget
     private array $items = [];
     private array $itemsContainerAttributes = [];
     private array $urlAttributes = [];
-    private bool $loadDefaultTheme = true;
 
     protected function run(): string
     {
@@ -239,18 +238,6 @@ final class Dropdown extends Widget
     {
         $new = clone $this;
         $new->itemsContainerAttributes = $value;
-        return $new;
-    }
-
-    /**
-     * Disable load default css classes.
-     *
-     * @return self
-     */
-    public function withoutLoadDefaultTheme(): self
-    {
-        $new = clone $this;
-        $new->loadDefaultTheme = false;
         return $new;
     }
 

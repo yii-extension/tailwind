@@ -28,7 +28,6 @@ final class NavBar extends Widget
     private array $containerItemsAttributes = [];
     private string $currentPath = '';
     private array $items = [];
-    private bool $loadDefaultTheme = true;
     private array $toggleAttributes = [];
     private array $ulAttributes = [];
     private string $liClass = 'nav-item';
@@ -293,19 +292,6 @@ final class NavBar extends Widget
         return $new;
     }
 
-
-    /**
-     * Disable load default css classes.
-     *
-     * @return self
-     */
-    public function withoutLoadDefaultTheme(): self
-    {
-        $new = clone $this;
-        $new->loadDefaultTheme = false;
-        return $new;
-    }
-
     private function loadDefaultTheme(self $new): void
     {
         if ($new->attributes === []) {
@@ -454,7 +440,7 @@ final class NavBar extends Widget
         }
 
         if ($label !== '') {
-            $label = Html::span($label, $labelAttributes)->encode(false)->render();
+            $label = Html::span($label, $labelAttributes)->encode(false);
         }
 
         return $icon . $label;
@@ -533,7 +519,7 @@ final class NavBar extends Widget
             );
         }
 
-        return "\n" . Html::a($label, $url, $urlAttributes)->encode(false)->render() . "\n";
+        return "\n" . Html::a($label, $url, $urlAttributes)->encode(false) . "\n";
     }
 
     private function renderToggleButton(): string
