@@ -17,7 +17,6 @@ use Yiisoft\Html\Tag\Li;
 final class NavBar extends Widget
 {
     private bool $activateItems = true;
-    private string $backGroundColorTheme = NavBar::BG_BLACK;
     private string $brand = '';
     private string $brandImage = '';
     private array $brandImageAttributes = [];
@@ -31,7 +30,6 @@ final class NavBar extends Widget
     private array $items = [];
     private bool $loadDefaultTheme = true;
     private array $toggleAttributes = [];
-    private string $textColorTheme = 'text-white';
     private array $ulAttributes = [];
     private string $liClass = 'nav-item';
 
@@ -70,25 +68,6 @@ final class NavBar extends Widget
             Html::closeTag('div') . "\n" .
             Html::closeTag('div') . "\n" .
             Html::closeTag('nav');
-    }
-
-    /**
-     * Background color theme.
-     *
-     * @param string $value
-     *
-     * @return self
-     */
-    public function backGroundColorTheme(string $value): self
-    {
-        if (!in_array($value, self::BG_ALL)) {
-            $values = implode('", "', self::BG_ALL);
-            throw new InvalidArgumentException("Invalid color. Valid values are: \"$values\".");
-        }
-
-        $new = clone $this;
-        $new->backGroundColorTheme = $value;
-        return $new;
     }
 
     /**
@@ -269,20 +248,6 @@ final class NavBar extends Widget
     }
 
     /**
-     * Text color theme.
-     *
-     * @param string $value
-     *
-     * @return self
-     */
-    public function textColorTheme(string $value): self
-    {
-        $new = clone $this;
-        $new->textColorTheme = $value;
-        return $new;
-    }
-
-    /**
      * The HTML attributes of the navbar toggler button.
      *
      * @param array $value
@@ -344,7 +309,7 @@ final class NavBar extends Widget
     private function loadDefaultTheme(self $new): void
     {
         if ($new->attributes === []) {
-            Html::addCssClass($new->attributes, [$new->backGroundColorTheme]);
+            Html::addCssClass($new->attributes, [$new->backgroundColorTheme]);
 
             Html::addCssClass(
                 $new->attributes,

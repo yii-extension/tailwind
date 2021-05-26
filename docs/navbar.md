@@ -396,7 +396,7 @@ if ($urlMatcher->getCurrentRoute() !== null) {
 
 Method | Description | type
 -------|-------------|---------
-`backGroundColorTheme(string $value)` | Color that will be applied for the default backGroundColor in the widget. | `NavBar::BG_BLACK` 
+`backgroundColorTheme(string $value)` | Color that will be applied for the default backGroundColor in the widget. | `NavBar::BG_BLACK` 
 `brand(string $value)` | Custom brand HTML. Overrides brandText and brandImage. | `''`
 `brandImage(string $value)` | Image of the brand. | `''`
 `brandImageAttributes(array $value)` | List of HTML attributes for brand image. | `[]`

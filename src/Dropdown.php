@@ -18,11 +18,10 @@ use function is_array;
 final class Dropdown extends Widget
 {
     private bool $activateItems = true;
+    protected string $backgroundColorTheme = Dropdown::BG_BLUGRAY;
     private array $buttonAttributes = [];
     private string $buttonLabel = 'Dropdown';
     private array $buttonLabelAttributes = [];
-    private string $buttonBackgroundColor = 'bg-blueGray-500';
-    private string $buttonTextColor = 'text-white';
     private array $buttonSubDropdownAttributes = [];
     private string $buttonSubDropdownBackgroundColor = 'bg-transparent';
     private string $buttonSubDropdownTextColor = 'text-black';
@@ -76,25 +75,6 @@ final class Dropdown extends Widget
     {
         $new = clone $this;
         $new->buttonAttributes = $value;
-        return $new;
-    }
-
-    /**
-     * Button background color.
-     *
-     * @param string $value
-     *
-     * @return self
-     */
-    public function buttonBackgroundColor(string $value): self
-    {
-        if (!in_array($value, self::BG_ALL)) {
-            $values = implode('", "', self::BG_ALL);
-            throw new InvalidArgumentException("Invalid color. Valid values are: \"$values\".");
-        }
-
-        $new = clone $this;
-        $new->buttonBackgroundColor = $value;
         return $new;
     }
 
@@ -188,20 +168,6 @@ final class Dropdown extends Widget
     {
         $new = clone $this;
         $new->buttonSubDropdownTextColor = $value;
-        return $new;
-    }
-
-    /**
-     * Button text color label.
-     *
-     * @param string $value
-     *
-     * @return self
-     */
-    public function buttonTextColor(string $value): self
-    {
-        $new = clone $this;
-        $new->buttonTextColor = $value;
         return $new;
     }
 
@@ -339,8 +305,8 @@ final class Dropdown extends Widget
             Html::addCssClass(
                 $new->buttonAttributes,
                 [
-                    $new->buttonBackgroundColor,
-                    $new->buttonTextColor,
+                    $new->backgroundColorTheme,
+                    $new->textColorTheme,
                     'duration-150',
                     'ease-linear',
                     'focus:outline-none',
@@ -510,12 +476,12 @@ final class Dropdown extends Widget
 
                 if (isset($item['items']) && is_array($item['items'])) {
                     $lines[] = Dropdown::widget()
+                        ->backgroundColorTheme(self::BG_TRANSPARENT)
                         ->buttonAttributes($new->buttonSubDropdownAttributes)
-                        ->buttonBackgroundColor(self::BG_TRANSPARENT)
-                        ->buttonLabel($itemLabel)
-                        ->buttonTextColor('text-black')
                         ->buttonIcon('&#8594;')
-                        ->items($item['items']);
+                        ->buttonLabel($itemLabel)
+                        ->items($item['items'])
+                        ->textColorTheme('text-black');
                 } else {
                     $lines[] = Html::a($label, $url, array_merge_recursive($new->urlAttributes, $urlAttributes))
                         ->encode(false);

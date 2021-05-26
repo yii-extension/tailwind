@@ -9,55 +9,6 @@ use Yii\Extension\Tailwind\NavBar;
 
 final class NavBarTest extends TestCase
 {
-    public function testRender(): void
-    {
-        NavBar::counter(0);
-
-        $html = NavBar::widget()->begin();
-        $html .= NavBar::end();
-
-        $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
-        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
-        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
-        </div>
-        <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
-        </div>
-        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
-        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
-        </ul>
-        </div>
-        </div>
-        </nav>
-        HTML;
-        $this->assertEqualsWithoutLE($expected, $html);
-    }
-
-    public function testRenderBrand(): void
-    {
-        NavBar::counter(0);
-
-        $html = NavBar::widget()->brand('<span>Mi Proyecto</span>')->begin();
-        $html .= NavBar::end();
-
-        $expected = <<<'HTML'
-        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
-        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
-        <span>Mi Proyecto</span>
-        <div>
-        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
-        </div>
-        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
-        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
-        </ul>
-        </div>
-        </div>
-        </nav>
-        HTML;
-        $this->assertEqualsWithoutLE($expected, $html);
-    }
-
     public function testAttributes(): void
     {
         NavBar::counter(0);
@@ -83,11 +34,11 @@ final class NavBarTest extends TestCase
         $this->assertEqualsWithoutLE($expected, $html);
     }
 
-    public function testBackGroundColorTheme(): void
+    public function testBackgroundColorTheme(): void
     {
         NavBar::counter(0);
 
-        $html = NavBar::widget()->backGroundColorTheme(NavBar::BG_AMBER)->begin();
+        $html = NavBar::widget()->backgroundColorTheme(NavBar::BG_AMBER)->begin();
         $html .= NavBar::end();
 
         $expected = <<<'HTML'
@@ -108,7 +59,7 @@ final class NavBarTest extends TestCase
         $this->assertEqualsWithoutLE($expected, $html);
     }
 
-    public function testBackGroundColorThemeException(): void
+    public function testBackgroundColorThemeException(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
@@ -117,7 +68,7 @@ final class NavBarTest extends TestCase
             '"bg-teal-500", "bg-transparent", "bg-white".'
         );
 
-        $html = NavBar::widget()->backGroundColorTheme('noExist')->begin();
+        $html = NavBar::widget()->backgroundColorTheme('noExist')->begin();
     }
 
     public function testBrandImage(): void
@@ -768,7 +719,56 @@ final class NavBarTest extends TestCase
         $this->assertEqualsWithoutLE($expected, $html);
     }
 
-    public function testWithoutDefaults(): void
+    public function testRender(): void
+    {
+        NavBar::counter(0);
+
+        $html = NavBar::widget()->begin();
+        $html .= NavBar::end();
+
+        $expected = <<<'HTML'
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <div class="flex justify-between lg:justify-start lg:static lg:w-auto px-4 relative">
+        </div>
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
+        </ul>
+        </div>
+        </div>
+        </nav>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testRenderBrand(): void
+    {
+        NavBar::counter(0);
+
+        $html = NavBar::widget()->brand('<span>Mi Proyecto</span>')->begin();
+        $html .= NavBar::end();
+
+        $expected = <<<'HTML'
+        <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
+        <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
+        <span>Mi Proyecto</span>
+        <div>
+        <button type="button" class="block border-solid border-transparent border cursor-pointer focus:outline-none leading-none lg:hidden outline-none px-3 py-1 rounded bg-transparent text-xl text-white" onclick="toggleNavbar(&apos;w0-items-navbar&apos;)">☰</button>
+        </div>
+        <div id="w0-items-navbar" class="flex-grow hidden items-center lg:flex">
+        <ul class="flex-col flex lg:flex-row lg:ml-auto list-none">
+        </ul>
+        </div>
+        </div>
+        </nav>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, $html);
+    }
+
+    public function testRenderWithoutLoadDefaultTheme(): void
     {
         NavBar::counter(0);
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Yii\Extension\Tailwind;
 
+use InvalidArgumentException;
 use Yii\Extension\Simple\Widget\AbstractWidget;
 
 abstract class Widget extends AbstractWidget
@@ -37,6 +38,8 @@ abstract class Widget extends AbstractWidget
         self::BG_WHITE,
     ];
     protected array $attributes = [];
+    protected string $backgroundColorTheme = self::BG_BLACK;
+    protected string $textColorTheme = 'text-white';
     private ?string $id = null;
     private bool $autoGenerate = true;
     private string $autoIdPrefix = 'w';
@@ -74,6 +77,25 @@ abstract class Widget extends AbstractWidget
     }
 
     /**
+     * Background color theme.
+     *
+     * @param string $value
+     *
+     * @return self
+     */
+    public function backgroundColorTheme(string $value): self
+    {
+        if (!in_array($value, self::BG_ALL)) {
+            $values = implode('", "', self::BG_ALL);
+            throw new InvalidArgumentException("Invalid color. Valid values are: \"$values\".");
+        }
+
+        $new = clone $this;
+        $new->backgroundColorTheme = $value;
+        return $new;
+    }
+
+    /**
      * Set the Id of the widget.
      *
      * @param string $value
@@ -96,6 +118,20 @@ abstract class Widget extends AbstractWidget
     public static function counter(int $value): void
     {
         self::$counter = $value;
+    }
+
+    /**
+     * Text color theme.
+     *
+     * @param string $value
+     *
+     * @return self
+     */
+    public function textColorTheme(string $value): self
+    {
+        $new = clone $this;
+        $new->textColorTheme = $value;
+        return $new;
     }
 
     /**

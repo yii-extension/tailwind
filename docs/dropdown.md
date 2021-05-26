@@ -71,11 +71,10 @@ HTML produced is like the following:
 
 Method | Description | Default
 -------|-------------|---------
+`backgroundColorTheme(string $value)` | Button background color | `'bg-blueGray-500'`
 `buttonAttributes(array $value)` | HTML attributes for the button. | `[]`
 `buttonLabel(string $value)` | Set label button. | `'Dropdown'`
 `buttonLabelAttributes(array $value)`| HTML attributes for the button label. | `[]`
-`buttonBackgroundColor(string $value)` | Button background color | `'bg-blueGray-500'`
-`buttonTextColor(string $value)` | Button text color label | `'text-white'`
 `buttonSubDropdownAttributes(array $value)` | HTML button sub-dropdown attributes. | `[]`
 `buttonSubDropdownBackgroundColor(string $value)` | Button sub-dropdown background color | `'bg-transparent'`
 `buttonSubDropdownTextColor(string $value)` | Button sub-dropdown text color | `'text-black'`
@@ -87,6 +86,7 @@ Method | Description | Default
 `items(array $value)` | List of menu items. | `[]`
 `itemsContainerAttributes(array $value)` | HTML attributes for the items container attributes. | `[]`
 `urlAttributes(array $value)` | HTML attributes for the url attributes. | `[]`
+`textColorTheme(string $value)` | Button text color label | `'text-white'`
 `withoutActivateItems()`  | Disable activate items according to whether their `currentPath`. | `false`
 `withoutLoadDefaultTheme()` | Disable all default classes in the widget. | `false`
 
