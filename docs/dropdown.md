@@ -1,7 +1,6 @@
 # Dropdown widget
 
-[The dropdown component](https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/javascript/dropdown) is a container for a dropdown button and
-a dropdown menu.
+[The dropdown component](https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/javascript/dropdown) is a container for a dropdown button and dropdown menu.
 
 <p align="center">
     <img src="images/dropdown_example.jpg">
@@ -38,15 +37,15 @@ $this->addCssFiles($assetManager->getCssFiles());
 $this->addJsFiles($assetManager->getJsFiles());
 ?>
 
-<?= Dropdown::widget()
-    ->items([
-        ['label' => 'Action'],
-        ['label' => 'Another action'],
-        ['label' => 'Something else here'],
-        '-',
-        ['label' => 'Separated link'],
-    ])
-    ->render();
+<?= 
+    Dropdown::widget()
+        ->items([
+            ['label' => 'Action'],
+            ['label' => 'Another action'],
+            ['label' => 'Something else here'],
+            '-',
+            ['label' => 'Separated link'],
+        ]);
 ?>
 ```
 

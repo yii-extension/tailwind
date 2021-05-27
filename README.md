@@ -22,6 +22,8 @@ composer require yii-extension/tailwind-starter-kit
 
 We will quickly and easily describe how to use widgets, and be able to use all the power of the Tailwind CSS framework with php.
 
+- [Alert](docs/alert.md)
+- [Colors](docs/colors.md)
 - [Dropdown](docs/dropdown.md)
 - [Navbar](docs/navbar.md)
 

@@ -52,19 +52,23 @@ if ($urlMatcher->getCurrentRoute() !== null) {
     $currentPath = $urlMatcher->getCurrentUri()->getPath();
 }
 
-NavBar::widget()
-    ->backGroundColorTheme(Navbar::BG_BLUGRAY)
-    ->brandLink('/')
-    ->brandText('BLUEGRAY COLOR')
-    ->currentPath($currentPath)
-    ->items([
-        ['label' => 'discover', 'url' => '#'],
-        ['label' => 'profile', 'url' => '#'],
-        ['label' => 'setting', 'url' => '#'],
-    ])
-    ->begin();
+?> 
 
-NavBar::end();
+<?= 
+    NavBar::widget()
+        ->backGroundColorTheme(Navbar::BG_BLUGRAY)
+        ->brandLink('/')
+        ->brandText('BLUEGRAY COLOR')
+        ->currentPath($currentPath)
+        ->items([
+            ['label' => 'discover', 'url' => '#'],
+            ['label' => 'profile', 'url' => '#'],
+            ['label' => 'setting', 'url' => '#'],
+        ])
+        ->begin();
+    
+    NavBar::end();
+?>
 ```
 
 HTML produced is like the following:
@@ -135,20 +139,22 @@ if ($urlMatcher->getCurrentRoute() !== null) {
 }
 ?> 
 
-<?= NavBar::widget()
-    ->backGroundColorTheme(Navbar::BG_BLUGRAY)
-    ->brandLink('/')
-    ->brandText('BLUEGRAY COLOR')
-    ->currentPath('/')
-    ->items([
-        ['icon' => 'fab fa-facebook-square text-lg leading-lg text-white opacity-75', 'url' => '#'],
-        ['icon' => 'fab fa-twitter text-lg leading-lg text-white opacity-75', 'url' => '#'],
-        ['icon' => 'fab fa-instagram text-lg leading-lg text-white opacity-75', 'url' => '#'],
-        ['icon' => 'fab fa-github text-lg leading-lg text-white opacity-75', 'url' => '#'],
-    ])
-    ->begin() ?>
+<?= 
+    NavBar::widget()
+        ->backGroundColorTheme(Navbar::BG_BLUGRAY)
+        ->brandLink('/')
+        ->brandText('BLUEGRAY COLOR')
+        ->currentPath('/')
+        ->items([
+            ['icon' => 'fab fa-facebook-square text-lg leading-lg text-white opacity-75', 'url' => '#'],
+            ['icon' => 'fab fa-twitter text-lg leading-lg text-white opacity-75', 'url' => '#'],
+            ['icon' => 'fab fa-instagram text-lg leading-lg text-white opacity-75', 'url' => '#'],
+            ['icon' => 'fab fa-github text-lg leading-lg text-white opacity-75', 'url' => '#'],
+        ])
+        ->begin();
 
-<?= NavBar::end() ?>
+    NavBar::end();
+?>
 ```
 
 HTML produced is like the following:
@@ -229,19 +235,22 @@ if ($urlMatcher->getCurrentRoute() !== null) {
 }
 ?>
 
-<?= NavBar::widget()
-    ->backGroundColorTheme(Navbar::BG_BLUGRAY)
-    ->brandLink('/')
-    ->brandText('BLUEGRAY COLOR')
-    ->currentPath('/')
-    ->items([
-        ['label' => 'share', 'icon' => 'fab fa-facebook-square text-lg leading-lg px-2 text-white opacity-75', 'url' => '#'],
-        ['label' => 'tweet', 'icon' => 'fab fa-twitter text-lg leading-lg px-2 text-white opacity-75', 'url' => '#'],
-        ['label' => 'pin', 'icon' => 'fab fa-pinterest text-lg leading-lg px-2 text-white opacity-75', 'url' => '#'],
-    ])
-    ->begin() ?>
+<?= 
+    NavBar::widget()
+        ->backGroundColorTheme(Navbar::BG_BLUGRAY)
+        ->brandLink('/')
+        ->brandText('BLUEGRAY COLOR')
+        ->currentPath('/')
+        ->items([
+            ['label' => 'share', 'icon' => 'fab fa-facebook-square text-lg leading-lg px-2 text-white opacity-75', 'url' => '#'],
+            ['label' => 'tweet', 'icon' => 'fab fa-twitter text-lg leading-lg px-2 text-white opacity-75', 'url' => '#'],
+            ['label' => 'pin', 'icon' => 'fab fa-pinterest text-lg leading-lg px-2 text-white opacity-75', 'url' => '#'],
+        ])
+        ->begin();
 
-<?= NavBar::end() ?>
+    NavBar::end();
+
+?>
 ```
 
 HTML produced is like the following:
@@ -318,37 +327,38 @@ if ($urlMatcher->getCurrentRoute() !== null) {
 }
 ?>
 
-<?= NavBar::widget()
-    ->backGroundColorTheme(Navbar::BG_BLUGRAY)
-    ->brandLink('/')
-    ->brandText('BLUEGRAY COLOR')
-    ->containerItemsAttributes(['class' => 'lg:flex flex-grow items-center'])
-    ->currentPath('/')
-    ->items([
-        ['icon' => 'fab fa-facebook-square text-lg leading-lg px-2 text-white opacity-75', 'url' => '#'],
-        ['label' => 'tweet', 'icon' => 'fab fa-twitter text-lg leading-lg px-2 text-white opacity-75', 'url' => '#'],
-        ['label' => 'settings', 'url' => '#', 'labelOptions' => ['class' => 'text-lg']],
-    ])
-    ->ulAttributes(['class' => 'flex flex-col lg:flex-row list-none'])
-    ->begin() ?>
+<?=
+    NavBar::widget()
+        ->backGroundColorTheme(Navbar::BG_BLUGRAY)
+        ->brandLink('/')
+        ->brandText('BLUEGRAY COLOR')
+        ->containerItemsAttributes(['class' => 'lg:flex flex-grow items-center'])
+        ->currentPath('/')
+        ->items([
+            ['icon' => 'fab fa-facebook-square text-lg leading-lg px-2 text-white opacity-75', 'url' => '#'],
+            ['label' => 'tweet', 'icon' => 'fab fa-twitter text-lg leading-lg px-2 text-white opacity-75', 'url' => '#'],
+            ['label' => 'settings', 'url' => '#', 'labelOptions' => ['class' => 'text-lg']],
+        ])
+        ->ulAttributes(['class' => 'flex flex-col lg:flex-row list-none'])
+        ->begin();
 
-    <?=
-    Html::openTag('div', ['class' => 'relative flex w-full sm:w-7/12 md:w-5/12 px-4 flex-wrap items-stretch lg:ml-auto']) . "\n" .
-        Html::openTag('div', ['class' => 'flex']) . "\n" .
-            Html::openTag('span', ['class' => 'font-normal leading-snug flex text-center white-space-no-wrap border border-solid border-blueGray-600 rounded-full text-sm bg-white items-center rounded-r-none pl-2 py-1 text-blueGray-800 border-r-0 placeholder-blueGray-300']) . "\n" .
-                Html::tag('i', '', ['class' => 'fas fa-search']) .
-            Html::closeTag('span') . "\n" .
-        Html::closeTag('div') . "\n" .
-        Html::input('text', 'search')
-            ->attributes(
-                [
-                    'class' => 'px-2 py-1 h-8 border border-solid  border-blueGray-600 rounded-full text-sm leading-snug text-blueGray-700 bg-white shadow-none outline-none focus:outline-none w-full font-normal rounded-l-none flex-1 border-l-0 placeholder-blueGray-300',
-                    'placeholder' => 'Search blueGray'
-                ]
-            ) . "\n" .
-    Html::closeTag('div') . "\n" ?>
+        Html::openTag('div', ['class' => 'relative flex w-full sm:w-7/12 md:w-5/12 px-4 flex-wrap items-stretch lg:ml-auto']) . "\n" .
+            Html::openTag('div', ['class' => 'flex']) . "\n" .
+                Html::openTag('span', ['class' => 'font-normal leading-snug flex text-center white-space-no-wrap border border-solid border-blueGray-600 rounded-full text-sm bg-white items-center rounded-r-none pl-2 py-1 text-blueGray-800 border-r-0 placeholder-blueGray-300']) . "\n" .
+                    Html::tag('i', '', ['class' => 'fas fa-search']) .
+                Html::closeTag('span') . "\n" .
+            Html::closeTag('div') . "\n" .
+            Html::input('text', 'search')
+                ->attributes(
+                    [
+                        'class' => 'px-2 py-1 h-8 border border-solid  border-blueGray-600 rounded-full text-sm leading-snug text-blueGray-700 bg-white shadow-none outline-none focus:outline-none w-full font-normal rounded-l-none flex-1 border-l-0 placeholder-blueGray-300',
+                        'placeholder' => 'Search blueGray',
+                    ]
+                ) . "\n" .
+        Html::closeTag('div') . "\n";
 
-<?= NavBar::end() ?>
+    NavBar::end();
+?>
 ```
 
 ```html
