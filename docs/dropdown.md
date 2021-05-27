@@ -104,18 +104,3 @@ $items = [
     ]
 ];
 ```
-
-**List background color**
-
-```HTML
-Dropdown::BG_AMBER, Dropdown::BG_BLACK, Dropdown::BG_BLUGRAY, Dropdown::BG_EMERALD
-Dropdown::BG_INDIGO, Dropdown::BG_LIGHTBLUE, Dropdown::BG_ORANGE, Dropdown::BG_PINK
-Dropdown::BG_PURPLE, Dropdown::BG_RED, Dropdown::BG_TEAL, Dropdown::BG_WHITE
-```
-
-**List text color**
-
-```html
-text-black, text-white, text-pink-500, text-purple-500, text-indigo-500
-text-blue-500, ext-lightBlue-500`, text-teal-400, text-emerald-500
-text-

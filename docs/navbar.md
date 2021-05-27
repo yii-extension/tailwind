@@ -440,19 +440,3 @@ $items = [
     ]
 ];
 ```
-
-**List background color**
-
-```HTML
-NavBar::BG_AMBER, NavBar::BG_BLACK, NavBar::BG_BLUGRAY, NavBar::BG_EMERALD
-NavBar::BG_INDIGO, NavBar::BG_LIGHTBLUE, NavBar::BG_ORANGE, NavBar::BG_PINK
-NavBar::BG_PURPLE, NavBar::BG_RED, NavBar::BG_TEAL, NavBar::BG_WHITE
-```
-
-**List text color**
-
-```html
-text-black, text-white, text-pink-500, text-purple-500, text-indigo-500
-text-blue-500, ext-lightBlue-500`, text-teal-400, text-emerald-500
-text-amber-600, text-orange-500, text-red-300, text-gray-400, text-blueGray-400
-```
