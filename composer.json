@@ -1,10 +1,11 @@
 {
-    "name": "yii-extension/tailwind-starter-kit",
+    "name": "yii-extension/tailwind",
     "type": "library",
-    "description": "Yii Extension Tailwind Starter Kit Extension",
+    "description": "Yii Extension Tailwind",
     "keywords": [
         "yii",
-        "tailwind-starter-kit"
+        "extension",
+        "tailwind"
     ],
     "license": "BSD-3-Clause",
     "minimum-stability": "dev",
