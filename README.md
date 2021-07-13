@@ -13,6 +13,7 @@
 [![static analysis](https://github.com/yii-extension/tailwind-starter-kit/workflows/static%20analysis/badge.svg)](https://github.com/yii-extension/tailwind-starter-kit/actions?query=workflow%3A%22static+analysis%22)
 [![type-coverage](https://shepherd.dev/github/yii-extension/tailwind-starter-kit/coverage.svg)](https://shepherd.dev/github/yii-extension/tailwind-starter-kit)
 
+
 ## Installation
 
 ```shell

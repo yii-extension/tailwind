@@ -5,16 +5,19 @@ declare(strict_types=1);
 namespace Yii\Extension\Tailwind\Tests;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Yii\Extension\Tailwind\Dropdown;
+use Yii\Extension\Tailwind\Tests\TestSupport\TestTrait;
 
 final class DropdownTest extends TestCase
 {
+    use TestTrait;
+
     public function testButtonAttributes(): void
     {
         Dropdown::counter(0);
 
         $html = Dropdown::widget()->buttonAttributes(['class' => 'testMe'])->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
@@ -34,7 +37,6 @@ final class DropdownTest extends TestCase
         Dropdown::counter(0);
 
         $html = Dropdown::widget()->backgroundColorTheme(Dropdown::BG_RED)->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
@@ -57,7 +59,6 @@ final class DropdownTest extends TestCase
             '"bg-indigo-500", "bg-lightBlue-500", "bg-orange-500", "bg-pink-500", "bg-purple-500", "bg-red-500", ' .
             '"bg-teal-500", "bg-transparent", "bg-white".'
         );
-
         $html =  Dropdown::widget()->backgroundColorTheme('noExist')->render();
     }
 
@@ -66,7 +67,6 @@ final class DropdownTest extends TestCase
         Dropdown::counter(0);
 
         $html = Dropdown::widget()->buttonIcon('&#8593;')->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
@@ -86,7 +86,6 @@ final class DropdownTest extends TestCase
         Dropdown::counter(0);
 
         $html = Dropdown::widget()->buttonLabel('testMe')->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
@@ -106,7 +105,6 @@ final class DropdownTest extends TestCase
         Dropdown::counter(0);
 
         $html = Dropdown::widget()->buttonLabelAttributes(['class' => 'testMe'])->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
@@ -154,7 +152,6 @@ final class DropdownTest extends TestCase
                 ['label' => 'Ekaterinburgo', 'url' => '#'],
             ])
             ->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
@@ -185,7 +182,6 @@ final class DropdownTest extends TestCase
                 ['label' => 'Ekaterinburgo', 'url' => '#'],
             ])
             ->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
@@ -214,7 +210,6 @@ final class DropdownTest extends TestCase
             ])
             ->itemsContainerAttributes(['class' => 'testMe'])
             ->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
@@ -239,7 +234,6 @@ final class DropdownTest extends TestCase
                 ['label' => 'Ekaterinburgo', 'url' => '#', 'icon' => 'fas fa-home'],
             ])
             ->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
@@ -271,7 +265,6 @@ final class DropdownTest extends TestCase
                 ],
             ])
             ->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
@@ -306,7 +299,6 @@ final class DropdownTest extends TestCase
                 ],
             ])
             ->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
@@ -334,7 +326,6 @@ final class DropdownTest extends TestCase
                 ['label' => 'Ekaterinburgo', 'url' => '#'],
             ])
             ->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
@@ -356,7 +347,6 @@ final class DropdownTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('The "label" option is required.');
-
         Dropdown::widget()
             ->items([
                 [
@@ -393,7 +383,6 @@ final class DropdownTest extends TestCase
                 ],
             ])
             ->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
@@ -447,7 +436,6 @@ final class DropdownTest extends TestCase
                 ],
             ])
             ->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
@@ -489,7 +477,6 @@ final class DropdownTest extends TestCase
                 ],
             ])
             ->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
@@ -523,8 +510,7 @@ final class DropdownTest extends TestCase
             '"bg-indigo-500", "bg-lightBlue-500", "bg-orange-500", "bg-pink-500", "bg-purple-500", "bg-red-500", ' .
             '"bg-teal-500", "bg-transparent", "bg-white".'
         );
-
-        $html =  Dropdown::widget()->buttonSubDropdownBackgroundColor('noExist')->render();
+        Dropdown::widget()->buttonSubDropdownBackgroundColor('noExist')->render();
     }
 
     public function testItemsSubDropdownTextColor(): void
@@ -543,7 +529,6 @@ final class DropdownTest extends TestCase
                 ],
             ])
             ->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
@@ -574,7 +559,6 @@ final class DropdownTest extends TestCase
         Dropdown::counter(0);
 
         $html = Dropdown::widget()->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">
@@ -594,7 +578,6 @@ final class DropdownTest extends TestCase
         Dropdown::counter(0);
 
         $html = Dropdown::widget()->withoutLoadDefaultTheme()->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown">
         <div>
@@ -614,7 +597,6 @@ final class DropdownTest extends TestCase
         Dropdown::counter(0);
 
         $html = Dropdown::widget()->textColorTheme('text-black')->render();
-
         $expected = <<<'HTML'
         <div id="w0-dropdown" class="flex flex-wrap">
         <div class="md:w-4/12 px-4 sm:w-6/12 w-full">

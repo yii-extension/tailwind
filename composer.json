@@ -12,6 +12,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "foxy/foxy": "^1.1@dev",
+        "yii-extension/asset-tailwind": "^1.0.0",
         "yii-extension/simple-widget": "^1.0.0",
         "yiisoft/assets": "^1.0.0",
         "yiisoft/files": "^1.0.0",
@@ -20,7 +21,7 @@
     "require-dev": {
         "phpunit/phpunit": "^9.5",
         "roave/infection-static-analysis-plugin": "^1.8.0",
-        "vimeo/psalm": "^4.4",
+        "vimeo/psalm": "^4.8",
         "yiisoft/var-dumper": "^1.1.0"
     },
     "autoload": {

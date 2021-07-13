@@ -5,17 +5,20 @@ declare(strict_types=1);
 namespace Yii\Extension\Tailwind\Tests;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Yii\Extension\Tailwind\NavBar;
+use Yii\Extension\Tailwind\Tests\TestSupport\TestTrait;
 
 final class NavBarTest extends TestCase
 {
+    use TestTrait;
+
     public function testAttributes(): void
     {
         NavBar::counter(0);
 
         $html = NavBar::widget()->attributes(['class' => 'testMe'])->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="testMe">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -40,7 +43,6 @@ final class NavBarTest extends TestCase
 
         $html = NavBar::widget()->backgroundColorTheme(NavBar::BG_AMBER)->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-amber-500 flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -67,8 +69,7 @@ final class NavBarTest extends TestCase
             '"bg-indigo-500", "bg-lightBlue-500", "bg-orange-500", "bg-pink-500", "bg-purple-500", "bg-red-500", ' .
             '"bg-teal-500", "bg-transparent", "bg-white".'
         );
-
-        $html = NavBar::widget()->backgroundColorTheme('noExist')->begin();
+        NavBar::widget()->backgroundColorTheme('noExist')->begin();
     }
 
     public function testBrandImage(): void
@@ -80,7 +81,6 @@ final class NavBarTest extends TestCase
             ->brandImageAttributes(['class' => 'w-6'])
             ->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -110,7 +110,6 @@ final class NavBarTest extends TestCase
             ->brandText('Mi Proyecto')
             ->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -141,7 +140,6 @@ final class NavBarTest extends TestCase
             ->brandLink('')
             ->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -164,11 +162,8 @@ final class NavBarTest extends TestCase
     {
         NavBar::counter(0);
 
-        $html = NavBar::widget()
-            ->brandText('Mi Proyecto')
-            ->begin();
+        $html = NavBar::widget()->brandText('Mi Proyecto')->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -194,7 +189,6 @@ final class NavBarTest extends TestCase
 
         $html = NavBar::widget()->containerAttributes(['class' => 'testMe'])->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="testMe">
@@ -219,7 +213,6 @@ final class NavBarTest extends TestCase
 
         $html = NavBar::widget()->containerItemsAttributes(['class' => 'testMe'])->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -249,7 +242,6 @@ final class NavBarTest extends TestCase
             ])
             ->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -291,7 +283,6 @@ final class NavBarTest extends TestCase
             ])
             ->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -320,16 +311,8 @@ final class NavBarTest extends TestCase
     {
         NavBar::counter(0);
 
-        $html = NavBar::widget()
-            ->items([
-                [
-                    'label' => 'a & b',
-                    'encode' => false,
-                ],
-            ])
-            ->begin();
+        $html = NavBar::widget()->items([['label' => 'a & b', 'encode' => false]])->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -350,16 +333,8 @@ final class NavBarTest extends TestCase
         HTML;
         $this->assertEqualsWithoutLE($expected, $html);
 
-        $html = NavBar::widget()
-            ->items([
-                [
-                    'label' => 'a & b',
-                    'encode' => true,
-                ],
-            ])
-            ->begin();
+        $html = NavBar::widget()->items([['label' => 'a & b', 'encode' => true]])->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w1-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -404,7 +379,6 @@ final class NavBarTest extends TestCase
             ])
             ->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -453,7 +427,6 @@ final class NavBarTest extends TestCase
             ])
             ->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -496,7 +469,6 @@ final class NavBarTest extends TestCase
             ])
             ->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -525,7 +497,6 @@ final class NavBarTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('The "label" or "icon" option is required.');
-
         NavBar::widget()
             ->items([
                 [
@@ -551,7 +522,6 @@ final class NavBarTest extends TestCase
             ->liClass('testMe')
             ->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -580,17 +550,8 @@ final class NavBarTest extends TestCase
     {
         NavBar::counter(0);
 
-        $html = NavBar::widget()
-            ->items([
-                [
-                    'label' => 'Link disable',
-                    'url' => '#',
-                    'disabled' => true,
-                ],
-            ])
-            ->begin();
+        $html = NavBar::widget()->items([['label' => 'Link disable', 'url' => '#', 'disabled' => true]])->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -618,7 +579,6 @@ final class NavBarTest extends TestCase
 
         $html = NavBar::widget()->items([['label' => 'Page1']])->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -646,7 +606,6 @@ final class NavBarTest extends TestCase
 
         $html = NavBar::widget()->items([['label' => 'text black']])->textColorTheme('text-black')->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -674,8 +633,6 @@ final class NavBarTest extends TestCase
 
         $html = NavBar::widget()->toggleAttributes(['class' => 'text-white'])->begin();
         $html .= NavBar::end();
-
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -700,7 +657,6 @@ final class NavBarTest extends TestCase
 
         $html = NavBar::widget()->ulAttributes(['class' => 'testMe'])->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -725,7 +681,6 @@ final class NavBarTest extends TestCase
 
         $html = NavBar::widget()->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -750,7 +705,6 @@ final class NavBarTest extends TestCase
 
         $html = NavBar::widget()->brand('<span>Mi Proyecto</span>')->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar" class="bg-black flex-wrap flex items-center mb-3 px-2 py-3 relative">
         <div class="container flex-wrap flex items-center justify-between mx-auto px-4">
@@ -774,7 +728,6 @@ final class NavBarTest extends TestCase
 
         $html = NavBar::widget()->withoutLoadDefaultTheme()->begin();
         $html .= NavBar::end();
-
         $expected = <<<'HTML'
         <nav id="w0-navbar">
         <div>

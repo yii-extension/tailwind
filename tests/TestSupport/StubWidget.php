@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yii\Extension\Tailwind\Tests\Stub;
+namespace Yii\Extension\Tailwind\Tests\TestSupport;
 
 use Yii\Extension\Tailwind\Widget;
 

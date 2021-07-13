@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Yii\Extension\Tailwind\Tests;
+namespace Yii\Extension\Tailwind\Tests\TestSupport;
 
 use PHPUnit\Framework\TestCase as AbstractTestCase;
 
-abstract class TestCase extends AbstractTestCase
+trait TestTrait
 {
     /**
      * Asserting two strings equality ignoring line endings.
