@@ -8,7 +8,7 @@
 
 [![Total Downloads](https://poser.pugx.org/yii-extension/tailwind/downloads.png)](https://packagist.org/packages/yii-extension/tailwind)
 [![Build Status](https://github.com/yii-extension/tailwind/workflows/build/badge.svg)](https://github.com/yii-extension/tailwind/actions?query=workflow%3Abuild)
-[![codecov](https://codecov.io/gh/yii-extension/tailwind/branch/master/graph/badge.svg?token=WRCGHQYSKX)](https://codecov.io/gh/yii-extension/tailwind)
+[![codecov](https://codecov.io/gh/yii-extension/tailwind/branch/master/graph/badge.svg?token=mFwYEYMr15)](https://codecov.io/gh/yii-extension/tailwind)
 [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https://badge-api.stryker-mutator.io/github.com/yii-extension/tailwind/master)](https://dashboard.stryker-mutator.io/reports/github.com/yii-extension/tailwind/master)
 [![static analysis](https://github.com/yii-extension/tailwind/workflows/static%20analysis/badge.svg)](https://github.com/yii-extension/tailwind/actions?query=workflow%3A%22static+analysis%22)
 [![type-coverage](https://shepherd.dev/github/yii-extension/tailwind/coverage.svg)](https://shepherd.dev/github/yii-extension/tailwind)
