@@ -4,46 +4,79 @@ declare(strict_types=1);
 
 namespace Yii\Extension\Tailwind;
 
-use JsonException;
-use Yiisoft\Arrays\ArrayHelper;
 use Yiisoft\Html\Html;
-
-use function array_merge;
+use Yiisoft\Html\Tag\Button;
+use Yiisoft\Html\Tag\CustomTag;
+use Yiisoft\Html\Tag\Div;
+use Yiisoft\Html\Tag\Span;
 
 /**
  * Alert renders an alert bootstrap component.
  *
- * @link https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/javascript/alerts
+ * @link https://tailwindui.com/components/application-ui/feedback/alerts
  */
 final class Alert extends Widget
 {
-    protected string $backgroundColorTheme = Alert::BG_BLUGRAY;
     private array $buttonAttributes = [];
-    private bool $buttonEnabled = true;
-    private string $icon = '';
+    private string $buttonIconText = '&times;';
+    private bool $buttonEnable = true;
+    private string $containerCssClass = '';
+    private array $iconContainerAttributes = [];
     private array $iconAttributes = [];
+    private string $iconCssClass = '';
+    private string $iconText = '';
     private string $message = '';
     private array $messageAttributes = [];
+    private array $parts = [];
+    private string $template = '{message}{button}';
+    private string $title = '';
+    private array $titleAttributes = [];
 
     protected function run(): string
     {
         $new = clone $this;
 
-        if ($new->loadDefaultTheme) {
-            $new->loadDefaultTheme($new);
+        $attributes = $new->getAttributes();
+
+        $title = '';
+
+        if ($new->title !== '') {
+            $title = $new->alertMessageTitle($new);
         }
 
-        if (!isset($new->attributes['id'])) {
-            $new->attributes['id'] = "{$new->getId()}-alert";
+        if (!isset($attributes['id'])) {
+            $attributes['id'] = "{$new->getId()}-alert";
         }
 
-        $message = $new->message !== '' ? $new->renderMessage($new) . "\n" : '';
+        if (!isset($new->parts['{icon}'])) {
+            $new->alertIcon($new);
+        }
 
-        return
-            Html::openTag('div', $new->attributes) . "\n" .
-                $message .
-                $new->renderButton($new) .
-            Html::closeTag('div');
+        if (!isset($new->parts['{message}'])) {
+            $new->alertMessage($new);
+        }
+
+        if (!isset($new->parts['{button}'])) {
+            $new->alertCloseButton($new);
+        }
+
+        $html = strtr($new->template, $new->parts);
+
+        if ($new->containerCssClass !== '') {
+            $html = Div::tag()
+                ->class($new->containerCssClass)
+                ->content(PHP_EOL . $title . $html . PHP_EOL)
+                ->encode(false)
+                ->render();
+        }
+
+        return $new->message !== ''
+            ? Div::tag()
+                ->attributes($attributes)
+                ->content(PHP_EOL . trim($html) . PHP_EOL)
+                ->encode(false)
+                 ->render()
+            : '';
     }
 
     /**
@@ -58,7 +91,7 @@ final class Alert extends Widget
      *
      * @param array $value
      *
-     * @return self
+     * @return static
      *
      * {@see Html::renderTagAttributes()} for details on how attributes are being rendered.
      */
@@ -69,17 +102,45 @@ final class Alert extends Widget
         return $new;
     }
 
+    public function containerCssClass(string $value): self
+    {
+        $new = clone $this;
+        $new->containerCssClass = $value;
+        return $new;
+    }
+
     /**
-     * The icon message in the alert component.
+     * The icon css class message in the alert component.
      *
      * @param string $value
      *
-     * @return self
+     * @return static
      */
-    public function icon(string $value): self
+    public function iconCssClass(string $value): self
     {
         $new = clone $this;
-        $new->icon = $value;
+        $new->iconCssClass = $value;
+        return $new;
+    }
+
+    public function iconContainerAttributes(array $value): self
+    {
+        $new = clone $this;
+        $new->iconContainerAttributes = $value;
+        return $new;
+    }
+
+    /**
+     * The icon text message in the alert component.
+     *
+     * @param string $value
+     *
+     * @return static
+     */
+    public function iconText(string $value): self
+    {
+        $new = clone $this;
+        $new->iconText = $value;
         return $new;
     }
 
@@ -89,7 +150,7 @@ final class Alert extends Widget
      *
      * @param string $value
      *
-     * @return self
+     * @return static
      */
     public function message(string $value): self
     {
@@ -98,98 +159,110 @@ final class Alert extends Widget
         return $new;
     }
 
-    /**
-     * Disable close button.
-     *
-     * @return self
-     */
-    public function withoutButton(): self
+    public function messageAttributes(array $value): self
     {
         $new = clone $this;
-        $new->buttonEnabled = false;
+        $new->messageAttributes = $value;
         return $new;
     }
 
-    private function loadDefaultTheme(self $new): void
+    public function template(string $value): self
     {
-        if ($new->attributes === []) {
-            Html::addCssClass(
-                $new->attributes,
-                [$new->backgroundColorTheme, 'border-0', 'mb-4', 'px-6', 'py-4', 'relative', 'rounded', 'text-white']
-            );
-        }
+        $new = clone $this;
+        $new->template = $value;
+        return $new;
+    }
 
-        if ($new->iconAttributes === []) {
-            Html::addCssClass($new->iconAttributes, ['align-middle', 'inline-block', 'mr-5', 'text-xl']);
-        }
+    public function title(string $value): self
+    {
+        $new = clone $this;
+        $new->title = $value;
+        return $new;
+    }
 
-        if ($new->messageAttributes === []) {
-            Html::addCssClass($new->messageAttributes, ['align-middle', 'inline-block', 'mr-8', $new->textColorTheme]);
-        }
-
-        if ($new->buttonAttributes === []) {
-            Html::addCssClass(
-                $new->buttonAttributes,
-                [
-                    'absolute',
-                    'bg-transparent',
-                    'focus:outline-none',
-                    'font-semibold',
-                    'leading-none',
-                    'mr-6',
-                    'mt-4',
-                    'outline-none',
-                    'right-0',
-                    'text-2xl',
-                    'top-0',
-                ]
-            );
-        }
+    public function titleAttributes(array $value): self
+    {
+        $new = clone $this;
+        $new->titleAttributes = $value;
+        return $new;
     }
 
     /**
-     * Renders the close button.
+     * Disable close button.
+     *
+     * @return static
+     */
+    public function withoutButtonClose(): self
+    {
+        $new = clone $this;
+        $new->buttonEnable = false;
+        return $new;
+    }
+
+    /**
+     * Renders the alert close button.
      *
      * @param self $new
-     *
-     * @return string the rendering result
-     *
-     * @throws JsonException
      */
-    private function renderButton(self $new): string
+    private function alertCloseButton(self $new): void
     {
         $new->buttonAttributes['onclick'] = 'closeAlert(event)';
 
-        if ($new->buttonEnabled === false) {
-            return '';
-        }
+        $new->parts['{button}'] = '';
 
-        return Html::button('x', $new->buttonAttributes) . "\n";
+        if ($new->buttonEnable) {
+            $new->parts['{button}'] = Button::tag()
+                ->attributes($new->buttonAttributes)
+                ->content($new->buttonIconText)
+                ->encode(false)
+                ->type('button')
+                ->render();
+        }
     }
 
     /**
-     * Renders the alert body and the close button (if any).
-     *
-     * @throws JsonException
+     * Render the alert icon.
      *
      * @param self $new
-     * @return string the rendering result
      */
-    private function renderMessage(self $new): string
+    private function alertIcon(self $new): void
     {
-        $html = '';
+        Html::addCssClass($new->iconAttributes, $new->iconCssClass);
 
-        if ($new->icon !== '') {
-            $html =
-                Html::openTag('span', $new->iconAttributes) .
-                    Html::tag('i', '', ['class' => $new->icon]) .
-                Html::closeTag('span') . "\n";
-        }
+        $icon = CustomTag::name('i')->attributes($new->iconAttributes)->content($new->iconText)->render();
 
-        if ($new->message !== '') {
-            $html .= Html::span($new->message, $new->messageAttributes)->encode(false);
-        }
+        $new->parts['{icon}'] = Div::tag()
+            ->attributes($new->iconContainerAttributes)
+            ->content($icon)
+            ->encode(false)
+            ->render() . PHP_EOL;
+    }
 
-        return $html;
+    /**
+     * Render the alert message.
+     *
+     * @param self $new
+     */
+    private function alertMessage(self $new): void
+    {
+        $tag = Span::tag()->attributes($new->messageAttributes)->content($new->message)->encode(false)->render();
+
+        $new->parts['{message}'] = $tag . PHP_EOL;
+    }
+
+    /**
+     * Render the alert message title.
+     *
+     * @param self $new
+     *
+     * @return string
+     */
+    private function alertMessageTitle(self $new): string
+    {
+        return Div::tag()
+            ->attributes($new->titleAttributes)
+            ->content($new->title)
+            ->encode(false)
+            ->render() . PHP_EOL;
     }
 }

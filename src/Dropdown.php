@@ -5,71 +5,52 @@ declare(strict_types=1);
 namespace Yii\Extension\Tailwind;
 
 use InvalidArgumentException;
+use ReflectionException;
 use Yiisoft\Html\Html;
+use Yiisoft\Html\Tag\A;
+use Yiisoft\Html\Tag\Button;
+use Yiisoft\Html\Tag\CustomTag;
+use Yiisoft\Html\Tag\Div;
+use Yiisoft\Html\Tag\Span;
 
 use function implode;
-use function is_array;
 
 /**
  * The dropdown component is a container for a dropdown button and a dropdown menu.
  *
- * @link https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/javascript/dropdown
+ * @link https://tailwindui.com/components/application-ui/elements/dropdowns
  */
 final class Dropdown extends Widget
 {
-    protected string $backgroundColorTheme = Dropdown::BG_BLUGRAY;
-    private bool $activateItems = true;
     private array $buttonAttributes = [];
-    private string $buttonLabel = 'Dropdown';
+    private string $buttonCssClass = 'font-semibold py-2 px-4 rounded inline-flex items-center';
+    private string $buttonBgColorCssClass = 'bg-gray-600';
+    private array $buttonIconAttributes = [];
+    private string $buttonIconCssClass = 'pl-2 not-italic';
+    private string $buttonIconText = '🠋';
+    private string $buttonLabel = 'Click Me';
     private array $buttonLabelAttributes = [];
-    private array $buttonSubDropdownAttributes = [];
-    private string $buttonSubDropdownBackgroundColor = 'bg-transparent';
-    private string $buttonSubDropdownTextColor = 'text-black';
-    private string $buttonIcon = '&#8595;';
-    private array $containerAttributes = [];
-    private array $containerTriggerAttributes = [];
-    private string $currentPath = '';
-    private array $dividerAttributes = [];
+    private string $buttonTextColorCssClass = 'text-white';
+    private string $dropdownCssClass = 'dropdown inline-block relative';
+    private string $dropdownItemsCssClass = 'dropdown';
+    private string $dropdownItemContentCssClass = 'dropdown-content absolute hidden pt-1 w-full';
+    private bool $encloseByContainer = true;
     private array $items = [];
-    private array $itemsContainerAttributes = [];
-    private array $urlAttributes = [];
+    private string $itemsActiveCssClass = 'bg-gray-400';
+    private string $itemsDisabledCssClass = 'opacity-50 cursor-not-allowed';
+    private string $submenuCssClass = 'py-2 px-2 block whitespace-nowrap';
+    private string $submenuContentCssClass = 'dropdown-content absolute hidden';
+    private string $submenuItemsCssClass = 'py-2 px-2 block whitespace-nowrap';
 
+    /**
+     * @throws ReflectionException
+     */
     protected function run(): string
     {
         $new = clone $this;
-
-        if ($new->loadDefaultTheme) {
-            $new->loadDefaultTheme($new);
-        }
-
-        if (!isset($new->attributes['id'])) {
-            $new->attributes['id'] = "{$new->getId()}-dropdown";
-        }
-
-        if (!isset($new->itemsContainerAttributes['id'])) {
-            $new->itemsContainerAttributes['id'] = "{$new->getId()}-dropdown-items";
-        }
-
-        return
-            Html::openTag('div', $new->attributes) . "\n" .
-                Html::openTag('div', $new->containerAttributes) . "\n" .
-                    Html::openTag('div', $new->containerTriggerAttributes) . "\n" .
-                        $new->buildTrigger($new) .
-                        $new->renderItems($new) .
-                    Html::closeTag('div') . "\n" .
-                Html::closeTag('div') . "\n" .
-            Html::closeTag('div');
+        return $new->items !== [] ? $new->renderDropdown($new) : '';
     }
 
-    /**
-     * The HTML attributes for the widget button tag.
-     *
-     * @param array $value
-     *
-     * @return self
-     *
-     * {@see Html::renderTagAttributes()} for details on how attributes are being rendered.
-     */
     public function buttonAttributes(array $value): self
     {
         $new = clone $this;
@@ -77,13 +58,20 @@ final class Dropdown extends Widget
         return $new;
     }
 
-    /**
-     * Set label for the dropdown button.
-     *
-     * @param string $value
-     *
-     * @return self
-     */
+    public function buttonCssClass(string $value): self
+    {
+        $new = clone $this;
+        $new->buttonCssClass = $value;
+        return $new;
+    }
+
+    public function buttonBgColorCssClass(string $value): self
+    {
+        $new = clone $this;
+        $new->buttonBgColorCssClass = $value;
+        return $new;
+    }
+
     public function buttonLabel(string $value): self
     {
         $new = clone $this;
@@ -91,112 +79,52 @@ final class Dropdown extends Widget
         return $new;
     }
 
-    /**
-     * The HTML attributes for the dropdown button.
-     *
-     * @param array $value
-     *
-     * @return self
-     *
-     * {@see Html::renderTagAttributes()} for details on how attributes are being rendered.
-     */
-    public function buttonLabelAttributes(array $value): self
+    public function buttonIconAttributes(array $value): self
     {
         $new = clone $this;
-        $new->buttonLabelAttributes = $value;
+        $new->buttonIconAttributes = $value;
         return $new;
     }
 
-    /**
-     * Set icon for the dropdown button.
-     *
-     * @param string $value
-     *
-     * @return self
-     */
-    public function buttonIcon(string $value): self
+    public function buttonIconCssClass(string $value): self
     {
         $new = clone $this;
-        $new->buttonIcon = $value;
+        $new->buttonIconCssClass = $value;
         return $new;
     }
 
-    /**
-     * The HTML attributes for the widget button sub dropdown tag.
-     *
-     * @param array $value
-     *
-     * @return self
-     *
-     * {@see Html::renderTagAttributes()} for details on how attributes are being rendered.
-     */
-    public function buttonSubDropdownAttributes(array $value): self
+    public function buttonIconText(string $value): self
     {
         $new = clone $this;
-        $new->buttonSubDropdownAttributes = $value;
+        $new->buttonIconText = $value;
         return $new;
     }
 
-    /**
-     * Button background color.
-     *
-     * @param string $value
-     *
-     * @return self
-     */
-    public function buttonSubDropdownBackgroundColor(string $value): self
+    public function buttonTextColorCssClass(string $value): self
     {
-        if (!in_array($value, self::BG_ALL)) {
-            $values = implode('", "', self::BG_ALL);
-            throw new InvalidArgumentException("Invalid color. Valid values are: \"$values\".");
-        }
-
         $new = clone $this;
-        $new->buttonSubDropdownBackgroundColor = $value;
+        $new->buttonTextColorCssClass = $value;
         return $new;
     }
 
-    /**
-     * Button text color label.
-     *
-     * @param string $value
-     *
-     * @return self
-     */
-    public function buttonSubDropdownTextColor(string $value): self
+    public function dropdownCssClass(string $value): self
     {
         $new = clone $this;
-        $new->buttonSubDropdownTextColor = $value;
+        $new->dropdownCssClass = $value;
         return $new;
     }
 
-    /**
-     * Allows you to assign the current path of the url from request controller.
-     *
-     * @param string $value
-     *
-     * @return self
-     */
-    public function currentPath(string $value): self
+    public function dropdownItemsCssClass(string $value): self
     {
         $new = clone $this;
-        $new->currentPath = $value;
+        $new->dropdownItemsCssClass = $value;
         return $new;
     }
 
-    /**
-     * The HTML attributes for the dropdown divider.
-     *
-     * @param array $value
-     *
-     * @return self
-     *
-     * {@see Html::renderTagAttributes()} for details on how attributes are being rendered.
-     */
-    public function dividerAttributes(array $value): self
+    public function dropdownItemContentCssClass(string $value): self
     {
         $new = clone $this;
-        $new->dividerAttributes = $value;
+        $new->dropdownItemContentCssClass = $value;
         return $new;
     }
 
@@ -216,7 +144,7 @@ final class Dropdown extends Widget
      *
      * @param array $value
      *
-     * @return self
+     * @return static
      */
     public function items(array $value): self
     {
@@ -225,266 +153,241 @@ final class Dropdown extends Widget
         return $new;
     }
 
-    /**
-     * The HTML attributes for the widget items.
-     *
-     * @param array $value
-     *
-     * @return self
-     *
-     * {@see Html::renderTagAttributes()} for details on how attributes are being rendered.
-     */
-    public function itemsContainerAttributes(array $value): self
+    public function itemsActiveCssClass(string $value): self
     {
         $new = clone $this;
-        $new->itemsContainerAttributes = $value;
+        $new->itemsActiveCssClass = $value;
         return $new;
     }
 
-    private function buildTrigger(self $new): string
+    public function itemsDisabledCssClass(string $value): self
     {
-        /** @var string */
-        $id = $new->itemsContainerAttributes['id'];
-        $new->buttonAttributes['onclick'] = "openDropdown(event, '$id')";
-        $new->buttonAttributes['encode'] = false;
+        $new = clone $this;
+        $new->itemsDisabledCssClass = $value;
+        return $new;
+    }
 
-        return
-            Html::openTag('button', $new->buttonAttributes) .
-                Html::tag('span', $new->buttonLabel, $new->buttonLabelAttributes) .
-                Html::tag('i', $new->buttonIcon, ['class' => 'pl-2'])->encode(false) .
-            Html::closeTag('button') . "\n";
+    public function submenuCssClass(string $value): self
+    {
+        $new = clone $this;
+        $new->submenuCssClass = $value;
+        return $new;
+    }
+
+    public function submenuItemsCssClass(string $value): self
+    {
+        $new = clone $this;
+        $new->submenuItemsCssClass = $value;
+        return $new;
+    }
+
+    public function submenuContentCssClass(string $value): self
+    {
+        $new = clone $this;
+        $new->submenuContentCssClass = $value;
+        return $new;
     }
 
     /**
-     * Checks whether a menu item is active.
+     * If the widget should be unclosed by container.
      *
-     * This is done by checking if {@see currentPath} match that specified in the `url` option of the menu item. When
-     * the `url` option of a menu item is specified in terms of an array, its first element is treated as the
-     * currentPath for the item and the rest of the elements are the associated parameters. Only when its currentPath
-     * and parameters match {@see currentPath}, respectively, will a menu item be considered active.
+     * @param bool $value
      *
-     * @param string $url
-     * @param string $currentPath
-     * @param bool $activateItems
-     *
-     * @return bool whether the menu item is active
+     * @return static
      */
-    private function isItemActive(string $url, string $currentPath, bool $activateItems): bool
+    public function unClosedByContainer(bool $value = false): self
     {
-        return ($currentPath !== '/') && ($url === $currentPath) && $activateItems;
+        $new = clone $this;
+        $new->encloseByContainer = $value;
+        return $new;
     }
 
-    private function loadDefaultTheme(self $new): void
+    /**
+     * @throws ReflectionException
+     */
+    private function renderDropdown(self $new): string
     {
-        if ($new->attributes === []) {
-            Html::addCssClass($new->attributes, ['flex', 'flex-wrap']);
+        $attributes = $new->getAttributes();
+        $id = '';
+
+        if (!isset($attributes['id'])) {
+            $id = "{$new->getId()}-dropdown";
         }
 
-        if ($new->containerAttributes === []) {
-            Html::addCssClass($new->containerAttributes, ['md:w-4/12', 'px-4', 'sm:w-6/12', 'w-full']);
-        }
+        Html::addCssClass($attributes, $new->dropdownCssClass);
 
-        if ($new->containerTriggerAttributes === []) {
-            Html::addCssClass($new->containerTriggerAttributes, ['align-middle', 'inline-flex', 'relative', 'w-full']);
-        }
+        $html = $new->renderDropdownItems($new);
 
-        if ($new->buttonAttributes === []) {
-            Html::addCssClass(
-                $new->buttonAttributes,
-                [
-                    $new->backgroundColorTheme,
-                    $new->textColorTheme,
-                    'duration-150',
-                    'ease-linear',
-                    'focus:outline-none',
-                    'font-bold',
-                    'hover:shadow-lg',
-                    'mb-1',
-                    'mr-1',
-                    'outline-none',
-                    'px-6',
-                    'py-3',
-                    'rounded',
-                    'shadow',
-                    'text-sm',
-                    'transition-all',
-                    'uppercase',
-                ]
-            );
-        }
-
-        if ($new->itemsContainerAttributes === []) {
-            Html::addCssClass(
-                $new->itemsContainerAttributes,
-                [
-                    'float-left',
-                    'hidden bg-white',
-                    'list-none',
-                    'mt-1',
-                    'py-2',
-                    'rounded',
-                    'shadow-lg',
-                    'text-base',
-                    'text-left',
-                    'z-50',
-                ]
-            );
-
-            Html::addCssStyle($new->itemsContainerAttributes, 'min-width:12rem');
-        }
-
-        if ($new->urlAttributes === []) {
-            Html::addCssClass(
-                $new->urlAttributes,
-                [
-                    'block',
-                    'font-normal',
-                    'px-4',
-                    'py-2',
-                    'text-sm',
-                    'w-full',
-                    'whitespace-nowrap',
-                ]
-            );
-        }
-
-        if ($new->dividerAttributes === []) {
-            Html::addCssClass(
-                $new->dividerAttributes,
-                [
-                    'border-blueGray-800',
-                    'border-solid',
-                    'border-t-0',
-                    'border',
-                    'h-0',
-                    'my-2',
-                    'opacity-25',
-                ]
-            );
-        }
-
-        if ($new->buttonSubDropdownAttributes === []) {
-            Html::addCssClass(
-                $new->buttonSubDropdownAttributes,
-                [
-                    $new->buttonSubDropdownBackgroundColor,
-                    $new->buttonSubDropdownTextColor,
-                    'duration-150',
-                    'ease-linear',
-                    'focus:outline-none',
-                    'hover:shadow-lg',
-                    'mb-1',
-                    'mr-1',
-                    'outline-none',
-                    'py-3',
-                    'rounded',
-                    'shadow',
-                    'text-sm',
-                    'transition-all',
-                ],
-            );
-        }
-    }
-
-    private function renderLabel(
-        string $label,
-        string $icon,
-        array $iconAttributes = [],
-        array $labelAttributes = []
-    ): string {
-        $html = '';
-
-        if ($icon !== '') {
-            $html = "\n" .
-                Html::openTag('span', $iconAttributes) .
-                    Html::tag('i', '', ['class' => $icon]) .
-                Html::closeTag('span') . "\n";
-        }
-
-        if ($label !== '') {
-            $html .= Html::span($label, $labelAttributes);
+        if ($new->encloseByContainer) {
+            $button = $new->renderDropdownButton($new);
+            $ul = Div::tag()
+                ->class($new->dropdownItemContentCssClass)
+                ->content(PHP_EOL . $html . PHP_EOL)
+                ->encode(false)
+                ->render();
+            $html = Div::tag()
+                ->attributes($attributes)
+                ->content(PHP_EOL . $button . $ul . PHP_EOL)
+                ->encode(false)
+                ->id($id)
+                ->render();
         }
 
         return $html;
     }
 
+    private function renderDropdownButton(self $new): string
+    {
+        Html::addCssClass(
+            $new->buttonAttributes,
+            [$new->buttonBgColorCssClass, $new->buttonCssClass, $new->buttonTextColorCssClass]
+        );
+
+        Html::addCssClass($new->buttonIconAttributes, $new->buttonIconCssClass);
+
+        return Button::tag()
+            ->attributes($new->buttonAttributes)
+            ->content(
+                Span::tag()->attributes($new->buttonLabelAttributes)->content($new->buttonLabel) .
+                CustomTag::name('i')->attributes($new->buttonIconAttributes)->content($new->buttonIconText)->render()
+            )
+            ->encode(false)
+            ->render() . PHP_EOL;
+    }
+
     /**
      * Renders menu items.
      *
-     * @return string the rendering result.
+     * @throws InvalidArgumentException|ReflectionException if the label option is not specified in one of the items.
      *
-     * @throws InvalidArgumentException if the label option is not specified in one of the items.
+     * @return string the rendering result.
      */
-    private function renderItems(self $new): string
+    private function renderDropdownItems(self $new): string
     {
         $lines = [];
 
         /** @var array|string $item */
         foreach ($new->items as $item) {
-            if ($item === '-') {
-                $lines[] = Html::div('', $new->dividerAttributes);
+            if (!isset($item['label']) && $item !== '-') {
+                throw new InvalidArgumentException('The "label" option is required.');
+            }
+
+            /** @var string */
+            $label = $item['label'] ?? '';
+
+            /** @var array */
+            $labelAttributes = $item['labelAttributes'] ?? [];
+
+            if (isset($item['encode']) && $item['encode'] === true) {
+                $label = Html::encode($label);
+            }
+
+            /** @var array */
+            $items = $item['items'] ?? [];
+
+            /** @var array */
+            $itemsAttributes = $item['itemsAttributes'] ?? [];
+
+            /** @var array */
+            $attributes = $item['attributes'] ?? [];
+
+            /** @var array */
+            $urlAttributes = $item['urlAttributes'] ?? [];
+
+            /** @var string */
+            $iconText = $item['iconText'] ?? '';
+
+            /** @var string */
+            $iconCssClass = $item['iconCssClass'] ?? '';
+
+            /** @var array */
+            $iconAttributes = $item['iconAttributes'] ?? [];
+
+            /** @var string */
+            $iconAlign = $item['iconAlign'] ?? 'left';
+
+            /** @var string */
+            $url = $item['url'] ?? '#';
+
+            /** @var bool */
+            $active = $item['active'] ?? false;
+
+            /** @var bool */
+            $disabled = $item['disable'] ?? false;
+
+            Html::addCssClass($urlAttributes, $new->submenuItemsCssClass);
+
+            if ($disabled) {
+                Html::addCssClass($urlAttributes, $new->itemsDisabledCssClass);
+            } elseif ($active) {
+                Html::addCssClass($urlAttributes, $new->itemsActiveCssClass);
+            }
+
+            $itemIcon = $new->renderDropdownItemIcon($iconText, $iconCssClass, $iconAttributes);
+            $itemLabel =  $itemIcon . $label;
+
+            if ($iconAlign === 'right') {
+                $itemLabel =  $label . $itemIcon;
+            }
+
+            if ($items === []) {
+                $lines[] = $new->renderDropdownItemsLinks($itemLabel, $url, $urlAttributes);
             } else {
-                if (!isset($item['label']) && $item !== '-') {
-                    throw new InvalidArgumentException('The "label" option is required.');
-                }
-
-                /** @var string */
-                $itemLabel = $item['label'] ?? '';
-
-                if (isset($item['encode']) && $item['encode'] === true) {
-                    $itemLabel = Html::encode($itemLabel);
-                }
-
                 /** @var array */
-                $labelAttributes = isset($item['labelAttributes']) ? $item['labelAttributes'] : [];
+                Html::addCssClass($labelAttributes, $new->submenuCssClass);
+                Html::addCssClass($itemsAttributes, $new->dropdownItemsCssClass);
 
-                /** @var array */
-                $urlAttributes = isset($item['urlAttributes']) ? $item['urlAttributes'] : [];
-
-                /** @var string */
-                $icon = $item['icon'] ?? '';
-
-                /** @var array */
-                $iconAttributes = $item['iconAttributes'] ?? [];
-
-                /** @var string */
-                $url = $item['url'] ?? '';
-
-                /** @var bool */
-                $active = $item['active'] ?? $new->isItemActive($url, $new->currentPath, $new->activateItems);
-
-                $label = $new->renderLabel($itemLabel, $icon, $iconAttributes, $labelAttributes);
-
-                if ($new->activateItems && $active) {
-                    Html::addCssClass($urlAttributes, ['bg-gray-900', 'text-white']);
-                } else {
-                    Html::addCssClass($urlAttributes, 'text-blueGray-700 bg-transparent');
-                }
-
-                if (isset($item['items']) && is_array($item['items'])) {
-                    $lines[] = Dropdown::widget()
-                        ->backgroundColorTheme(Dropdown::BG_TRANSPARENT)
-                        ->buttonAttributes($new->buttonSubDropdownAttributes)
-                        ->buttonIcon('&#8594;')
-                        ->buttonLabel($itemLabel)
-                        ->items($item['items'])
-                        ->textColorTheme('text-black');
-                } else {
-                    $lines[] = Html::a($label, $url, array_merge_recursive($new->urlAttributes, $urlAttributes))
-                        ->encode(false);
-                }
+                $link = A::tag()->attributes($labelAttributes)->content($itemLabel)->encode(false)->url($url)->render();
+                $dropdown = $new->renderDropdownMultipleLevel($new, $attributes, $items);
+                $lines[] = Div::tag()
+                    ->attributes($itemsAttributes)
+                    ->content(PHP_EOL . $link . PHP_EOL . $dropdown . PHP_EOL)
+                    ->encode(false)
+                    ->render();
             }
         }
 
-        $items = '';
+        return implode(PHP_EOL, $lines);
+    }
 
-        if (!empty($lines)) {
-            $items = implode("\n", $lines) . "\n";
-        }
+    private function renderDropdownItemsLinks(string $itemLabel, string $url, array $urlAttributes): string
+    {
+        return A::tag()->attributes($urlAttributes)->content($itemLabel)->encode(false)->url($url)->render();
+    }
 
-        return
-            Html::openTag('div', $new->itemsContainerAttributes) . "\n" .
-                $items .
-            Html::closeTag('div') . "\n" ;
+    /**
+     * @throws ReflectionException
+     */
+    private function renderDropdownMultipleLevel(self $new, array $attributes, array $items): string
+    {
+        Html::addCssClass($attributes, $new->submenuContentCssClass);
+
+        $dropdown = Dropdown::widget()
+            ->dropdownCssClass($new->dropdownCssClass)
+            ->dropdownItemsCssClass($new->dropdownItemsCssClass)
+            ->dropdownItemContentCssClass($new->dropdownItemContentCssClass)
+            ->items($items)
+            ->itemsActiveCssClass($new->itemsActiveCssClass)
+            ->itemsDisabledCssClass($new->itemsDisabledCssClass)
+            ->submenuCssClass($new->submenuCssClass)
+            ->submenuItemsCssClass($new->submenuItemsCssClass)
+            ->submenuContentCssClass($new->submenuContentCssClass)
+            ->unClosedByContainer()
+            ->render();
+
+        return Div::tag()
+            ->attributes($attributes)
+            ->content(PHP_EOL . $dropdown . PHP_EOL)
+            ->encode(false)
+            ->render();
+    }
+
+    private function renderDropdownItemIcon(string $iconText, string $iconCssClass, array $iconAttributes): string
+    {
+        Html::addCssClass($iconAttributes, $iconCssClass);
+
+        return ($iconText !== '' || $iconCssClass !== '')
+            ? CustomTag::name('i')->attributes($iconAttributes)->content($iconText)->render()
+            : '';
     }
 }
