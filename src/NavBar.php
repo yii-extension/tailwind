@@ -68,7 +68,7 @@ final class NavBar extends Widget
     {
         parent::begin();
         $new = clone $this;
-        return $new->renderNavBar($new);
+        return $new->navBar($new);
     }
 
     protected function run(): string
@@ -231,7 +231,7 @@ final class NavBar extends Widget
         return $new;
     }
 
-    private function renderNavBar(self $new): string
+    private function navBar(self $new): string
     {
         $attributes = $new->getAttributes();
 
@@ -239,10 +239,10 @@ final class NavBar extends Widget
             $attributes['id'] = "{$new->getId()}-navbar";
         }
 
-        return Html::openTag('nav', $attributes) . PHP_EOL . $new->renderNavBarContainer($new) . PHP_EOL;
+        return Html::openTag('nav', $attributes) . PHP_EOL . $new->navBarContainer($new) . PHP_EOL;
     }
 
-    private function renderNavBarBrand(self $new): string
+    private function navBarBrand(self $new): string
     {
         $brand = '';
 
@@ -277,15 +277,15 @@ final class NavBar extends Widget
             ->render() . PHP_EOL;
     }
 
-    private function renderNavBarContainer(self $new): string
+    private function navBarContainer(self $new): string
     {
         return
             Html::openTag('div', $new->containerAttributes) . PHP_EOL .
-            $new->renderNavBarBrand($new) .
-            $new->renderNavBarButtonToggle($new);
+            $new->navBarBrand($new) .
+            $new->navBarButtonToggle($new);
     }
 
-    private function renderNavBarButtonToggle(self $new): string
+    private function navBarButtonToggle(self $new): string
     {
         if (!isset($new->buttonAttributes['id'])) {
             $new->buttonAttributes['id'] = "hamburger";
@@ -293,7 +293,7 @@ final class NavBar extends Widget
 
         $button = Button::tag()
             ->attributes($new->buttonAttributes)
-            ->content(PHP_EOL . $new->renderNavBarButtonIcon($new))
+            ->content(PHP_EOL . $new->navBarButtonIcon($new))
             ->encode(false)
             ->type('button')
             ->render();
@@ -305,7 +305,7 @@ final class NavBar extends Widget
             ->render();
     }
 
-    private function renderNavbarButtonIcon(self $new): string
+    private function navbarButtonIcon(self $new): string
     {
         $html = '';
 

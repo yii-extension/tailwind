@@ -37,7 +37,7 @@ final class Nav extends Widget
     protected function run(): string
     {
         $new  = clone $this;
-        return $new->renderNav($new);
+        return $new->nav($new);
     }
 
     /**
@@ -235,7 +235,7 @@ final class Nav extends Widget
     /**
      * @throws ReflectionException
      */
-    private function renderNav(self $new): string
+    private function nav(self $new): string
     {
         $items = [];
 
@@ -246,7 +246,7 @@ final class Nav extends Widget
             $visible = !isset($item['visible']) || $item['visible'];
 
             if ($visible) {
-                $items[] = is_string($item) ? $item : $new->renderNavItem($item);
+                $items[] = is_string($item) ? $item : $new->navItem($item);
             }
         }
 
@@ -266,7 +266,7 @@ final class Nav extends Widget
      *
      * @return string the rendering result.
      */
-    private function renderNavItem(array $item): string
+    private function navItem(array $item): string
     {
         $new = clone $this;
 
@@ -310,7 +310,7 @@ final class Nav extends Widget
         /** @var bool */
         $disable = $item['disable'] ?? false;
 
-        $itemIcon = $new->renderNavItemsIcon($iconText, $iconCssClass, $iconAttributes);
+        $itemIcon = $new->navItemsIcon($iconText, $iconCssClass, $iconAttributes);
         $itemLabel =  $itemIcon . $label;
 
         if ($iconAlign === 'right') {
@@ -343,7 +343,7 @@ final class Nav extends Widget
         return $html;
     }
 
-    private function renderNavItemsIcon(string $iconText, string $iconCssClass, array $iconAttributes): string
+    private function navItemsIcon(string $iconText, string $iconCssClass, array $iconAttributes): string
     {
         if ($iconCssClass !== '') {
             Html::addCssClass($iconAttributes, $iconCssClass);

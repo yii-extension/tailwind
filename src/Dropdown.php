@@ -48,7 +48,7 @@ final class Dropdown extends Widget
     protected function run(): string
     {
         $new = clone $this;
-        return $new->items !== [] ? $new->renderDropdown($new) : '';
+        return $new->items !== [] ? $new->dropdown($new) : '';
     }
 
     public function buttonAttributes(array $value): self
@@ -205,7 +205,7 @@ final class Dropdown extends Widget
     /**
      * @throws ReflectionException
      */
-    private function renderDropdown(self $new): string
+    private function dropdown(self $new): string
     {
         $attributes = $new->getAttributes();
         $id = '';
@@ -216,10 +216,10 @@ final class Dropdown extends Widget
 
         Html::addCssClass($attributes, $new->dropdownCssClass);
 
-        $html = $new->renderDropdownItems($new);
+        $html = $new->dropdownItems($new);
 
         if ($new->encloseByContainer) {
-            $button = $new->renderDropdownButton($new);
+            $button = $new->dropdownButton($new);
             $ul = Div::tag()
                 ->class($new->dropdownItemContentCssClass)
                 ->content(PHP_EOL . $html . PHP_EOL)
@@ -236,7 +236,7 @@ final class Dropdown extends Widget
         return $html;
     }
 
-    private function renderDropdownButton(self $new): string
+    private function dropdownButton(self $new): string
     {
         Html::addCssClass(
             $new->buttonAttributes,
@@ -262,7 +262,7 @@ final class Dropdown extends Widget
      *
      * @return string the rendering result.
      */
-    private function renderDropdownItems(self $new): string
+    private function dropdownItems(self $new): string
     {
         $lines = [];
 
@@ -323,7 +323,7 @@ final class Dropdown extends Widget
                 Html::addCssClass($urlAttributes, $new->itemsActiveCssClass);
             }
 
-            $itemIcon = $new->renderDropdownItemIcon($iconText, $iconCssClass, $iconAttributes);
+            $itemIcon = $new->dropdownItemIcon($iconText, $iconCssClass, $iconAttributes);
             $itemLabel =  $itemIcon . $label;
 
             if ($iconAlign === 'right') {
@@ -331,14 +331,14 @@ final class Dropdown extends Widget
             }
 
             if ($items === []) {
-                $lines[] = $new->renderDropdownItemsLinks($itemLabel, $url, $urlAttributes);
+                $lines[] = $new->dropdownItemsLinks($itemLabel, $url, $urlAttributes);
             } else {
                 /** @var array */
                 Html::addCssClass($labelAttributes, $new->submenuCssClass);
                 Html::addCssClass($itemsAttributes, $new->dropdownItemsCssClass);
 
                 $link = A::tag()->attributes($labelAttributes)->content($itemLabel)->encode(false)->url($url)->render();
-                $dropdown = $new->renderDropdownMultipleLevel($new, $attributes, $items);
+                $dropdown = $new->dropdownMultipleLevel($new, $attributes, $items);
                 $lines[] = Div::tag()
                     ->attributes($itemsAttributes)
                     ->content(PHP_EOL . $link . PHP_EOL . $dropdown . PHP_EOL)
@@ -350,7 +350,7 @@ final class Dropdown extends Widget
         return implode(PHP_EOL, $lines);
     }
 
-    private function renderDropdownItemsLinks(string $itemLabel, string $url, array $urlAttributes): string
+    private function dropdownItemsLinks(string $itemLabel, string $url, array $urlAttributes): string
     {
         return A::tag()->attributes($urlAttributes)->content($itemLabel)->encode(false)->url($url)->render();
     }
@@ -358,7 +358,7 @@ final class Dropdown extends Widget
     /**
      * @throws ReflectionException
      */
-    private function renderDropdownMultipleLevel(self $new, array $attributes, array $items): string
+    private function dropdownMultipleLevel(self $new, array $attributes, array $items): string
     {
         Html::addCssClass($attributes, $new->submenuContentCssClass);
 
@@ -382,7 +382,7 @@ final class Dropdown extends Widget
             ->render();
     }
 
-    private function renderDropdownItemIcon(string $iconText, string $iconCssClass, array $iconAttributes): string
+    private function dropdownItemIcon(string $iconText, string $iconCssClass, array $iconAttributes): string
     {
         Html::addCssClass($iconAttributes, $iconCssClass);
 
