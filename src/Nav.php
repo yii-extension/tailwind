@@ -23,6 +23,8 @@ final class Nav extends Widget
     private bool $activateParents = false;
     private string $currentPath = '';
     private array $items = [];
+    private string $itemsActiveCssClass = 'bg-gray-400 text-blue-500';
+    private string $itemsDisabledCssClass = 'opacity-50 pointer-events-none';
     private string $itemsCssClass = '';
     private string $itemsLinkCssClass = '';
     private string $submenuCssClass = '';
@@ -316,11 +318,11 @@ final class Nav extends Widget
         }
 
         if ($disable) {
-            Html::addCssClass($urlAttributes, 'opacity-50 pointer-events-none');
+            Html::addCssClass($urlAttributes, $new->itemsDisabledCssClass);
         }
 
         if ($this->activateItems && $active) {
-            Html::addCssClass($urlAttributes, 'bg-gray-400 text-blue-500');
+            Html::addCssClass($urlAttributes, $new->itemsActiveCssClass);
         }
 
         if ($items !== []) {
