@@ -36,7 +36,7 @@ final class Dropdown extends Widget
     private string $dropdownItemContentCssClass = 'dropdown-content absolute hidden pt-1 w-full';
     private bool $encloseByContainer = true;
     private array $items = [];
-    private string $itemsActiveCssClass = 'bg-gray-400';
+    private string $itemsActiveCssClass = 'bg-gray-400 text-blue-500';
     private string $itemsDisabledCssClass = 'opacity-50 cursor-not-allowed';
     private string $submenuCssClass = 'py-2 px-2 block whitespace-nowrap';
     private string $submenuContentCssClass = 'dropdown-content absolute hidden';
