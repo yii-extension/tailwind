@@ -23,7 +23,6 @@ composer require yii-extension/tailwind
 
 We will quickly and easily describe how to use widgets, and be able to use all the power of the Tailwind CSS framework with php.
 
-- [Alert](docs/alert.md)
 - [Colors](docs/colors.md)
 - [Dropdown](docs/dropdown.md)
 - [Navbar](docs/navbar.md)
@@ -52,13 +51,18 @@ The code is statically analyzed with [Psalm](https://psalm.dev/docs). To run sta
 ./vendor/bin/psalm
 ```
 
-### Support the project
+## License
+
+The `yii-extension/tailwind` for Yii Packages is free software.
+
+It is released under the terms of the BSD License. Please see [`LICENSE`](./LICENSE.md) for more information.
+
+Maintained by [Yii Extension](https://github.com/yii-extension).
+
+## Support the project
 
 [![Open Collective](https://img.shields.io/badge/Open%20Collective-sponsor-7eadf1?logo=open%20collective&logoColor=7eadf1&labelColor=555555)](https://opencollective.com/yiisoft)
 
-## License
+## Powered by Yii Framework
 
-The yii-extension/tailwind for Yii Packages is free software. It is released under the terms of the BSD License.
-Please see [`LICENSE`](./LICENSE.md) for more information.
-
-Maintained by [Yii Extension](https://github.com/yii-extension).
+[![Official website](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg?style=flat)](https://www.yiiframework.com/)
