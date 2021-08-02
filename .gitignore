@@ -35,4 +35,5 @@ phpunit.phar
 /node_modules
 /package-lock.json
 .phpunit.result.cache
+/code_coverage
 /html
