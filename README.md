@@ -21,6 +21,8 @@ composer require yii-extension/tailwind
 ```
 ## Widgets usage
 
+The widgets do not register any assets, you must register the assets for [Tailwind Css Framework](https://github.com/yii-extension/asset-tailwind)
+
 We will quickly and easily describe how to use widgets, and be able to use all the power of the Tailwind CSS framework with php.
 
 - [Colors](docs/colors.md)
