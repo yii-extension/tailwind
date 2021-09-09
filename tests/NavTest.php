@@ -106,8 +106,8 @@ final class NavTest extends TestCase
             ->render();
         $expected = <<<'HTML'
         <div>
-        <a class="" href="#">Item1</a>
-        <a class="" href="/site/index">Item2</a>
+        <a class href="#">Item1</a>
+        <a class href="/site/index">Item2</a>
         </div>
         HTML;
         $this->assertEqualsWithoutLE($expected, trim($html));
@@ -128,7 +128,7 @@ final class NavTest extends TestCase
             ->render();
         $expected = <<<'HTML'
         <div>
-        <a class="" href="#">Encode &amp; Labels</a>
+        <a class href="#">Encode &amp; Labels</a>
         </div>
         HTML;
         $this->assertEqualsWithoutLE($expected, trim($html));
