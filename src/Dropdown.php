@@ -272,78 +272,80 @@ final class Dropdown extends Widget
                 throw new InvalidArgumentException('The "label" option is required.');
             }
 
-            /** @var string */
-            $label = $item['label'] ?? '';
+            if (is_array($item)) {
+                /** @var string */
+                $label = $item['label'] ?? '';
 
-            /** @var array */
-            $labelAttributes = $item['labelAttributes'] ?? [];
-
-            if (isset($item['encode']) && $item['encode'] === true) {
-                $label = Html::encode($label);
-            }
-
-            /** @var array */
-            $items = $item['items'] ?? [];
-
-            /** @var array */
-            $itemsAttributes = $item['itemsAttributes'] ?? [];
-
-            /** @var array */
-            $attributes = $item['attributes'] ?? [];
-
-            /** @var array */
-            $urlAttributes = $item['urlAttributes'] ?? [];
-
-            /** @var string */
-            $iconText = $item['iconText'] ?? '';
-
-            /** @var string */
-            $iconCssClass = $item['iconCssClass'] ?? '';
-
-            /** @var array */
-            $iconAttributes = $item['iconAttributes'] ?? [];
-
-            /** @var string */
-            $iconAlign = $item['iconAlign'] ?? 'left';
-
-            /** @var string */
-            $url = $item['url'] ?? '#';
-
-            /** @var bool */
-            $active = $item['active'] ?? false;
-
-            /** @var bool */
-            $disabled = $item['disable'] ?? false;
-
-            Html::addCssClass($urlAttributes, $new->submenuItemsCssClass);
-
-            if ($disabled) {
-                Html::addCssClass($urlAttributes, $new->itemsDisabledCssClass);
-            } elseif ($active) {
-                Html::addCssClass($urlAttributes, $new->itemsActiveCssClass);
-            }
-
-            $itemIcon = $new->dropdownItemIcon($iconText, $iconCssClass, $iconAttributes);
-            $itemLabel =  $itemIcon . $label;
-
-            if ($iconAlign === 'right') {
-                $itemLabel =  $label . $itemIcon;
-            }
-
-            if ($items === []) {
-                $lines[] = $new->dropdownItemsLinks($itemLabel, $url, $urlAttributes);
-            } else {
                 /** @var array */
-                Html::addCssClass($labelAttributes, $new->submenuCssClass);
-                Html::addCssClass($itemsAttributes, $new->dropdownItemsCssClass);
+                $labelAttributes = $item['labelAttributes'] ?? [];
 
-                $link = A::tag()->attributes($labelAttributes)->content($itemLabel)->encode(false)->url($url)->render();
-                $dropdown = $new->dropdownMultipleLevel($new, $attributes, $items);
-                $lines[] = Div::tag()
-                    ->attributes($itemsAttributes)
-                    ->content(PHP_EOL . $link . PHP_EOL . $dropdown . PHP_EOL)
-                    ->encode(false)
-                    ->render();
+                if (isset($item['encode']) && $item['encode'] === true) {
+                    $label = Html::encode($label);
+                }
+
+                /** @var array */
+                $items = $item['items'] ?? [];
+
+                /** @var array */
+                $itemsAttributes = $item['itemsAttributes'] ?? [];
+
+                /** @var array */
+                $attributes = $item['attributes'] ?? [];
+
+                /** @var array */
+                $urlAttributes = $item['urlAttributes'] ?? [];
+
+                /** @var string */
+                $iconText = $item['iconText'] ?? '';
+
+                /** @var string */
+                $iconCssClass = $item['iconCssClass'] ?? '';
+
+                /** @var array */
+                $iconAttributes = $item['iconAttributes'] ?? [];
+
+                /** @var string */
+                $iconAlign = $item['iconAlign'] ?? 'left';
+
+                /** @var string */
+                $url = $item['url'] ?? '#';
+
+                /** @var bool */
+                $active = $item['active'] ?? false;
+
+                /** @var bool */
+                $disabled = $item['disable'] ?? false;
+
+                Html::addCssClass($urlAttributes, $new->submenuItemsCssClass);
+
+                if ($disabled) {
+                    Html::addCssClass($urlAttributes, $new->itemsDisabledCssClass);
+                } elseif ($active) {
+                    Html::addCssClass($urlAttributes, $new->itemsActiveCssClass);
+                }
+
+                $itemIcon = $new->dropdownItemIcon($iconText, $iconCssClass, $iconAttributes);
+                $itemLabel =  $itemIcon . $label;
+
+                if ($iconAlign === 'right') {
+                    $itemLabel =  $label . $itemIcon;
+                }
+
+                if ($items === []) {
+                    $lines[] = $new->dropdownItemsLinks($itemLabel, $url, $urlAttributes);
+                } else {
+                    /** @var array */
+                    Html::addCssClass($labelAttributes, $new->submenuCssClass);
+                    Html::addCssClass($itemsAttributes, $new->dropdownItemsCssClass);
+
+                    $link = A::tag()->attributes($labelAttributes)->content($itemLabel)->encode(false)->url($url)->render();
+                    $dropdown = $new->dropdownMultipleLevel($new, $attributes, $items);
+                    $lines[] = Div::tag()
+                        ->attributes($itemsAttributes)
+                        ->content(PHP_EOL . $link . PHP_EOL . $dropdown . PHP_EOL)
+                        ->encode(false)
+                        ->render();
+                }
             }
         }
 
