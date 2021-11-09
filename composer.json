@@ -15,7 +15,7 @@
         "foxy/foxy": "^1.1@dev",
         "yii-extension/asset-tailwind": "^1.0",
         "yii-extension/simple-widget": "^1.0",
-        "yiisoft/assets": "^1.0",
+        "yiisoft/assets": "^2.0",
         "yiisoft/files": "^1.0",
         "yiisoft/html": "^2.0"
     },
