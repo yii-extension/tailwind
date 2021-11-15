@@ -26,7 +26,7 @@ final class Nav extends Widget
     private string $itemsActiveCssClass = 'text-blue-500';
     private string $itemsDisabledCssClass = 'opacity-50 pointer-events-none';
     private string $itemsCssClass = '';
-    private ?string $itemsLinkCssClass = null;
+    private string $itemsLinkCssClass = '';
     private string $submenuCssClass = '';
     private string $submenuContentCssClass = '';
     private string $submenuItemsCssClass = '';
@@ -342,8 +342,11 @@ final class Nav extends Widget
                 ->render();
         }
 
-        if ($html === '') {
+        if ($new->itemsLinkCssClass !== '') {
             Html::addCssClass($urlAttributes, $new->itemsLinkCssClass);
+        }
+
+        if ($html === '') {
             $html = A::tag()->attributes($urlAttributes)->content($itemLabel)->url($url)->encode(false)->render();
         }
 
