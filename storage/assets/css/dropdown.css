@@ -1,0 +1,4 @@
+/** Dropdown css class */
+.dropdown:hover > .dropdown-content {
+	display: block;
+}

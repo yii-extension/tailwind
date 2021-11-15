@@ -34,8 +34,8 @@ final class NavTest extends TestCase
             ->render();
         $expected = <<<'HTML'
         <div>
-        <a class="bg-gray-400 text-blue-500 " href="#">Item1</a>
-        <a class="opacity-50 pointer-events-none " href="/site/index">Item2</a>
+        <a class="text-blue-500" href="#">Item1</a>
+        <a class="opacity-50 pointer-events-none" href="/site/index">Item2</a>
         </div>
         HTML;
         $this->assertEqualsWithoutLE($expected, trim($html));
@@ -106,8 +106,34 @@ final class NavTest extends TestCase
             ->render();
         $expected = <<<'HTML'
         <div>
-        <a class href="#">Item1</a>
-        <a class href="/site/index">Item2</a>
+        <a href="#">Item1</a>
+        <a href="/site/index">Item2</a>
+        </div>
+        HTML;
+        $this->assertEqualsWithoutLE($expected, trim($html));
+    }
+
+    public function testitemsActiveCssClass(): void
+    {
+        Nav::counter(0);
+
+        $html = Nav::widget()
+            ->items([
+                [
+                    'label' => 'Item1',
+                    'active' => true,
+                ],
+                [
+                    'label' => 'Item2',
+                    'url' => '/site/index',
+                ],
+            ])
+            ->itemsActiveCssClass('bg-gray-400 text-blue-500')
+            ->render();
+        $expected = <<<'HTML'
+        <div>
+        <a class="bg-gray-400 text-blue-500" href="#">Item1</a>
+        <a href="/site/index">Item2</a>
         </div>
         HTML;
         $this->assertEqualsWithoutLE($expected, trim($html));
@@ -128,7 +154,7 @@ final class NavTest extends TestCase
             ->render();
         $expected = <<<'HTML'
         <div>
-        <a class href="#">Encode &amp; Labels</a>
+        <a href="#">Encode &amp; Labels</a>
         </div>
         HTML;
         $this->assertEqualsWithoutLE($expected, trim($html));

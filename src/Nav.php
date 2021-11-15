@@ -23,10 +23,10 @@ final class Nav extends Widget
     private bool $activateParents = false;
     private string $currentPath = '';
     private array $items = [];
-    private string $itemsActiveCssClass = 'bg-gray-400 text-blue-500';
+    private string $itemsActiveCssClass = 'text-blue-500';
     private string $itemsDisabledCssClass = 'opacity-50 pointer-events-none';
     private string $itemsCssClass = '';
-    private string $itemsLinkCssClass = '';
+    private ?string $itemsLinkCssClass = null;
     private string $submenuCssClass = '';
     private string $submenuContentCssClass = '';
     private string $submenuItemsCssClass = '';
@@ -92,6 +92,13 @@ final class Nav extends Widget
     {
         $new = clone $this;
         $new->items = $value;
+        return $new;
+    }
+
+    public function itemsActiveCssClass(string $value): self
+    {
+        $new = clone $this;
+        $new->itemsActiveCssClass = $value;
         return $new;
     }
 
